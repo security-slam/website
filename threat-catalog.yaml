@@ -1,0 +1,259 @@
+title: OpenSSF Security Slam Website Threat Catalog
+metadata:
+  id: SEC.SLAM.WEB
+  type: ThreatCatalog
+  gemara-version: "1.5.0"
+  version: "1.1.0"
+  description: |
+    Threat catalog for the OpenSSF Security Slam static website. This site is a
+    React + Vite + TypeScript single-page application deployed to GitHub Pages
+    via GitHub Actions. It renders markdown content, embeds HubSpot forms via
+    dynamic script loading, and manages dependencies through npm.
+  author:
+    id: hbraswel
+    name: Hannah Braswell
+    type: Human
+  mapping-references:
+    - id: CCC
+      title: Common Cloud Controls Core
+      version: v2025.10
+      url: https://github.com/finos/common-cloud-controls/releases
+      description: |
+        Foundational repository of reusable security controls, capabilities,
+        and threat models maintained by FINOS.
+    - id: MITRE-ATT&CK
+      title: MITRE ATT&CK Framework
+      version: "16.0"
+      description: |
+        MITRE ATT&CK is a globally-accessible knowledge base of adversary
+        tactics and techniques based on real-world observations.
+      url: https://attack.mitre.org/
+    - id: SEC.SLAM.WEB.CAP
+      title: Security Slam Website Capability Catalog
+      version: "1.1.0"
+      description: |
+        Capability catalog for the Security Slam website defining the site
+        functions that the threats in this catalog exploit.
+
+imports:
+  - reference-id: CCC
+    entries:
+      - reference-id: CCC.Core.CP06
+        remarks: Access Control
+      - reference-id: CCC.Core.CP29
+        remarks: Active Ingestion
+      - reference-id: CCC.Core.CP12
+        remarks: Recovery
+      - reference-id: CCC.Core.TH01
+        remarks: Access is Granted to Unauthorized Users
+      - reference-id: CCC.Core.TH14
+        remarks: Older Resource Versions are Used
+      - reference-id: CCC.Core.TH06
+        remarks: Data is Lost or Corrupted
+  - reference-id: SEC.SLAM.WEB.CAP
+    entries:
+      - reference-id: SEC.SLAM.WEB.CAP01
+        remarks: Static Content Rendering
+      - reference-id: SEC.SLAM.WEB.CAP02
+        remarks: External Script Embedding
+      - reference-id: SEC.SLAM.WEB.CAP03
+        remarks: CI/CD Automated Deployment
+      - reference-id: SEC.SLAM.WEB.CAP04
+        remarks: npm Dependency Management
+      - reference-id: SEC.SLAM.WEB.CAP06
+        remarks: Configuration-Driven Content Management
+
+groups:
+  - id: supply-chain
+    title: Supply Chain
+    description: |
+      Threats related to the software supply chain, including npm dependencies,
+      build tooling, and third-party package integrity.
+  - id: client-side
+    title: Client-Side Execution
+    description: |
+      Threats related to code execution in the user's browser, including script
+      injection, cross-site scripting, and unsafe content rendering.
+  - id: infrastructure
+    title: Infrastructure & Deployment
+    description: |
+      Threats related to the CI/CD pipeline, hosting platform, and deployment
+      process via GitHub Actions and GitHub Pages.
+  - id: content-integrity
+    title: Content Integrity
+    description: |
+      Threats related to unauthorized or malicious modification of site content,
+      configuration, or contributor access.
+
+threats:
+  - id: SEC.SLAM.WEB.TH01
+    title: Malicious npm Dependency Injection
+    description: |
+      An attacker compromises an upstream npm package used by the project
+      (e.g., react-markdown, gray-matter, remark-gfm, buffer) by publishing a
+      malicious version. Since the site uses npm ci with a lockfile, the attack
+      vector requires either compromising the lockfile or a maintainer running
+      npm update without review. A compromised dependency could inject malicious
+      code into the built static assets served to all visitors.
+    group: supply-chain
+    capabilities:
+      - reference-id: CCC
+        entries:
+          - reference-id: CCC.Core.CP29
+            remarks: Active Ingestion — CI/CD pipeline pulls packages from npm
+      - reference-id: SEC.SLAM.WEB.CAP
+        entries:
+          - reference-id: SEC.SLAM.WEB.CAP04
+            remarks: npm Dependency Management
+
+  - id: SEC.SLAM.WEB.TH02
+    title: HubSpot Script URL Injection
+    description: |
+      The HubSpot form component dynamically constructs a script URL using a
+      region parameter interpolated into the hostname
+      (js-${region}.hsforms.net). Although currently hardcoded in site config,
+      if this value were derived from user-controllable input (e.g., URL
+      parameters or markdown frontmatter without validation), an attacker could
+      cause the browser to load an arbitrary script from a attacker-controlled
+      domain, achieving full XSS.
+    group: client-side
+    capabilities:
+      - reference-id: SEC.SLAM.WEB.CAP
+        entries:
+          - reference-id: SEC.SLAM.WEB.CAP02
+            remarks: External Script Embedding (HubSpot)
+
+  - id: SEC.SLAM.WEB.TH03
+    title: GitHub Actions Workflow Compromise
+    description: |
+      An attacker modifies the GitHub Actions workflow (.github/workflows/pages.yml)
+      through a malicious pull request or compromised contributor account to
+      inject malicious steps into the build and deploy pipeline. This could
+      result in deploying tampered static assets, exfiltrating repository
+      secrets (id-token), or gaining write access to GitHub Pages. The workflow
+      has pages:write and id-token:write permissions.
+    group: infrastructure
+    capabilities:
+      - reference-id: CCC
+        entries:
+          - reference-id: CCC.Core.CP06
+            remarks: Access Control — repository access permissions govern workflow modification
+      - reference-id: SEC.SLAM.WEB.CAP
+        entries:
+          - reference-id: SEC.SLAM.WEB.CAP03
+            remarks: CI/CD Automated Deployment
+
+  - id: SEC.SLAM.WEB.TH04
+    title: Cross-Site Scripting via Markdown Content
+    description: |
+      An attacker with commit access introduces malicious content in markdown
+      files under src/content/ that bypasses react-markdown's sanitization.
+      While react-markdown is generally safe against raw HTML injection,
+      certain edge cases in remark plugins, custom markdown components, or
+      future configuration changes (e.g., enabling rehype-raw) could allow
+      script execution in visitors' browsers.
+    group: client-side
+    capabilities:
+      - reference-id: SEC.SLAM.WEB.CAP
+        entries:
+          - reference-id: SEC.SLAM.WEB.CAP01
+            remarks: Static Content Rendering
+
+  - id: SEC.SLAM.WEB.TH05
+    title: Dependency Confusion or Typosquatting
+    description: |
+      An attacker publishes a malicious package to npm with a name similar to
+      one of the project's dependencies (e.g., react-markdwon, grey-matter) or
+      exploits dependency confusion by publishing a public package matching an
+      internal namespace. If a contributor mistakenly installs the typosquatted
+      package, malicious code enters the build pipeline and is served to users.
+    group: supply-chain
+    capabilities:
+      - reference-id: CCC
+        entries:
+          - reference-id: CCC.Core.CP29
+            remarks: Active Ingestion — npm resolves and pulls packages from registries
+      - reference-id: SEC.SLAM.WEB.CAP
+        entries:
+          - reference-id: SEC.SLAM.WEB.CAP04
+            remarks: npm Dependency Management
+
+  - id: SEC.SLAM.WEB.TH06
+    title: Unauthorized Content Modification
+    description: |
+      An attacker gains commit access to the repository through a compromised
+      contributor account, stolen credentials, or social engineering. They
+      modify site content (markdown files, configuration, or component code)
+      to inject phishing content, redirect users to malicious sites, or
+      deface the event page. Since changes to main trigger automatic
+      deployment, malicious content goes live immediately.
+    group: content-integrity
+    capabilities:
+      - reference-id: CCC
+        entries:
+          - reference-id: CCC.Core.CP06
+            remarks: Access Control — repository access controls govern content modification
+          - reference-id: CCC.Core.CP12
+            remarks: Recovery — git revert capability to restore prior state
+      - reference-id: SEC.SLAM.WEB.CAP
+        entries:
+          - reference-id: SEC.SLAM.WEB.CAP06
+            remarks: Configuration-Driven Content Management
+          - reference-id: SEC.SLAM.WEB.CAP01
+            remarks: Static Content Rendering
+
+  - id: SEC.SLAM.WEB.TH07
+    title: GitHub Pages Deployment Hijacking
+    description: |
+      An attacker exploits misconfigured GitHub Pages settings or compromised
+      repository permissions to deploy unauthorized content to the site's
+      hosting endpoint. This could involve changing the Pages source branch,
+      overriding the CNAME configuration, or exploiting the id-token:write
+      permission in the workflow to impersonate the deployment identity.
+    group: infrastructure
+    capabilities:
+      - reference-id: CCC
+        entries:
+          - reference-id: CCC.Core.CP06
+            remarks: Access Control — repository settings control deployment configuration
+      - reference-id: SEC.SLAM.WEB.CAP
+        entries:
+          - reference-id: SEC.SLAM.WEB.CAP03
+            remarks: CI/CD Automated Deployment
+
+  - id: SEC.SLAM.WEB.TH08
+    title: Sensitive Data Exposure in Client Bundle
+    description: |
+      Configuration values such as HubSpot portal IDs, form IDs, and region
+      identifiers are embedded in the client-side JavaScript bundle. While
+      these are intended to be public for embed forms, accidental inclusion
+      of sensitive values (API keys, internal URLs, or draft content) in
+      site.ts or markdown frontmatter would be exposed to all visitors via
+      the built assets. The Vite build bundles all imported modules into
+      publicly accessible JavaScript files.
+    group: client-side
+    capabilities:
+      - reference-id: SEC.SLAM.WEB.CAP
+        entries:
+          - reference-id: SEC.SLAM.WEB.CAP06
+            remarks: Configuration-Driven Content Management
+
+  - id: SEC.SLAM.WEB.TH09
+    title: GitHub Actions Supply Chain Attack
+    description: |
+      The CI/CD workflow references third-party GitHub Actions
+      (actions/checkout@v4, actions/setup-node@v4, actions/deploy-pages@v4)
+      by mutable version tags rather than pinned commit SHAs. An attacker
+      who compromises one of these upstream actions could inject malicious
+      steps that execute during the build, exfiltrate secrets, or tamper
+      with deployed artifacts.
+    group: supply-chain
+    capabilities:
+      - reference-id: CCC
+        entries:
+          - reference-id: CCC.Core.CP29
+            remarks: Active Ingestion — workflow pulls third-party actions from GitHub
+      - reference-id: SEC.SLAM.WEB.CAP
+        entries:
+          - reference-id: SEC.SLAM.WEB.CAP03
+            remarks: CI/CD Automated Deployment

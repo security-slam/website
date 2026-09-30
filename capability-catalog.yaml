@@ -1,0 +1,104 @@
+title: OpenSSF Security Slam Website Capability Catalog
+metadata:
+  id: SEC.SLAM.WEB.CAP
+  type: CapabilityCatalog
+  gemara-version: "1.5.0"
+  version: "1.1.0"
+  description: |
+    Capability catalog for the OpenSSF Security Slam static website. Capabilities
+    describe what the site can do and together form its attack surface. Threats
+    against these capabilities are defined in the companion threat catalog
+    (SEC.SLAM.WEB). The site is a React + Vite + TypeScript single-page
+    application deployed to GitHub Pages via GitHub Actions.
+  author:
+    id: hbraswel
+    name: Hannah Braswell
+    type: Human
+  mapping-references:
+    - id: CCC
+      title: Common Cloud Controls Core
+      version: v2025.10
+      url: https://github.com/finos/common-cloud-controls/releases
+      description: |
+        Foundational repository of reusable security controls, capabilities,
+        and threat models maintained by FINOS.
+
+imports:
+  - reference-id: CCC
+    entries:
+      - reference-id: CCC.Core.CP06
+        remarks: Access Control
+      - reference-id: CCC.Core.CP29
+        remarks: Active Ingestion
+      - reference-id: CCC.Core.CP12
+        remarks: Recovery
+
+groups:
+  - id: content-delivery
+    title: Content Delivery
+    description: |
+      Capabilities that render and serve site content to visitors in the
+      browser, including markdown rendering and client-side navigation.
+  - id: third-party-integration
+    title: Third-Party Integration
+    description: |
+      Capabilities that load or exchange data with external services from the
+      visitor's browser.
+  - id: build-deploy
+    title: Build & Deployment
+    description: |
+      Capabilities exercised in the CI/CD pipeline, including dependency
+      resolution, asset compilation, and publishing to the hosting platform.
+  - id: configuration
+    title: Configuration Management
+    description: |
+      Capabilities that determine site identity, structure, and content
+      through version-controlled configuration.
+
+capabilities:
+  - id: SEC.SLAM.WEB.CAP01
+    title: Static Content Rendering
+    description: |
+      Ability to render markdown content authored under src/content/ into HTML
+      in the visitor's browser using react-markdown and remark plugins. Content
+      is bundled at build time and executed client-side.
+    group: content-delivery
+
+  - id: SEC.SLAM.WEB.CAP02
+    title: External Script Embedding
+    description: |
+      Ability to load third-party JavaScript at runtime from an external origin,
+      specifically the HubSpot forms script whose URL is constructed from a
+      region value in site configuration (js-${region}.hsforms.net).
+    group: third-party-integration
+
+  - id: SEC.SLAM.WEB.CAP03
+    title: CI/CD Automated Deployment
+    description: |
+      Ability to build the site and publish it to GitHub Pages automatically on
+      push to main via a GitHub Actions workflow holding pages:write and
+      id-token:write permissions.
+    group: build-deploy
+
+  - id: SEC.SLAM.WEB.CAP04
+    title: npm Dependency Management
+    description: |
+      Ability to resolve and install third-party npm packages during the build,
+      governed by package.json and package-lock.json and installed with npm ci.
+    group: build-deploy
+
+  - id: SEC.SLAM.WEB.CAP05
+    title: Client-Side Routing
+    description: |
+      Ability to resolve arbitrary URL paths to application views in the browser
+      via react-router, backed by a 404.html fallback that serves the SPA shell
+      for any unmatched path on GitHub Pages.
+    group: content-delivery
+
+  - id: SEC.SLAM.WEB.CAP06
+    title: Configuration-Driven Content Management
+    description: |
+      Ability to define site identity, navigation, content sections, and contact
+      forms through src/config/site.ts and markdown frontmatter, which are
+      bundled into publicly served JavaScript assets.
+    group: configuration
