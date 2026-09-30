@@ -1,0 +1,20 @@
+name: Mark PR Ready When Ready
+
+on:
+  pull_request:
+    types: [opened, edited, labeled, unlabeled, synchronize]
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  mark-ready:
+    permissions:
+      checks: read # Poll check runs to know when they pass
+      contents: write # Required by mark-ready-when-ready to flip the PR out of draft
+      pull-requests: write # Mark the PR ready for review
+      statuses: read # Poll commit statuses alongside check runs
+    uses: meridth/workflows/.github/workflows/mark-ready.yaml@36ec4522d023c676c6b8b067ce2adfe60ac7cc93 # v1.3.0
