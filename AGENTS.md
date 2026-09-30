@@ -13,7 +13,8 @@ Config-driven React + Vite + TypeScript website with a front page, blog, seconda
 | File / directory | Intent |
 |------------------|--------|
 | **`index.html`** | HTML shell: root `<div id="root">`, viewport meta, document title placeholder. Vite entry; `main.tsx` is loaded as module. |
-| **`package.json`** | Dependencies (React 19, react-router-dom 7, Vite 7) and scripts: `dev`, `build`, `preview`. |
+| **`package.json`** | Dependencies (React 19, react-router-dom 7, Vite 7) and scripts: `dev`, `build`, `preview`, `typecheck`. |
+| **`.nvmrc`** | Node version used by CI, deploy, and local development. |
 | **`vite.config.ts`** | Vite config: React SWC plugin, `base: "/"`, build output `dist/`. Change `base` for GitHub Pages project sites (see DEPLOY.md). |
 | **`tsconfig.json`** | TypeScript compiler options for the project. |
 | **`.gitignore`** | Git ignore rules (e.g. `node_modules`, `dist`). |
@@ -26,7 +27,10 @@ Config-driven React + Vite + TypeScript website with a front page, blog, seconda
 
 | Path | Intent |
 |------|--------|
-| **`.github/workflows/pages.yml`** | GitHub Actions workflow: on push to `main` (or manual), builds with Node 20, runs `npm ci` and `npm run build`, copies `index.html` → `404.html` for SPA routing, uploads `dist/` as GitHub Pages artifact and deploys. |
+| **`.github/workflows/ci.yaml`** | GitHub Actions workflow: on PRs, pushes to `main`, and manual runs, the `build` job installs with Node from `.nvmrc` (`npm ci --ignore-scripts`), runs `npm run typecheck` and `npm run build`, and copies `index.html` → `404.html` for SPA routing. On `main` it also uploads `dist/` as the Pages artifact and the `deploy` job publishes it. `build` is the required status check. |
+| **`.github/workflows/mark-ready-when-ready.yaml`** | Runs `kenyonj/mark-ready-when-ready`: a same-repo draft PR labeled `mark-ready-when-ready` is marked ready for review once its checks pass, and the label is removed. |
+| **`.github/dependabot.yml`** | Weekly Dependabot updates for npm and GitHub Actions, minor/patch grouped, 7-day cooldown. |
+| **`.github/CODEOWNERS`** | All files owned by `@security-slam/developers`. |
 
 ---
 

@@ -4,6 +4,10 @@
  */
 import { Buffer } from "buffer";
 
+declare global {
+  var Buffer: typeof import("buffer").Buffer;
+}
+
 if (typeof globalThis.Buffer === "undefined") {
   globalThis.Buffer = Buffer;
 }

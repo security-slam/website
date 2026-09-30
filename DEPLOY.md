@@ -29,13 +29,13 @@ For a **user or organization site** (e.g. `https://<username>.github.io/`), use 
 
 A workflow is included that builds the app and deploys the `dist/` folder to GitHub Pages.
 
-1. **Push the repo** (including `.github/workflows/pages.yml`) to GitHub.
+1. **Push the repo** (including `.github/workflows/ci.yaml`) to GitHub.
 
 2. **Enable GitHub Pages** in the repo:
    - **Settings** → **Pages**.
    - Under **Build and deployment**, set **Source** to **GitHub Actions**.
 
-3. **Trigger a deploy**: push to the default branch (e.g. `main`) or run the workflow **Deploy Vite site to Pages** from the **Actions** tab.
+3. **Trigger a deploy**: push to the default branch (e.g. `main`) or run the **CI** workflow from the **Actions** tab. Pull requests run the `build` job only; deploys happen from `main`.
 
 4. After the run finishes, the site is available at:
    - Project site: `https://<username>.github.io/<repo>/`
@@ -43,7 +43,7 @@ A workflow is included that builds the app and deploys the `dist/` folder to Git
 
 The workflow:
 
-- Uses Node 20, runs `npm ci` and `npm run build`.
+- Uses the Node version in `.nvmrc`, runs `npm ci --ignore-scripts`, `npm run typecheck`, and `npm run build`.
 - Copies `dist/index.html` to `dist/404.html` so unknown paths (e.g. `/blog/welcome`) return the SPA and React Router can handle them.
 - Uploads `dist/` as the Pages artifact and deploys via `deploy-pages`.
 
