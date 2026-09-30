@@ -1,0 +1,37 @@
+name: Mark PR Ready When Ready
+
+on:
+  pull_request:
+    types: [opened, edited, labeled, unlabeled, synchronize]
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  mark-ready:
+    name: Mark as ready after successful checks
+    runs-on: ubuntu-latest
+    permissions:
+      checks: read # Poll check runs to know when they pass
+      contents: write # Required by mark-ready-when-ready to flip the PR out of draft
+      pull-requests: write # Mark the PR ready for review and remove the label
+      statuses: read # Poll commit statuses alongside check runs
+    # Fork PRs get a read-only token, so they can't be marked ready anyway.
+    if: |
+      contains(github.event.pull_request.labels.*.name, 'mark-ready-when-ready') &&
+      github.event.pull_request.draft == true &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - name: Mark ready when ready
+        uses: kenyonj/mark-ready-when-ready@164bebf98862a24419165413a00bab80107b25ad # v1.3.0
+        with:
+          github-token: ${{ github.token }}
+          label: mark-ready-when-ready
