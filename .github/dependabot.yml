@@ -7,6 +7,12 @@ updates:
     cooldown:
       default-days: 7
     groups:
+      # Vite and its plugins share peer ranges, so bump them together,
+      # majors included. Must stay above npm-minor-patch: first match wins.
+      vite:
+        patterns:
+          - vite
+          - "@vitejs/*"
       npm-minor-patch:
         update-types:
           - minor
