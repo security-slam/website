@@ -33,12 +33,13 @@ export const HubSpotForm: React.FC<HubSpotFormProps> = ({
   const observerRef = useRef<MutationObserver | null>(null);
 
   const moveFormToContainer = () => {
-    if (!formContainerRef.current) return;
+    const container = formContainerRef.current;
+    if (!container) return;
 
     const allForms = document.querySelectorAll('.hs-form, [class*="hs-form"]');
     allForms.forEach((form) => {
       const formElement = form as HTMLElement;
-      if (!formContainerRef.current?.contains(formElement)) {
+      if (!container.contains(formElement)) {
         const isHubSpotForm =
           formElement.classList.contains("hs-form") ||
           formElement.querySelector(".hs-form") !== null ||
@@ -46,7 +47,7 @@ export const HubSpotForm: React.FC<HubSpotFormProps> = ({
           formElement.parentElement?.tagName === "BODY";
 
         if (isHubSpotForm) {
-          formContainerRef.current.appendChild(formElement);
+          container.appendChild(formElement);
         }
       }
     });
