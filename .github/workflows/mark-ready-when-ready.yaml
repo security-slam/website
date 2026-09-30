@@ -6,14 +6,16 @@ on:
 
 permissions: {}
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
-
 jobs:
   mark-ready:
     name: Mark as ready after successful checks
     runs-on: ubuntu-latest
+    # Job-level on purpose. Opening a PR with the label fires `opened` and
+    # `labeled` together. At workflow level, the run that fails the `if` below
+    # can cancel the run that passes it, and nothing marks the PR ready.
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
     permissions:
       checks: read # Poll check runs to know when they pass
       contents: write # Required by mark-ready-when-ready to flip the PR out of draft
