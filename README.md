@@ -126,10 +126,10 @@ src/
   main.tsx             # Entry; sets document title from config
   components/          # Header, Footer, Banner, cards, HubSpotForm, and other shared UI
   pages/               # HomePage, ContactPage, LibraryPage, LibraryArticlePage,
-                       # SectionIndexPage, SectionItemPage, BlogIndexPage, BlogPostPage
+                       # SectionIndexPage, SectionItemPage
 ```
 
-`BlogIndexPage` and `BlogPostPage` (with `src/content/blog.ts`) are not wired into any route. A blog, if enabled, goes through `SectionIndexPage` and `SectionItemPage` like any other content section.
+A blog, if enabled, goes through `SectionIndexPage` and `SectionItemPage` like any other content section.
 
 ## Deployment
 
