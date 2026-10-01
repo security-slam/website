@@ -37,6 +37,8 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 |------|--------|
 | **`.github/workflows/ci.yaml`** | GitHub Actions workflow: on PRs, pushes to `main`, and manual runs, the `build` job installs with Node from `.nvmrc` (`npm ci --ignore-scripts`), runs `npm run typecheck` and `npm run build`, and copies `index.html` → `404.html` for SPA routing. On `main` it also uploads `dist/` as the Pages artifact and the `deploy` job publishes it. `build` is the required status check. |
 | **`.github/workflows/mark-ready-when-ready.yaml`** | Runs `kenyonj/mark-ready-when-ready`: a same-repo draft PR labeled `mark-ready-when-ready` is marked ready for review once its checks pass, and the label is removed. |
+| **`.github/workflows/osps-baseline.yaml`** | Weekly, on pushes to `main`, and on manual runs: scans the repo against the OSPS Baseline (`osps-baseline-2026-08` catalog) with `revanite-io/osps-baseline-action`, uploads failed controls as SARIF, and uploads results as an artifact. Uses an octo-sts token, never runs on pull requests. |
+| **`.github/chainguard/osps-baseline.sts.yaml`** | octo-sts trust policy: issues a read-only token only to `osps-baseline.yaml` running on `main`. octo-sts reads it from the default branch. |
 | **`.github/dependabot.yml`** | Weekly Dependabot updates for npm and GitHub Actions, minor/patch grouped, 7-day cooldown. |
 | **`.github/CODEOWNERS`** | All files owned by `@security-slam/developers`. |
 

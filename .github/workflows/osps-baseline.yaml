@@ -1,0 +1,60 @@
+# Evaluate the repository against the OSPS Baseline on a schedule and on every push to main
+name: OSPS Baseline
+
+on:
+  schedule:
+    - cron: "0 9 * * 1" # Weekly, Mondays 09:00 UTC
+  push:
+    branches: [main]
+  workflow_dispatch:
+  # No pull_request or pull_request_target trigger: the octo-sts trust policy
+  # only issues a token to this workflow on main, and fork code never runs here.
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}
+  # Never cancel a scan partway through; let the running one finish
+  cancel-in-progress: false
+
+jobs:
+  assess:
+    name: assess
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read # Clone the repository
+      id-token: write # Federate with octo-sts for a read-only scanner token
+      security-events: write # Upload failed controls as SARIF to the Security tab
+    steps:
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+      - name: Get a read-only token from octo-sts
+        id: octo-sts
+        uses: octo-sts/action@f603d3be9d8dd9871a265776e625a27b00effe05 # v1.1.1
+        with:
+          scope: ${{ github.repository }}
+          identity: osps-baseline
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: OSPS Baseline scan
+        uses: revanite-io/osps-baseline-action@1af7ff8b44af83f120b20cc5f63b877286849257 # v1.5.2
+        with:
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          # The built-in GITHUB_TOKEN cannot read the repo settings the scanner checks
+          token: ${{ steps.octo-sts.outputs.token }}
+          # Scanner v0.31.0 (pinned by this action release) ships this catalog (v2026.08.28)
+          catalog: "osps-baseline-2026-08"
+          upload-sarif: "true"
+          fail-on-error: "true"
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: osps-baseline-results-${{ github.run_number }}
+          path: evaluation_results/
+          retention-days: 30
