@@ -1,0 +1,67 @@
+header:
+  schema-version: 2.2.0
+  last-updated: '2026-10-01'
+  last-reviewed: '2026-10-01'
+  url: https://github.com/security-slam/website/raw/main/security-insights.yml
+
+project:
+  name: OpenSSF Security Slam Website
+  homepage: https://securityslam.com/
+  administrators:
+    - name: Eddie Knight
+      primary: true
+      social: https://github.com/eddie-knight
+    - name: Jason Meridth
+      primary: false
+      email: jmeridth@gmail.com
+      social: https://github.com/jmeridth
+  documentation:
+    detailed-guide: https://github.com/security-slam/website/blob/main/README.md
+  repositories:
+    - name: website
+      url: https://github.com/security-slam/website
+      comment: Source for the Security Slam website, deployed to GitHub Pages.
+  vulnerability-reporting:
+    reports-accepted: false
+    bug-bounty-available: false
+    comment: >-
+      The project has not published a security contact or vulnerability
+      reporting policy yet.
+
+repository:
+  url: https://github.com/security-slam/website
+  status: active
+  accepts-change-request: true
+  accepts-automated-change-request: true
+  core-team:
+    - name: Eddie Knight
+      primary: true
+      social: https://github.com/eddie-knight
+    - name: Jason Meridth
+      primary: false
+      email: jmeridth@gmail.com
+      social: https://github.com/jmeridth
+    - name: Maxime Coquerel
+      primary: false
+      social: https://github.com/zigmax
+    - name: Satarupa Deb
+      primary: false
+      social: https://github.com/Satarupa22-SD
+    - name: Stacey Potter
+      primary: false
+      social: https://github.com/staceypotter
+  # Code is Apache-2.0 (LICENSE). Written content is CC-BY-4.0 (LICENSE-CONTENT):
+  # https://github.com/security-slam/website/blob/main/LICENSE-CONTENT
+  license:
+    url: https://github.com/security-slam/website/blob/main/LICENSE
+    expression: Apache-2.0 AND CC-BY-4.0
+  security:
+    assessments:
+      self:
+        name: Gemara threat and capability catalogs
+        evidence: https://github.com/security-slam/website/blob/main/threat-catalog.yaml
+        date: '2026-09-30'
+        comment: >-
+          Gemara threat catalog (SEC.SLAM.WEB) with its companion capability
+          catalog (SEC.SLAM.WEB.CAP) at
+          https://github.com/security-slam/website/blob/main/capability-catalog.yaml
