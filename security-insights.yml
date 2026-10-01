@@ -22,11 +22,16 @@ project:
       url: https://github.com/security-slam/website
       comment: Source for the Security Slam website, deployed to GitHub Pages.
   vulnerability-reporting:
-    reports-accepted: false
+    reports-accepted: true
     bug-bounty-available: false
+    policy: https://github.com/security-slam/website/blob/main/SECURITY.md
+    contact:
+      name: Jason Meridth
+      primary: true
+      email: jmeridth@gmail.com
     comment: >-
-      The project has not published a security contact or vulnerability
-      reporting policy yet.
+      Report vulnerabilities through GitHub private vulnerability reporting:
+      https://github.com/security-slam/website/security/advisories/new
 
 repository:
   url: https://github.com/security-slam/website
@@ -50,6 +55,9 @@ repository:
     - name: Stacey Potter
       primary: false
       social: https://github.com/staceypotter
+  documentation:
+    contributing-guide: https://github.com/security-slam/website/blob/main/CONTRIBUTING.md
+    security-policy: https://github.com/security-slam/website/blob/main/SECURITY.md
   # Code is Apache-2.0 (LICENSE). Written content is CC-BY-4.0 (LICENSE-CONTENT):
   # https://github.com/security-slam/website/blob/main/LICENSE-CONTENT
   license:
