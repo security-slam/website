@@ -73,7 +73,6 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 | **`library/`** | Library Markdown. `index.md` is the `/library` intro. Files with `badge:` are badge pages (`chronicler.md`, `cleaner.md`, `defender.md`, `inspector.md`, `mechanizer.md`). Everything else is an article at `/library/<filename>`. |
 | **`sections.ts`** | Loads `*/**/*.md` and groups by directory name (the section key). Frontmatter: `title`, `description`, `path`, `hubspot`, `audioUrl`, `sectionAudio`, `projects`. Exports `getSectionItems`, `getSectionIndexItem`, `getSectionListItems`, `getSectionItemBySlug`, `getSectionItemByPath`. |
 | **`slam26/`** | Slam26 section Markdown: `index.md`, `participating-projects.md`, `register.md`. |
-| **`blog.ts`** | Loader for `blog/**/*.md`. Only used by `BlogIndexPage` and `BlogPostPage`, which are not routed. `src/content/blog/` does not exist. |
 | **`carousel.ts`** | Image list for the home page carousel (`public/slam-photos/`). |
 | **`sponsorLogos.ts`** | Logo list for the home page logo bar (`public/logo/sponsor-logos/`). |
 
@@ -120,7 +119,6 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 | **`SectionIndexPage.tsx`** | `/<key>` for a non-library content section: `index.md` content plus cards for the other items. |
 | **`SectionItemPage.tsx`** | One content section item, found by slug or frontmatter `path`. Renders Markdown, optional HubSpot form, optional projects or leaderboard. |
 | **`ContactPage.tsx`** | Finds the `siteConfig.contactPages` entry for the current path; renders title, description, and the HubSpot form or `formDisabledMessage`. |
-| **`BlogIndexPage.tsx`** / **`BlogPostPage.tsx`** | Unused. Not imported by `App.tsx`. |
 
 ---
 
