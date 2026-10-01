@@ -1,68 +1,132 @@
-# Website template
+# Security Slam website
 
-A config-driven React + Vite + TypeScript website template with a front page, blog, secondary article pages, and one or more HubSpot contact pages. Content and navigation are controlled from a single config file; styling uses CSS variables from a theme module.
+Source for [securityslam.com](https://securityslam.com/), a React + Vite + TypeScript single-page app. Site settings live in `src/config/site.ts`. Page content lives in Markdown files under `src/content/`. Styling uses CSS variables from `src/theme.tsx`.
+
+To report a bug or submit a change, see [CONTRIBUTING.md](CONTRIBUTING.md). To report a vulnerability, see [SECURITY.md](SECURITY.md).
 
 ## Quick start
 
+Use the Node version in `.nvmrc`.
+
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173). Build for production with `npm run build`; output is in `dist/`.
+Open [http://localhost:5173](http://localhost:5173). `make run` also starts the dev server.
 
-## Customization
+Other scripts:
 
-### Site identity and navigation
+- `npm run typecheck` runs `tsc --noEmit`.
+- `npm run build` builds the site into `dist/`.
+- `npm run preview` serves the built `dist/` locally.
 
-Edit **`src/config/site.ts`**:
+## Site config
 
-- **`siteName`** and **`tagline`** — Used in the header hero and document title.
-- **`nav`** — Array of `{ path, label }` for main navigation (e.g. Home, Blog, About, Contact). Add or remove entries; routes are generated from this and the other config arrays.
-- **`footer`** — `copyrightText` and `links` (array of `{ href, label }`).
+Edit `src/config/site.ts`. `siteConfig` has these keys:
 
-### Blog
+- **`siteName`**: sets the document title and the header logo alt text.
+- **`tagline`**: text shown under the header logo.
+- **`preregistrationUrl`** (optional): when set, the footer shows a pre-registration link.
+- **`participatingProjectsDefaultTab`** (optional): `"projects"` or `"leaderboard"`. Picks the default tab on content pages that list participating projects.
+- **`banner`** (optional): `{ enabled, message, storageKey }`. When `enabled` is true, a dismissible banner appears at the top. `storageKey` is the `localStorage` key that remembers the dismissal.
+- **`footer`**: `copyrightText` and `links` (an array of `{ href, label }`).
+- **`contentSections`**: a map of section key to `{ enabled, label, inNav }`. See [Content sections](#content-sections).
+- **`customNavLinks`** (optional): extra header links as `{ path, label, children }`. `children` renders a dropdown.
+- **`contactPages`**: an array of contact pages. See [Contact pages](#contact-pages).
+- **`pastSlamReports`**: an array of `{ href, label, description }` links shown on the home page.
 
-In **`src/config/site.ts`**:
+### Header navigation
 
-- **`blog.enabled`** — Set to `false` to hide blog routes and nav.
-- **`blog.posts`** — Array of `{ slug, title, date, excerpt, body }`. Use `body` as plain HTML (e.g. `<p>...</p>`). Add or remove posts here; the blog index and post pages read from this. You can later switch to markdown by adding a loader (e.g. `vite-plugin-md` or `react-markdown`) and sourcing posts from files.
+The header always shows a Home link. It then adds each content section where `enabled` is true and `inNav` is not `false`, followed by `customNavLinks`. A section whose path also appears in `customNavLinks` is not repeated.
 
-### Secondary articles (non-blog)
+### Content sections
 
-In **`src/config/site.ts`**, **`articles`** is an array of `{ path, title, body }`. Each `path` (e.g. `/about`, `/terms`) gets its own route and page. Use for About, Terms, Privacy, or any static content. Add the same paths to **`nav`** if you want them in the header.
+Each key in `contentSections` maps to a directory under `src/content/<key>/`. When a section is enabled:
 
-### Contact pages and HubSpot forms
+- `/<key>` renders the section index. If the directory has an `index.md`, its title, description, and body appear at the top.
+- `/<key>/<slug>` renders `src/content/<key>/<slug>.md`.
+- A Markdown file with a `path` in its frontmatter is also served at that path.
 
-In **`src/config/site.ts`**, **`contactPages`** is an array of:
+`src/content/sections.ts` loads these files. Frontmatter fields: `title`, `description`, `path`, `hubspot`, `audioUrl`, `sectionAudio`, and `projects`.
 
-- **`path`** — URL path (e.g. `/contact`).
-- **`title`** — Page heading.
-- **`description`** — Optional intro text above the form.
-- **`hubspot`** — Optional. When present, the page renders a HubSpot form:
-  - **`portalId`** — Your HubSpot portal ID.
-  - **`formId`** — The form’s GUID.
-  - **`region`** — Hub region (e.g. `na1`, `eu1`).
+The `library` section is the exception. It has its own pages and loader. See [Adding a library article](#adding-a-library-article).
 
-Add multiple contact pages (e.g. `/contact`, `/apply`) with different titles and forms. Include each path in **`nav`** if desired. Replace the placeholder portal/form IDs in the template with your own; you can override HubSpot’s default styles in **`src/global.css`** or with scoped CSS if needed.
+The site currently configures three sections: `slam26` (enabled), `library` (enabled), and `blog` (disabled, and `src/content/blog/` does not exist yet).
 
-### Theme and global styles
+### Contact pages
 
-- **`src/theme.tsx`** — Single default theme (cyan-style) that sets CSS variables (`--gf-color-*`, `--gf-space-*`, etc.). Edit the theme object to change colors, spacing, radii, shadows, and typography. The layout and components use these variables.
-- **`src/global.css`** — Reset, layout, and base typography. Use it for theme-specific overrides (e.g. `.cyan-theme`) and responsive rules.
+`contactPages` is an array of:
+
+- **`path`**: URL path, such as `/contact`.
+- **`title`**: page heading.
+- **`description`** (optional): intro text above the form.
+- **`hubspot`** (optional): `{ portalId, formId, region }`. When set, the page embeds that HubSpot form.
+- **`formDisabled`** (optional): when true, the page hides the form and shows `formDisabledMessage` instead.
+
+Each entry gets its own route.
+
+## Adding a library article
+
+Library articles are Markdown files in `src/content/library/`. `src/content/library.ts` loads every `.md` file in that directory at build time.
+
+1. Create `src/content/library/<slug>.md`. The filename becomes the URL: `/library/<slug>`.
+2. Add frontmatter:
+
+   ```markdown
+   ---
+   title: "Your article title"
+   description: "One-line summary shown on the article card"
+   tags: [OSPS Baseline, Helpful Tools]
+   image: /project-logos/example.png
+   author: Your Name, Your Organization
+   weight: 10
+   ---
+
+   Article body in Markdown.
+   ```
+
+   - `title` is required. Without it the article shows "Untitled".
+   - `tags` must be a list. Tags other than badge names appear as filters on `/library`.
+   - `image` is a path under `public/`. Put the file there first.
+   - `weight` is optional. Lower numbers sort first. Articles without a weight sort last, then alphabetically by title.
+   - `videoUrl` is optional. When set, the article embeds an MP4 video player.
+3. Write the body in Markdown. The page renders it with `react-markdown` and `remark-gfm`, so GitHub-style tables and task lists work.
+4. Run `npm run dev` and open `/library/<slug>` to check it.
+
+To list an article on a badge page, add the badge name to `tags`, for example `tags: [Chronicler]`. The badge page at `/library/chronicler` lists every article tagged `Chronicler`.
+
+Two kinds of files in this directory are not articles:
+
+- `index.md` supplies the title, description, and intro text for `/library`.
+- A file with a `badge` field in its frontmatter is a badge page. Badge pages are left out of the article list and show the badge icon from `public/badge-icons/<badge>.png`.
+
+## Theme and global styles
+
+- **`src/theme.tsx`**: defines the single `slam` theme and sets CSS variables (`--gf-color-*`, `--gf-space-*`, and others). Edit the theme object to change colors, spacing, radii, shadows, and typography.
+- **`src/global.css`**: reset, layout, base typography, `.slam-theme` overrides, and responsive rules.
 
 ## Project structure
 
 ```
 src/
-  config/site.ts     # Site identity, nav, footer, blog, articles, contact pages
-  theme.tsx          # Theme and CSS variables
-  global.css         # Global layout and styles
-  App.tsx            # Layout and config-driven routes
-  main.tsx           # Entry; sets document title from config
-  components/        # Header, Footer, BackgroundArcs, TextSection, SectionCard, HubSpotForm
-  pages/             # HomePage, BlogIndexPage, BlogPostPage, ArticlePage, ContactPage
+  config/site.ts       # siteConfig: identity, banner, footer, sections, nav links, contact pages
+  content/             # Markdown content and the loaders that read it
+    library/           # Library articles and badge pages
+    library.ts         # Library loader
+    slam26/            # Slam26 section pages
+    sections.ts        # Loader for every other content section
+  contexts/            # AudioContext for page narration
+  theme.tsx            # Theme and CSS variables
+  global.css           # Global layout and styles
+  App.tsx              # Layout and config-driven routes
+  main.tsx             # Entry; sets document title from config
+  components/          # Header, Footer, Banner, cards, HubSpotForm, and other shared UI
+  pages/               # HomePage, ContactPage, LibraryPage, LibraryArticlePage,
+                       # SectionIndexPage, SectionItemPage, BlogIndexPage, BlogPostPage
 ```
+
+`BlogIndexPage` and `BlogPostPage` (with `src/content/blog.ts`) are not wired into any route. A blog, if enabled, goes through `SectionIndexPage` and `SectionItemPage` like any other content section.
 
 ## Deployment
 
