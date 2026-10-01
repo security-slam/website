@@ -1,0 +1,24 @@
+---
+name: "Auto Labeler"
+on:
+  # pull_request_target is required to label PRs from forks; no PR code is checked out
+  pull_request_target:
+    types: [opened, reopened, edited, synchronize]
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  auto-labeler:
+    permissions:
+      contents: read # Read the release-drafter config
+      pull-requests: write # Apply labels to the pull request
+      issues: write # Create labels referenced in the config but missing from the repository
+    uses: github-community-projects/ospo-reusable-workflows/.github/workflows/auto-labeler.yaml@038160c3e14227cf7c1a7387217ac1623a969f0c # v2.1.1
+    with:
+      config-name: release-drafter.yml
+    secrets:
+      github-token: ${{ secrets.GITHUB_TOKEN }}

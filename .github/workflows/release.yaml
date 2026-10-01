@@ -1,0 +1,33 @@
+---
+name: "Release"
+on:
+  workflow_dispatch:
+  # pull_request_target runs from the base branch and never checks out PR code
+  pull_request_target:
+    types: [closed]
+    branches: [main]
+
+permissions: {}
+
+# Serialize releases so two merges cannot race on the same tag
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    # A manual run releases only from main, never from another branch
+    if: github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main'
+    permissions:
+      contents: write # Create releases and push tags
+      pull-requests: read # Read PR labels for release-drafter
+    uses: github-community-projects/ospo-reusable-workflows/.github/workflows/release-minimal.yaml@038160c3e14227cf7c1a7387217ac1623a969f0c # v2.1.1
+    with:
+      # Configuration file for release-drafter, relative to .github/
+      release-config-name: release-drafter.yml
+      publish: true
+      # Every merge to main deploys the site, so every merged PR is a release.
+      # The auto-labeler applies the 'release' label to every PR.
+      release-only-with-label: true
+    secrets:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
