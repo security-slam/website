@@ -1,8 +1,11 @@
 # Security Slam website
 
+[![OSPS Baseline](https://github.com/security-slam/website/actions/workflows/osps-baseline.yaml/badge.svg)](https://github.com/security-slam/website/actions/workflows/osps-baseline.yaml)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/15142/baseline)](https://www.bestpractices.dev/projects/15142/baseline-1)
+
 Source for [securityslam.com](https://securityslam.com/), a React + Vite + TypeScript single-page app. Site settings live in `src/config/site.ts`. Page content lives in Markdown files under `src/content/`. Styling uses CSS variables from `src/theme.tsx`.
 
-To report a bug or submit a change, see [CONTRIBUTING.md](CONTRIBUTING.md). To report a vulnerability, see [SECURITY.md](SECURITY.md).
+To report a bug or submit a change, see [CONTRIBUTING.md](CONTRIBUTING.md). To report a vulnerability, see [SECURITY.md](SECURITY.md). For the project's voluntary CRA (Cyber Resilience Act) readiness checklist, see [CRA-READINESS.md](CRA-READINESS.md).
 
 ## Quick start
 
