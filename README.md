@@ -67,3 +67,9 @@ src/
 ## Deployment
 
 Run `npm run build` and deploy the `dist/` folder to any static host (e.g. Netlify, Vercel). **For GitHub Pages**, see **[DEPLOY.md](DEPLOY.md)** for base path setup, the included GitHub Actions workflow, SPA routing, and optional custom domain.
+
+## License
+
+- **Code** is licensed under the [Apache License 2.0](LICENSE).
+- **Written content**, the Markdown files under `src/content/library/` and `src/content/slam26/`, is licensed under [Creative Commons Attribution 4.0 International](LICENSE-CONTENT) (CC-BY-4.0).
+- **Third-party images**, such as the project logos, sponsor logos, and maintainer photos under `public/`, belong to their owners and are not covered by either license.
