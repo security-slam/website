@@ -1,0 +1,107 @@
+---
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+template: |
+  # Changelog
+  $CHANGES
+
+  See details of [all code changes](https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION) since previous release
+
+categories:
+  - title: "💥 Breaking Changes"
+    when:
+      labels:
+        - "breaking"
+  - title: "🔒 Security"
+    # List a security fix only here, not again under Bug Fixes or Maintenance
+    exclusive: true
+    when:
+      labels:
+        - "security"
+  - title: "🚀 Features"
+    when:
+      labels:
+        - "feature"
+        - "enhancement"
+  - title: "🐛 Bug Fixes"
+    when:
+      labels:
+        - "fix"
+        - "bugfix"
+        - "bug"
+  - title: "🧰 Maintenance"
+    when:
+      labels:
+        - "infrastructure"
+        - "automation"
+        - "documentation"
+        - "dependencies"
+        - "github_actions"
+        - "maintenance"
+        - "revert"
+  - title: "🏎 Performance"
+    when:
+      label: "performance"
+  # Version resolution: the highest matching increment wins.
+  - type: "version-resolver"
+    semver-increment: "major"
+    when:
+      labels:
+        - "breaking"
+        - "major"
+  - type: "version-resolver"
+    semver-increment: "minor"
+    when:
+      labels:
+        - "enhancement"
+        - "feature"
+        - "minor"
+  - type: "version-resolver"
+    semver-increment: "patch"
+    when:
+      labels:
+        - "documentation"
+        - "fix"
+        - "maintenance"
+        - "patch"
+  # Fallback when no other version-resolver category matches
+  - type: "version-resolver"
+    semver-increment: "patch"
+change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
+autolabeler:
+  - label: "automation"
+    title:
+      - "/^(build|ci|perf|refactor|test).*/i"
+  - label: "enhancement"
+    title:
+      - "/^(style).*/i"
+  - label: "documentation"
+    title:
+      - "/^(docs).*/i"
+  - label: "feature"
+    title:
+      - "/^(feat).*/i"
+  - label: "fix"
+    title:
+      - "/^(fix).*/i"
+  - label: "infrastructure"
+    title:
+      - "/^(infrastructure).*/i"
+  - label: "maintenance"
+    title:
+      - "/^(chore|maintenance).*/i"
+  - label: "revert"
+    title:
+      - "/^(revert).*/i"
+  - label: "repo"
+    files:
+      - ".github/**/*"
+      - "README.md"
+      - ".gitignore"
+      - ".gitattributes"
+      - ".gitmodules/**/*"
+      - "LICENSE"
+  # Every merge to main deploys the site, so every PR is released
+  - label: "release"
+    files:
+      - "**"
