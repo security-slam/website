@@ -28,6 +28,8 @@ Do not report security vulnerabilities in public issues. Follow [SECURITY.md](SE
 
 4. Open a pull request against `main`.
 
+See [Secure Development](SECURITY.md#secure-development) for the security practices your change runs through.
+
 The `build` check in `.github/workflows/ci.yaml` must pass before a pull request can merge. It runs `npm ci --ignore-scripts`, `npm run typecheck`, and `npm run build`.
 
 Every merge to `main` deploys the site to GitHub Pages.

@@ -17,6 +17,7 @@ project:
       social: https://github.com/jmeridth
   documentation:
     detailed-guide: https://github.com/security-slam/website/blob/main/README.md
+    support-policy: https://github.com/security-slam/website/blob/main/SECURITY.md#support-period-and-end-of-life
   repositories:
     - name: website
       url: https://github.com/security-slam/website
