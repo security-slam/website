@@ -74,6 +74,11 @@ repository:
           Gemara threat catalog (SEC.SLAM.WEB) with its companion capability
           catalog (SEC.SLAM.WEB.CAP) at
           https://github.com/security-slam/website/blob/main/capability-catalog.yaml
+      third-party:
+        - name: OpenSSF Best Practices OSPS Baseline
+          evidence: https://www.bestpractices.dev/projects/15142/baseline-1
+          date: '2026-10-01'
+          comment: OSPS Baseline Level 1 (criteria v2026.08.28), self-reported on bestpractices.dev with autodetected answers.
     tools:
       - name: OSPS Baseline Scanner
         type: other
