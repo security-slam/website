@@ -74,3 +74,20 @@ repository:
           Gemara threat catalog (SEC.SLAM.WEB) with its companion capability
           catalog (SEC.SLAM.WEB.CAP) at
           https://github.com/security-slam/website/blob/main/capability-catalog.yaml
+    tools:
+      - name: OSPS Baseline Scanner
+        type: other
+        rulesets:
+          - osps-baseline-2026-08
+        integration:
+          adhoc: false
+          ci: true
+          release: false
+        results:
+          ci:
+            name: OSPS Baseline evaluation
+            predicate-uri: https://github.com/revanite-io/osps-baseline-action
+            location: https://github.com/security-slam/website/actions/workflows/osps-baseline.yaml
+        comment: >-
+          Runs weekly and on every push to main with a read-only octo-sts
+          token. Failed controls also appear in the repository Security tab.
