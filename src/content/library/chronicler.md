@@ -34,6 +34,8 @@ The OSPS Baseline includes several [documentation-focused controls](https://base
 
 If you're at Maturity Level 2 or 3, start with the lower levels and move up.
 
+**Prefer a head start?** The Slam's [AI skills](/library/ai-skills) include a `chronicler` skill that checks your repository against the documentation controls for your maturity level and drafts what's missing. Treat its output as a first draft, not a finished doc: the skill makes guesses where your project is ambiguous, so read every file it writes and correct anything that doesn't describe what you actually do.
+
 **As you create each piece of documentation, add its location to your Security Insights YAML file.** This makes it easy for evaluators and end-users to find all your security documentation in one place. Here are the different types of documentation you can have in your insights file - ([project level](https://github.com/ossf/security-insights/blob/main/spec/schema.md#projectdocumentation), [repository level](https://github.com/ossf/security-insights/blob/main/spec/schema.md#repositorydocumentation)).
 
 While you're working, remember: A short, accurate doc is infinitely better than a comprehensive document that nobody maintains.

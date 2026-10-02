@@ -54,10 +54,10 @@ export const SectionItemPage: React.FC<SectionItemPageProps> = ({
 
   return (
     <article
+      className="content-article"
       style={{
         maxWidth: "900px",
         margin: "0 auto",
-        padding: "var(--gf-space-xl)",
         width: "100%"
       }}
     >
@@ -106,7 +106,7 @@ export const SectionItemPage: React.FC<SectionItemPageProps> = ({
               <button
                 onClick={() => setShowLeaderboard(false)}
                 style={{
-                  padding: "var(--gf-space-md) var(--gf-space-xl)",
+                  padding: "0.75rem 1.25rem",
                   backgroundColor: !showLeaderboard
                     ? "rgba(147, 51, 234, 0.8)"
                     : "transparent",
@@ -127,7 +127,7 @@ export const SectionItemPage: React.FC<SectionItemPageProps> = ({
               <button
                 onClick={() => setShowLeaderboard(true)}
                 style={{
-                  padding: "var(--gf-space-md) var(--gf-space-xl)",
+                  padding: "0.75rem 1.25rem",
                   backgroundColor: showLeaderboard
                     ? "rgba(147, 51, 234, 0.8)"
                     : "transparent",
@@ -218,6 +218,7 @@ export const SectionItemPage: React.FC<SectionItemPageProps> = ({
           </p>
           <Link
             to="/slam26/submit-completion"
+            className="btn-lift"
             style={{
               display: "inline-block",
               padding: "var(--gf-space-md) var(--gf-space-xl)",
@@ -227,16 +228,7 @@ export const SectionItemPage: React.FC<SectionItemPageProps> = ({
               fontWeight: 600,
               fontSize: "1.1rem",
               textDecoration: "none",
-              transition: "all 0.2s ease",
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.15)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
             }}
           >
             Submit Badge Completion

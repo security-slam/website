@@ -29,6 +29,7 @@ export const HomePage: React.FC = () => {
         <div className="home-welcome-text">
           <TextSection
             title="Securing Open Source at the Source"
+            titleTag="h1"
             paragraphs={[
               "Run by the CNCF Technical Advisory Group for Security & Compliance, the Slam is a month-long community effort with a library of support resources, advisors on Slack, and plaques and badges for participating projects and contributors.",
               "This fall, the Slam is open to ANY open source project. You don't need to be a CNCF project, or even cloud native. If you maintain or contribute to open source software, you can participate.",

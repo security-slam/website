@@ -44,3 +44,5 @@ Faster to get started. The OpenSSF maintains a [Privateer](https://privateerproj
 You can run it locally using [pvtr-github-repo-scanner](https://github.com/ossf/pvtr-github-repo-scanner) or add it to CI with the [GitHub Action for OSPS Baseline](https://github.com/marketplace/actions/open-source-project-security-baseline-scanner).
 
 This option evaluates all baseline controls that can be automatically verified. More comprehensive than LFX Insights, but requires zero failures to complete the badge.
+
+**Prefer a head start?** The Slam's [AI skills](/library/ai-skills) include a `mechanizer` skill that sets up the Baseline scan workflow and then works through the failed controls with you. Treat its output as a first draft, not a finished pipeline: the skill makes guesses about your repository's setup, so review the workflow file and every proposed fix before you merge them. It won't change repository settings on its own, but it will ask you to.

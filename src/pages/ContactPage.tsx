@@ -15,10 +15,10 @@ export const ContactPage: React.FC = () => {
 
   return (
     <div
+      className="content-article"
       style={{
         maxWidth: "900px",
         margin: "0 auto",
-        padding: "var(--gf-space-xl)",
         width: "100%"
       }}
     >

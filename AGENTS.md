@@ -12,7 +12,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 
 | File / directory | Intent |
 |------------------|--------|
-| **`index.html`** | HTML shell: root `<div id="root">`, viewport meta, document title placeholder. Vite entry; `main.tsx` is loaded as module. |
+| **`index.html`** | HTML shell: root `<div id="root">`, viewport and theme-color metas, description and Open Graph tags for link previews, document title. Vite entry; `main.tsx` is loaded as module. |
 | **`package.json`** | Dependencies (React 19, react-router-dom 7, react-markdown, remark-gfm, gray-matter, buffer; dev: Vite 8, TypeScript 7) and scripts: `dev`, `build`, `preview`, `typecheck`. |
 | **`.nvmrc`** | Node version used by CI, deploy, and local development. |
 | **`Makefile`** | `make run` starts the dev server (`npm run dev`). |
@@ -91,12 +91,12 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 
 | Path | Intent |
 |------|--------|
-| **`Header.tsx`** | Site header: logo (alt text from `siteName`), tagline, nav from a fixed Home link, enabled content sections (`inNav !== false`), and `customNavLinks` (with dropdowns for `children`); active-state styling via `useLocation()`. Optional button to re-show a dismissed banner. |
+| **`Header.tsx`** | Site header: logo (alt text from `siteName`), tagline, nav from a fixed Home link, enabled content sections (`inNav !== false`), and `customNavLinks` (with dropdowns for `children` that close on outside click or Escape); active-state styling via `useLocation()`. Layout and hover styles live in `global.css` (`.site-header*`, `.site-nav*`). Optional button to re-show a dismissed banner. |
 | **`Footer.tsx`** | Site footer: optional pre-registration link (`preregistrationUrl`), copyright, and links from `siteConfig.footer`. |
 | **`Banner.tsx`** | Dismissible top banner driven by `siteConfig.banner`. |
 | **`BackgroundArcs.tsx`** | Full-viewport decorative background (static SVG arcs); no interaction, low z-index. |
 | **`ScrollToTop.tsx`** | Scrolls to top on route change. |
-| **`TextSection.tsx`** | Reusable content block: title, subtitle, list of paragraphs; props for centering, text shadow, max width, last paragraph margin. |
+| **`TextSection.tsx`** | Reusable content block: title, subtitle, list of paragraphs; props for centering, text shadow, max width, last paragraph margin, and `titleTag` (`h1` on the home hero). |
 | **`SectionCard.tsx`** | Card component: title, optional description; used for section and library listings. |
 | **`Carousel.tsx`** | Image carousel on the home page. |
 | **`PartnerLogos.tsx`** | Static side-by-side partner logos on the home page, from `sponsorLogos`. |

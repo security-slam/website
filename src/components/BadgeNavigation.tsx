@@ -42,6 +42,7 @@ export const BadgeNavigation: React.FC<Props> = ({ compact = false }) => {
               key={page.slug}
               to={to}
               aria-current={active ? "page" : undefined}
+              className="scale-hover"
               style={{
                 textDecoration: "none",
                 display: "flex",
@@ -52,13 +53,6 @@ export const BadgeNavigation: React.FC<Props> = ({ compact = false }) => {
                 borderRadius: "var(--gf-radius-lg)",
                 backgroundColor: active ? "var(--gf-color-accent-soft)" : "transparent",
                 opacity: compact && !active ? 0.7 : 1,
-                transition: "transform 0.2s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.05)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
               }}
             >
               <img

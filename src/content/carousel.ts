@@ -2,10 +2,10 @@
 const carouselImageNames = [
   "argoproj-maintainers.avif",
   "artifact-hub-maintainers.avif",
-  "flux-maintainers.png",
-  "meshery-maintainers.png",
+  "flux-maintainers.avif",
+  "meshery-maintainers.avif",
   "openfga-maintainers.avif",
-  "oscal-compass-maintainers.jpg"
+  "oscal-compass-maintainers.avif"
 ];
 
 export const carouselImages: string[] = carouselImageNames.map(

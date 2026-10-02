@@ -38,6 +38,8 @@ Many projects already have OpenSSF Best Practices Badges (the "metal series" —
 
 Once you've completed the questionnaire and met the requirements for your maturity level, you'll get a badge for your repository that shows your Baseline completeness.
 
+**Prefer a head start?** The Slam's [AI skills](/library/ai-skills) include a `defender` skill that runs a gap analysis across the full Baseline for your maturity level and drafts your questionnaire answers. Treat its output as a first draft, not a finished submission: the skill makes guesses about which controls you've met, so check each answer against your repository before you enter it on bestpractices.dev. It has only been run at Maturity Level 1 so far, so expect rougher edges at Level 2 or 3.
+
 ### Getting There
 
 This is a marathon, not a sprint. You have 30-days to complete this for a badge. You can start working in the Best Practices Badge portal and save your progress to return later.

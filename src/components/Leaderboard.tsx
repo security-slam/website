@@ -58,13 +58,12 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects, badges }) =>
       <div
         style={{
           display: "flex",
-          flexWrap: "nowrap",
+          flexWrap: "wrap",
           gap: "var(--gf-space-lg)",
           justifyContent: "center",
           marginBottom: "var(--gf-space-2xl)",
           paddingTop: "var(--gf-space-md)",
           paddingBottom: "var(--gf-space-md)",
-          overflowX: "auto",
         }}
       >
         {tabs.map(({ slug: badge, label }) => {
@@ -79,25 +78,18 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects, badges }) =>
             <button
               key={badge}
               onClick={() => setActiveTab(badge)}
+              className="scale-hover"
               style={{
                 padding: "var(--gf-space-sm)",
                 backgroundColor: "transparent",
                 border: "none",
-                outline: "none",
                 cursor: "pointer",
-                transition: "all 0.2s ease",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 gap: "var(--gf-space-sm)",
                 position: "relative",
                 minWidth: isActive ? "140px" : "100px",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.05)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
               }}
             >
               <div
@@ -171,6 +163,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects, badges }) =>
               href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
+              className="link-card"
               style={{
                 textDecoration: "none",
                 color: "inherit",
@@ -181,20 +174,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects, badges }) =>
                 backgroundColor: "var(--gf-color-surface)",
                 borderRadius: "var(--gf-radius-xl)",
                 border: "2px solid var(--gf-color-border-strong)",
-                transition: "all 0.2s ease",
                 boxShadow: "var(--gf-shadow-surface)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-4px)";
-                e.currentTarget.style.boxShadow =
-                  "var(--gf-shadow-surface-strong)";
-                e.currentTarget.style.borderColor = "var(--gf-color-accent)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "var(--gf-shadow-surface)";
-                e.currentTarget.style.borderColor =
-                  "var(--gf-color-border-strong)";
               }}
             >
               <div

@@ -36,12 +36,16 @@ The Security Insights specification defines a YAML file that lives in your repos
 
 ### Getting Started
 
-1. **Read the spec**: Check out the [Security Insights specification](https://github.com/ossf/security-insights-spec) to understand the required fields
-2. **Create your file**: Add a `SECURITY-INSIGHTS.yml` file to the root of your repository
-3. **Document your baseline progress**: Include fields that map to OSPS Baseline controls you've completed
-4. **Validate**: Use the Security Insights tooling to ensure your YAML is well-formed and complete
+**Recommended starting point:** the [Security Insights Editor](https://security-insights.openssf.org/editor/). It's a step-by-step wizard that walks you through every section of the file, validates required fields as you go, and lets you copy or download the finished YAML. You can start fresh, or upload or paste an existing file to edit it. There's a single-maintainer shortcut that fills in the admin, core team, and vulnerability reporting contacts from your details, and child files can pull in a referenced parent file.
 
-If it's not live by the time you're reading this, we'll soon have a Slam Library resource to talk more about Security Insights. Feel free to shout questions out to Slam Advisors if you get hung up in the meantime.
+**Prefer a head start?** The Slam's [AI skills](/library/ai-skills) can draft a `SECURITY-INSIGHTS.yml` from what's already in your repository. Several Slam participants have used the `cleaner` skill to get most of the way there. Treat the result as a first draft, not a finished file: the skill makes guesses where your repo is ambiguous, so review every field before you commit it. The editor is a good place to do that review, since it can load the generated file and validate it section by section.
+
+1. **Build your file**: Open the editor, fill in the sections, and download the result
+2. **Add it to your repo**: Save it as `SECURITY-INSIGHTS.yml` in the root of your repository
+3. **Document your baseline progress**: Include fields that map to OSPS Baseline controls you've completed
+4. **Go deeper if needed**: The [Security Insights specification](https://github.com/ossf/security-insights-spec) covers every field in detail
+
+Feel free to shout questions out to Slam Advisors if you get hung up.
 
 ### What to Include
 

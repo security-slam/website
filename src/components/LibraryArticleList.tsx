@@ -64,6 +64,7 @@ export const LibraryArticleList: React.FC<LibraryArticleListProps> = ({
               key={tag}
               type="button"
               onClick={() => setTagFilter(tag)}
+              className="tag-circle"
               style={{
                 width: "120px",
                 height: "120px",
@@ -75,16 +76,7 @@ export const LibraryArticleList: React.FC<LibraryArticleListProps> = ({
                 justifyContent: "center",
                 padding: "var(--gf-space-sm)",
                 cursor: "pointer",
-                transition: "transform 0.2s ease, box-shadow 0.2s ease",
                 boxShadow: "0 0 20px rgba(232, 121, 249, 0.4)"
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.05)";
-                e.currentTarget.style.boxShadow = "0 0 30px rgba(232, 121, 249, 0.8)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
-                e.currentTarget.style.boxShadow = "0 0 20px rgba(232, 121, 249, 0.4)";
               }}
             >
               <div

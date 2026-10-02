@@ -6,6 +6,7 @@ export type AppTheme = {
     background: string;
     surface: string;
     surfaceSubtle: string;
+    surfaceSolid: string;
     text: string;
     textSubtle: string;
     accent: string;
@@ -42,6 +43,7 @@ const slamTheme: AppTheme = {
     background: "#000000",
     surface: "rgba(30, 27, 75, 0.65)",
     surfaceSubtle: "rgba(30, 27, 75, 0.4)",
+    surfaceSolid: "#1e1b4b",
     text: "#f5f3ff",
     textSubtle: "#a78bfa",
     accent: "#e879f9",
@@ -69,7 +71,7 @@ const slamTheme: AppTheme = {
     xl: "2.5rem"
   },
   typography: {
-    body: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+    body: "system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
     mono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
   }
 };
@@ -98,6 +100,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     "--gf-color-background": theme.colors.background,
     "--gf-color-surface": theme.colors.surface,
     "--gf-color-surface-subtle": theme.colors.surfaceSubtle,
+    "--gf-color-surface-solid": theme.colors.surfaceSolid,
     "--gf-color-text": theme.colors.text,
     "--gf-color-text-subtle": theme.colors.textSubtle,
     "--gf-color-accent": theme.colors.accent,

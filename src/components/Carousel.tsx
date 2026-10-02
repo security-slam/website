@@ -12,6 +12,9 @@ export const Carousel: React.FC<CarouselProps> = ({
   ariaLabel = "Image carousel"
 }) => {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(
+    () => typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
 
   const goPrev = useCallback(() => {
     setIndex((i) => (i <= 0 ? images.length - 1 : i - 1));
@@ -22,10 +25,10 @@ export const Carousel: React.FC<CarouselProps> = ({
   }, [images.length]);
 
   useEffect(() => {
-    if (images.length <= 1 || autoAdvanceMs == null || autoAdvanceMs <= 0) return;
+    if (paused || images.length <= 1 || autoAdvanceMs == null || autoAdvanceMs <= 0) return;
     const id = setInterval(goNext, autoAdvanceMs);
     return () => clearInterval(id);
-  }, [autoAdvanceMs, images.length, goNext, index]);
+  }, [autoAdvanceMs, images.length, goNext, index, paused]);
 
   if (images.length === 0) return null;
 
@@ -38,7 +41,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       aria-label={ariaLabel}
       style={{
         position: "relative",
-        aspectRatio: "1",
+        aspectRatio: "4 / 3",
         width: "100%",
         maxWidth: "400px",
         borderRadius: "var(--gf-radius-lg)",
@@ -122,11 +125,34 @@ export const Carousel: React.FC<CarouselProps> = ({
               left: "50%",
               transform: "translateX(-50%)",
               display: "flex",
-              gap: "var(--gf-space-md)",
+              gap: "var(--gf-space-sm)",
               alignItems: "center",
               justifyContent: "center"
             }}
           >
+            {autoAdvanceMs != null && autoAdvanceMs > 0 && (
+              <button
+                type="button"
+                onClick={() => setPaused((p) => !p)}
+                aria-label={paused ? "Play slideshow" : "Pause slideshow"}
+                aria-pressed={paused}
+                className="carousel-btn"
+                style={{
+                  width: "1.5rem",
+                  height: "1.5rem",
+                  borderRadius: "var(--gf-radius-pill)",
+                  border: "none",
+                  padding: 0,
+                  background: "var(--gf-color-surface)",
+                  color: "var(--gf-color-accent)",
+                  cursor: "pointer",
+                  fontSize: "0.7rem",
+                  lineHeight: 1
+                }}
+              >
+                {paused ? "▶" : "❚❚"}
+              </button>
+            )}
             {images.map((_, i) => (
               <button
                 key={i}
@@ -139,9 +165,11 @@ export const Carousel: React.FC<CarouselProps> = ({
                 style={{
                   width: i === index ? "1.25rem" : "0.5rem",
                   height: "0.5rem",
+                  boxSizing: "content-box",
+                  padding: "0.5rem 0.25rem",
+                  backgroundClip: "content-box",
                   borderRadius: "var(--gf-radius-pill)",
                   border: "none",
-                  padding: 0,
                   background: i === index ? "var(--gf-color-accent)" : "var(--gf-color-surface)",
                   cursor: "pointer",
                   transition: "width 0.2s ease, background 0.2s ease"
