@@ -1,5 +1,10 @@
 # Security Policy
 
+## Scope
+
+This policy covers the source in this repository, its GitHub Actions workflows, and the site deployed at <https://securityslam.com>.
+It does not cover third-party services the site links to or embeds.
+
 ## Reporting a Vulnerability
 
 Do not report security vulnerabilities in public GitHub issues, pull requests, or discussions.
@@ -9,6 +14,14 @@ Report them privately through GitHub private vulnerability reporting:
 You can also find it under the repository's **Security** tab, then **Report a vulnerability**.
 
 Include what you found, where it is, and the steps to reproduce it.
+
+## What Counts as a Vulnerability
+
+Report it privately if you find cross-site scripting, a way to change site content without a merged pull request, exposed secrets, or a compromise of the build and deploy workflows.
+
+Broken links, typos, and outdated content are bugs. Open a public issue for them.
+
+Published advisories appear on the repository's Security tab and in the GitHub Advisory Database, which feeds OSV.
 
 ## Security Contact
 
