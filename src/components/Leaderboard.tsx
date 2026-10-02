@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { ProjectInfo } from "../content/sections";
+import { badgePages } from "../content/library";
 
 export interface LeaderboardProps {
   projects: ProjectInfo[];
+  /** Badge slugs to show as tabs. Defaults to every library badge page. */
+  badges?: string[];
 }
 
-const BADGES = ["Cleaner", "Chronicler", "Inspector", "Mechanizer", "Defender"];
-
-export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
-  const [activeTab, setActiveTab] = useState(BADGES[0]);
+export const Leaderboard: React.FC<LeaderboardProps> = ({ projects, badges }) => {
+  // Tabs are {slug, label}; `completed` in project frontmatter holds slugs.
+  const tabs = (badges ?? badgePages.map((p) => p.slug)).map((slug) => ({
+    slug,
+    label: badgePages.find((p) => p.slug === slug)?.badge ?? slug,
+  }));
+  const [activeTab, setActiveTab] = useState(tabs[0]?.slug ?? "");
 
   // Filter projects that have completed the active badge
   const completedProjects = projects.filter(
@@ -61,7 +67,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
           overflowX: "auto",
         }}
       >
-        {BADGES.map((badge) => {
+        {tabs.map(({ slug: badge, label }) => {
           const count = projects.filter(
             (p) =>
               p.completed &&
@@ -102,8 +108,8 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
                 }}
               >
                 <img
-                  src={`/badge-icons/${badge.toLowerCase()}.png`}
-                  alt={`${badge} Badge`}
+                  src={`/badge-icons/${badge}.png`}
+                  alt={`${label} Badge`}
                   style={{
                     width: "100%",
                     height: "100%",
@@ -140,7 +146,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
                     textAlign: "center",
                   }}
                 >
-                  {badge}
+                  {label}
                 </span>
               )}
             </button>
@@ -241,7 +247,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
           }}
         >
           <p style={{ margin: 0 }}>
-            No projects have completed the {activeTab} badge yet.
+            No projects have completed the {tabs.find((t) => t.slug === activeTab)?.label ?? activeTab} badge yet.
           </p>
           <p
             style={{

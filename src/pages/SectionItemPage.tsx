@@ -84,7 +84,7 @@ export const SectionItemPage: React.FC<SectionItemPageProps> = ({
           {item.description}
         </p>
       )}
-      {item.path === "/slam26/participating-projects" && item.projects && (
+      {item.projects && item.projects.length > 0 && (
         <>
           <div
             style={{
@@ -148,7 +148,7 @@ export const SectionItemPage: React.FC<SectionItemPageProps> = ({
             </div>
           </div>
           {showLeaderboard ? (
-            <Leaderboard projects={item.projects} />
+            <Leaderboard projects={item.projects} badges={item.badges} />
           ) : (
             shuffledProjects.length > 0 && (
               <div
@@ -172,26 +172,6 @@ export const SectionItemPage: React.FC<SectionItemPageProps> = ({
             )
           )}
         </>
-      )}
-      {item.path !== "/slam26/participating-projects" && shuffledProjects.length > 0 && (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-            gap: "var(--gf-space-xl)",
-            marginBottom: "var(--gf-space-2xl)"
-          }}
-        >
-          {shuffledProjects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              name={project.name}
-              advisor={project.advisor}
-              repoUrl={project.repoUrl}
-              logoUrl={project.logoUrl}
-            />
-          ))}
-        </div>
       )}
       {item.body.trim() && (
         <div

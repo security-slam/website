@@ -94,6 +94,7 @@ export const siteConfig: SiteConfig = {
   contentSections: {
     slam26: { enabled: true, label: "Slam26", inNav: false },
     library: { enabled: true, label: "Library", inNav: false },
+    outcomes: { enabled: true, label: "Previous Outcomes", inNav: false },
     blog: { enabled: false, label: "Blog" }
   },
 
@@ -113,7 +114,8 @@ export const siteConfig: SiteConfig = {
     },
     { path: "/slam26", label: "How it works" },
     { path: "/slam26/participating-projects", label: "Projects" },
-    { path: "/slam26/register", label: "Register" }
+    { path: "/slam26/register", label: "Register" },
+    { path: "/outcomes", label: "Previous Outcomes" }
   ],
 
   contactPages: [
