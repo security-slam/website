@@ -1,13 +1,14 @@
 ---
 title: "Mechanizer Badge"
-description: "Automate baseline evaluation for your project"
+description: "Automate baseline evaluation and publish the results for the project"
 path: "/library/mechanizer"
 badge: "Mechanizer"
+weight: 4
 ---
 
 ## Challenge
 
-Achieve 100% on LFX Insights Security & Best Practices Dashboard or zero failures with OSPS Baseline GitHub Action
+Automate baseline evaluation and publish the results for the project
 
 ## Why?
 

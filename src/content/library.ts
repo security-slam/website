@@ -77,6 +77,11 @@ export const libraryIndex: LibraryIndex | undefined = (() => {
   };
 })();
 
+/** Badge (objective) pages, in display order. Set `weight` in frontmatter to order them. */
+export const badgePages: LibraryArticle[] = allItems
+  .filter((a) => a.badge)
+  .sort((a, b) => (a.weight ?? Infinity) - (b.weight ?? Infinity));
+
 export const libraryArticles: LibraryArticle[] = allItems
   .filter((a) => a.slug !== "index" && !a.badge)
   .sort((a, b) => {

@@ -77,6 +77,21 @@ export const HomePage: React.FC = () => {
         >
           Register now
         </Link>
+        <Link
+          to="/library"
+          style={{
+            display: "inline-block",
+            marginLeft: "var(--gf-space-md)",
+            padding: "var(--gf-space-md) var(--gf-space-xl)",
+            color: "var(--gf-color-accent)",
+            fontWeight: 600,
+            textDecoration: "none",
+            border: "2px solid var(--gf-color-accent)",
+            borderRadius: "var(--gf-radius-lg)"
+          }}
+        >
+          See the objectives
+        </Link>
       </section>
 
       <LogoBar />

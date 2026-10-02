@@ -172,6 +172,8 @@ export const Header: React.FC<HeaderProps> = ({
                 >
                   <button
                     type="button"
+                    aria-expanded={openDropdown === item.path}
+                    onClick={() => setOpenDropdown(openDropdown === item.path ? null : item.path)}
                     style={{
                       ...linkStyle(item.path),
                       border: "none",

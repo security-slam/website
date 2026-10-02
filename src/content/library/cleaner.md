@@ -1,13 +1,14 @@
 ---
 title: "Cleaner Badge"
-description: "Publish Security Insights YAML documentation"
+description: "Complete Security Insights YAML documentation for the project"
 path: "/library/cleaner"
 badge: "Cleaner"
+weight: 1
 ---
 
 ## Challenge
 
-Complete Security Insights YAML documentation for your project
+Complete Security Insights YAML documentation for the project
 
 ## Start Here First!
 

@@ -1,13 +1,14 @@
 ---
 title: "Defender Badge"
-description: "Complete a Baseline Best Practices Badge for your maturity level"
+description: "Achieve a passing baseline status for the project's maturity level"
 path: "/library/defender"
 badge: "Defender"
+weight: 5
 ---
 
 ## Challenge
 
-Demonstrate robust completeness with the OSPS Baseline for your project's maturity level
+Achieve a passing baseline status for the project's maturity level
 
 ## Why?
 

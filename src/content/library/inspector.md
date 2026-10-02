@@ -1,13 +1,14 @@
 ---
 title: "Inspector Badge"
-description: "Complete Gemara-compatible threat assessment or OSPS Self Assessment"
+description: "Complete a Gemara-compatible threat assessment or OSPS Self Assessment"
 path: "/library/inspector"
 badge: "Inspector"
+weight: 3
 ---
 
 ## Challenge
 
-Complete a structured security self-assessment for your project using either Gemara threat modeling or OSPS Self Assessment
+Complete a Gemara-compatible threat assessment or OSPS Self Assessment
 
 ## Why?
 

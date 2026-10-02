@@ -97,8 +97,24 @@ export const siteConfig: SiteConfig = {
     blog: { enabled: false, label: "Blog" }
   },
 
-  // Spring Slam26 pages stay routable but are out of the nav until the fall slam opens.
-  customNavLinks: [],
+  // Header nav. The six objectives are one click from every page (Spring feedback: hard to find).
+  customNavLinks: [
+    {
+      path: "/library",
+      label: "Objectives",
+      children: [
+        { path: "/library/cleaner", label: "Cleaner" },
+        { path: "/library/chronicler", label: "Chronicler" },
+        { path: "/library/inspector", label: "Inspector" },
+        { path: "/library/mechanizer", label: "Mechanizer" },
+        { path: "/library/defender", label: "Defender" },
+        { path: "/library/cra-readiness", label: "CRA Readiness" }
+      ]
+    },
+    { path: "/slam26", label: "How it works" },
+    { path: "/slam26/participating-projects", label: "Projects" },
+    { path: "/slam26/register", label: "Register" }
+  ],
 
   contactPages: [
     {

@@ -3,11 +3,12 @@ title: "Chronicler Badge"
 description: "Complete all Baseline documentation tasks"
 path: "/library/chronicler"
 badge: "Chronicler"
+weight: 2
 ---
 
 ## Challenge
 
-Complete all OSPS Baseline controls related to project documentation
+Complete all Baseline documentation tasks
 
 ## Why?
 
