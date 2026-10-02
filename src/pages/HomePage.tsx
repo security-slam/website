@@ -47,44 +47,6 @@ export const HomePage: React.FC = () => {
           textAlign: "center"
         }}
       >
-        <h2 style={{ marginBottom: "var(--gf-space-md)" }}>How the Slam works</h2>
-        <p
-          style={{
-            color: "var(--gf-color-text-subtle)",
-            fontSize: "1.1rem",
-            marginBottom: "var(--gf-space-lg)",
-            maxWidth: "700px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            lineHeight: 1.7
-          }}
-        >
-          No teams, no scoring, no prizes: just six shared objectives built around the OpenSSF Open Source Project Security Baseline. Projects that complete an objective earn a badge; projects that complete them all earn a plaque.
-        </p>
-        <Link
-          to="/slam26"
-          style={{
-            display: "inline-block",
-            padding: "var(--gf-space-md) var(--gf-space-xl)",
-            color: "var(--gf-color-accent)",
-            fontWeight: 600,
-            textDecoration: "none",
-            border: "2px solid var(--gf-color-accent)",
-            borderRadius: "var(--gf-radius-lg)"
-          }}
-        >
-          How it works
-        </Link>
-      </section>
-
-      <BadgeNavigation />
-
-      <section
-        style={{
-          marginBottom: "var(--gf-space-xl)",
-          textAlign: "center"
-        }}
-      >
         <h2 style={{ marginBottom: "var(--gf-space-md)" }}>Registration is now open</h2>
         <p
           style={{
@@ -117,6 +79,44 @@ export const HomePage: React.FC = () => {
       </section>
 
       <LogoBar />
+
+      <section
+        style={{
+          marginBottom: "var(--gf-space-xl)",
+          textAlign: "center"
+        }}
+      >
+        <h2 style={{ marginBottom: "var(--gf-space-md)" }}>How the Slam works</h2>
+        <p
+          style={{
+            color: "var(--gf-color-text-subtle)",
+            fontSize: "1.1rem",
+            marginBottom: "var(--gf-space-lg)",
+            maxWidth: "700px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            lineHeight: 1.7
+          }}
+        >
+          No teams, no scoring, no prizes: just six shared objectives built around the OpenSSF Open Source Project Security Baseline. Projects that complete an objective earn a badge; projects that complete them all earn a plaque.
+        </p>
+        <Link
+          to="/slam26"
+          style={{
+            display: "inline-block",
+            padding: "var(--gf-space-md) var(--gf-space-xl)",
+            color: "var(--gf-color-accent)",
+            fontWeight: 600,
+            textDecoration: "none",
+            border: "2px solid var(--gf-color-accent)",
+            borderRadius: "var(--gf-radius-lg)"
+          }}
+        >
+          How it works
+        </Link>
+      </section>
+
+      <BadgeNavigation />
 
     </div>
   );
