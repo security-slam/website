@@ -61,7 +61,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 
 | Path | Intent |
 |------|--------|
-| **`site.ts`** | **Single source of truth** for site settings. Types: `FooterLink`, `HubSpotConfig`, `ContactPageConfig`, `ContentSectionConfig`, `PastSlamReport`, `NavLink`, `BannerConfig`, `SiteConfig`. `siteConfig` keys: `siteName`, `tagline`, `preregistrationUrl?`, `participatingProjectsDefaultTab?`, `banner?`, `footer`, `contentSections`, `customNavLinks?`, `contactPages`, `pastSlamReports`. Header nav is a fixed Home link, then enabled content sections with `inNav !== false`, then `customNavLinks`. |
+| **`site.ts`** | **Single source of truth** for site settings. Types: `FooterLink`, `HubSpotConfig`, `ContactPageConfig`, `ContentSectionConfig`, `NavLink`, `BannerConfig`, `SiteConfig`. `siteConfig` keys: `siteName`, `tagline`, `preregistrationUrl?`, `participatingProjectsDefaultTab?`, `banner?`, `footer`, `contentSections`, `customNavLinks?`, `contactPages`. Header nav is a fixed Home link, then enabled content sections with `inNav !== false`, then `customNavLinks`. |
 
 ---
 
@@ -98,7 +98,6 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 | **`ScrollToTop.tsx`** | Scrolls to top on route change. |
 | **`TextSection.tsx`** | Reusable content block: title, subtitle, list of paragraphs; props for centering, text shadow, max width, last paragraph margin. |
 | **`SectionCard.tsx`** | Card component: title, optional description; used for section and library listings. |
-| **`LinkCard.tsx`** | Card for an external link; used for `pastSlamReports` on the home page. |
 | **`Carousel.tsx`** | Image carousel on the home page. |
 | **`LogoBar.tsx`** | Sponsor logo bar on the home page. |
 | **`BadgeNavigation.tsx`** | Row of badge icons linking to `/library/<badge>`. |
@@ -114,7 +113,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 
 | Path | Intent |
 |------|--------|
-| **`HomePage.tsx`** | Landing page: carousel, hero text, sponsor logo bar, and `pastSlamReports` links. |
+| **`HomePage.tsx`** | Landing page: carousel, hero text, and sponsor logo bar. Past reports live under `/outcomes`. |
 | **`LibraryPage.tsx`** | `/library`: `libraryIndex` intro, badge navigation, and the filterable article list. |
 | **`LibraryArticlePage.tsx`** | `/library/:slug`: one library article or badge page. Badge pages show the badge icon, a submit-completion link, and articles tagged with the badge name. |
 | **`SectionIndexPage.tsx`** | `/<key>` for a non-library content section: `index.md` content plus cards for the other items. |

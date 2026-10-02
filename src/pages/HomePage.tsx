@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { TextSection } from "../components/TextSection";
 import { SectionCard } from "../components/SectionCard";
 import { Carousel } from "../components/Carousel";
-import { LinkCard } from "../components/LinkCard";
 import { LogoBar } from "../components/LogoBar";
-import { siteConfig } from "../config/site";
 import { carouselImages } from "../content/carousel";
 
 export const HomePage: React.FC = () => {
@@ -96,39 +94,6 @@ export const HomePage: React.FC = () => {
 
       <LogoBar />
 
-      {siteConfig.pastSlamReports.length > 0 && (
-        <section
-          style={{
-            marginBottom: "var(--gf-space-xl)",
-            textAlign: "center"
-          }}
-        >
-          <h2 style={{ marginBottom: "var(--gf-space-md)" }}>Past Slam reports</h2>
-          <p
-            style={{
-              color: "var(--gf-color-text-subtle)",
-              fontSize: "1.1rem",
-              marginBottom: "var(--gf-space-lg)",
-              maxWidth: "700px",
-              marginLeft: "auto",
-              marginRight: "auto",
-              lineHeight: 1.7
-            }}
-          >
-            Past Security Slams have been a great success: projects and contributors have leveled up their security hygiene, and the community has learned from each iteration. By getting more people involved and sharing what works, we elevate the whole ecosystem. Read the transparency reports from previous events on the CNCF site.
-          </p>
-          <div className="past-reports-grid">
-            {siteConfig.pastSlamReports.map((report) => (
-              <LinkCard
-                key={report.href}
-                title={report.label}
-                description={report.description ?? "Read the transparency report on the CNCF site."}
-                href={report.href}
-              />
-            ))}
-          </div>
-        </section>
-      )}
     </div>
   );
 };

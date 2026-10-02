@@ -37,7 +37,6 @@ Edit `src/config/site.ts`. `siteConfig` has these keys:
 - **`contentSections`**: a map of section key to `{ enabled, label, inNav }`. See [Content sections](#content-sections).
 - **`customNavLinks`** (optional): extra header links as `{ path, label, children }`. `children` renders a dropdown.
 - **`contactPages`**: an array of contact pages. See [Contact pages](#contact-pages).
-- **`pastSlamReports`**: an array of `{ href, label, description }` links shown on the home page.
 
 ### Header navigation
 

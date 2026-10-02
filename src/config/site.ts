@@ -33,12 +33,6 @@ export type ContentSectionConfig = {
   inNav?: boolean;
 };
 
-export type PastSlamReport = {
-  href: string;
-  label: string;
-  description?: string;
-};
-
 export type NavLink = {
   path: string;
   label: string;
@@ -64,7 +58,6 @@ export type SiteConfig = {
   contentSections: Record<string, ContentSectionConfig>;
   customNavLinks?: NavLink[];
   contactPages: ContactPageConfig[];
-  pastSlamReports: PastSlamReport[];
 };
 
 export const siteConfig: SiteConfig = {
@@ -141,13 +134,5 @@ export const siteConfig: SiteConfig = {
         region: "na2"
       }
     }
-  ],
-
-  pastSlamReports: [
-    { href: "https://www.cncf.io/reports/security-slam-2023/", label: "Security Slam 2023" },
-    { href: "https://www.cncf.io/reports/lightning-round-at-security-slam-2023/", label: "Lightning Round at Security Slam 2023" },
-    { href: "https://www.cncf.io/reports/security-slam-north-america-2022/", label: "Security Slam North America 2022" },
-    { href: "https://www.cncf.io/reports/security-slam-2025/", label: "Security Slam 2025" },
-    { href: "https://www.cncf.io/reports/slam26-spring-transparency-report/", label: "Slam26 Spring Transparency Report" }
   ]
 };
