@@ -32,6 +32,7 @@ export const HomePage: React.FC = () => {
             title="Securing Open Source at the Source"
             paragraphs={[
               "Run by the CNCF Technical Advisory Group for Security & Compliance, the Slam is a month-long community effort with a library of support resources, advisors on Slack, and plaques and badges for participating projects and contributors.",
+              "This fall, the Slam is open to ANY open source project. You don't need to be a CNCF project, or even cloud native. If you maintain or contribute to open source software, you can participate.",
               "The next Security Slam runs October 5 – November 6, 2026. Registration is open now."
             ]}
             centered={false}
@@ -59,7 +60,7 @@ export const HomePage: React.FC = () => {
             lineHeight: 1.7
           }}
         >
-          Everyone who registers by October 4 will be able to vote on the project awards.
+          Open to ALL open source projects! Register by October 4 to vote on project awards.
         </p>
         <Link
           to="/slam26/register"
