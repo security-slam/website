@@ -57,7 +57,7 @@ Before asking anyone else to use these skills, we used them on four repositories
 | --- | --- | --- |
 | [security-slam/skills](https://github.com/security-slam/skills) | The skills themselves: Markdown and YAML | Evidence for all six badges, [Baseline Level 1](https://www.bestpractices.dev/projects/15132/baseline-1) |
 | [security-slam/website](https://github.com/security-slam/website) | securityslam.com: a TypeScript site deployed on every merge | Evidence for all six badges, [Baseline Level 1](https://www.bestpractices.dev/projects/15142/baseline-1) |
-| [privateerproj/privateer](https://github.com/privateerproj/privateer) | The Privateer CLI: a Go program that ships release binaries | Evidence for all six badges, [Baseline Level 1](https://www.bestpractices.dev/projects/15145/baseline-1) |
+| [privateerproj/pvtr](https://github.com/privateerproj/pvtr) | The Privateer CLI: a Go program that ships release binaries | Evidence for all six badges, [Baseline Level 1](https://www.bestpractices.dev/projects/15145/baseline-1) |
 | [privateerproj/privateer-sdk](https://github.com/privateerproj/privateer-sdk) | The Privateer plugin SDK: a Go library | Evidence for all six badges, [Baseline Level 1](https://www.bestpractices.dev/projects/12018/baseline-1) |
 
 Each skill ran in a fresh Claude Code session, the same way you'd run it. We also installed the skills in Codex with `npx skills` and asked it the same status question on the Privateer SDK. Codex picked `slam-status` on its own and matched Claude Code's report. The website started with no license, no security policy, and a README that described code that no longer existed. It finished with all of those fixed and a weekly Baseline scan reporting zero failed controls.
@@ -81,7 +81,7 @@ Running the skills for real also surfaced bugs in tools the Slam depends on:
 
 - **OSPS Baseline GitHub Action:** failed controls never reached the GitHub Security tab when the action was set to fail the build, and two-digit counts showed up wrong in the summary. Both are fixed in [v1.5.2](https://github.com/revanite-io/osps-baseline-action/releases/tag/v1.5.2).
 - **OSPO reusable workflows:** a release that collided with an existing tag left an orphaned draft release behind. Fixed in [v2.1.1](https://github.com/github-community-projects/ospo-reusable-workflows/releases/tag/v2.1.1).
-- **Release Drafter:** a project's first release publishes with "No changes". A workaround is [in review](https://github.com/github-community-projects/ospo-reusable-workflows/pull/206), and we proposed a fix to Release Drafter itself in [RFC #1779](https://github.com/release-drafter/release-drafter/issues/1779).
+- **Release Drafter:** a project's first release published with "No changes". In [RFC #1779](https://github.com/release-drafter/release-drafter/issues/1779), a maintainer pointed us to the `from` input added in v7.8.0, which sets a comparison baseline. Using it surfaced a misleading "no comparison baseline" warning, which our fix removed in [v7.9.0](https://github.com/release-drafter/release-drafter/releases/tag/v7.9.0) ([#1789](https://github.com/release-drafter/release-drafter/pull/1789)). The OSPO reusable workflow change that uses `from` for first releases is [in review](https://github.com/github-community-projects/ospo-reusable-workflows/pull/206).
 
 ## What we haven't tested yet
 
