@@ -99,7 +99,8 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 | **`TextSection.tsx`** | Reusable content block: title, subtitle, list of paragraphs; props for centering, text shadow, max width, last paragraph margin. |
 | **`SectionCard.tsx`** | Card component: title, optional description; used for section and library listings. |
 | **`Carousel.tsx`** | Image carousel on the home page. |
-| **`LogoBar.tsx`** | Sponsor logo bar on the home page. |
+| **`PartnerLogos.tsx`** | Static side-by-side partner logos on the home page, from `sponsorLogos`. |
+| **`LogoBar.tsx`** | Auto-scrolling sponsor logo marquee. Not currently rendered; kept for when there are more logos than fit in a row. |
 | **`BadgeNavigation.tsx`** | Row of badge icons linking to `/library/<badge>`. |
 | **`LibraryArticleList.tsx`** | Library article grid with a tag filter (non-badge tags) driven by the `tag` query param. |
 | **`ProjectCard.tsx`** / **`Leaderboard.tsx`** | Participating project display for section items with `projects` frontmatter. |
@@ -113,7 +114,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 
 | Path | Intent |
 |------|--------|
-| **`HomePage.tsx`** | Landing page: carousel, hero text, and sponsor logo bar. Past reports live under `/outcomes`. |
+| **`HomePage.tsx`** | Landing page: carousel, hero text, registration, partner logos, How the Slam works, and the badge row. Past reports live under `/outcomes`. |
 | **`LibraryPage.tsx`** | `/library`: `libraryIndex` intro, badge navigation, and the filterable article list. |
 | **`LibraryArticlePage.tsx`** | `/library/:slug`: one library article or badge page. Badge pages show the badge icon, a submit-completion link, and articles tagged with the badge name. |
 | **`SectionIndexPage.tsx`** | `/<key>` for a non-library content section: `index.md` content plus cards for the other items. |

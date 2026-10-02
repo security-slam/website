@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { TextSection } from "../components/TextSection";
 import { SectionCard } from "../components/SectionCard";
 import { Carousel } from "../components/Carousel";
-import { LogoBar } from "../components/LogoBar";
+import { PartnerLogos } from "../components/PartnerLogos";
 import { BadgeNavigation } from "../components/BadgeNavigation";
 import { carouselImages } from "../content/carousel";
 
@@ -78,7 +78,7 @@ export const HomePage: React.FC = () => {
         </Link>
       </section>
 
-      <LogoBar />
+      <PartnerLogos />
 
       <section
         style={{
