@@ -4,7 +4,7 @@ import { siteConfig, type NavLink } from "../config/site";
 
 // Public assets are served at root (see vite publicDir)
 const logoColorUrl = "/logo/logo-color.png";
-const tagScLogoUrl = "/logo/tag_sc_logo-color.png";
+const tagScLogoUrl = "/logo/tag-sc-logo-color.png";
 
 export interface HeaderProps {
   showBannerButton?: boolean;

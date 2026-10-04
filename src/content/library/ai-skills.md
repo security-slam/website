@@ -6,7 +6,7 @@ weight: 1
 author: Jason Meridth, Revanite
 ---
 
-Security Slam now has a set of AI agent skills that walk your project through every badge, from the first `SECURITY-INSIGHTS.yml` to an OpenSSF Best Practices Baseline badge. Install them, ask "where does this repo stand in the Security Slam?", and you get a status table and the one badge to work on next.
+Security Slam now has a set of AI agent skills that walk your project through every badge, from the first `security-insights.yml` to an OpenSSF Best Practices Baseline badge. Install them, ask "where does this repo stand in the Security Slam?", and you get a status table and the one badge to work on next.
 
 The skills follow the open [Agent Skills](https://agentskills.io) standard, so they work with Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, and other compatible agents. We built and tested them in Claude Code, then ran `slam-status` in Codex, which produced the same report.
 

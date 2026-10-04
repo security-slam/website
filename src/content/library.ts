@@ -10,6 +10,8 @@ export type LibraryArticle = {
   author?: string;
   weight?: number;
   videoUrl?: string;
+  /** Former slugs that should redirect here (see App.tsx). */
+  aliases: string[];
   body: string;
 };
 
@@ -28,6 +30,7 @@ type Frontmatter = {
   author?: string;
   weight?: number;
   videoUrl?: string;
+  aliases?: string[];
 };
 
 const rawModules = import.meta.glob("./library/**/*.md", {
@@ -62,9 +65,15 @@ const allItems: LibraryArticle[] = Object.entries(rawModules).map(
       author: fm.author,
       weight: fm.weight,
       videoUrl: fm.videoUrl,
+      aliases: Array.isArray(fm.aliases) ? fm.aliases : [],
       body: content
     };
   }
+);
+
+/** Old slug -> current slug, for redirect routes. */
+export const libraryAliases: { from: string; to: string }[] = allItems.flatMap((a) =>
+  a.aliases.map((from) => ({ from, to: a.slug }))
 );
 
 export const libraryIndex: LibraryIndex | undefined = (() => {

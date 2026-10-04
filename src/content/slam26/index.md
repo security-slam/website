@@ -31,7 +31,7 @@ This leads us to the next obvious question...
 
 The Slam has five key objectives that may be pursued by each project. These center around the _Open Source Project Security Baseline_ which was created by and for maintainers as a project within the [OpenSSF](https://openssf.org).
 
-**We recommend starting with "The Cleaner"** - create your `SECURITY-INSIGHTS.yml` file first with basic project information. You can complete this badge even without all the various documentation elements, then continuously add to it as you complete other badges. Each subsequent objective builds on this foundation.
+**We recommend starting with "The Cleaner"** - create your `security-insights.yml` file first with basic project information. You can complete this badge even without all the various documentation elements, then continuously add to it as you complete other badges. Each subsequent objective builds on this foundation.
 
 - **Start Here - Objective #1: "The Cleaner"** helps projects articulate their progress in a machine-readable manner. Your Security Insights YAML file serves Slam evaluators and your regulated end-users alike, increasing confidence in your project's security posture. As you complete other objectives, add their documentation links to this file.
 - Objective #2: "The Chronicler" recognizes completion of all OSPS Baseline documentation controls. At first glance, these may seem like red herrings in your security journey... but industry experts agree that good security practice is always preceded by good documentation. **Add documentation links to your Security Insights YAML as you create them.**
