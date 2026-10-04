@@ -9,11 +9,14 @@ const tagScLogoUrl = "/logo/tag_sc_logo-color.png";
 export interface HeaderProps {
   showBannerButton?: boolean;
   onShowBanner?: () => void;
+  /** When false, only the Home link renders (dev-preview gate). */
+  navUnlocked?: boolean;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   showBannerButton = false,
-  onShowBanner
+  onShowBanner,
+  navUnlocked = true
 }) => {
   const location = useLocation();
   const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
@@ -50,7 +53,9 @@ export const Header: React.FC<HeaderProps> = ({
     }));
 
   const customNav = siteConfig.customNavLinks ?? [];
-  const fullNav: NavLink[] = [{ path: "/", label: "Home" }, ...contentSectionNav, ...customNav];
+  const fullNav: NavLink[] = navUnlocked
+    ? [{ path: "/", label: "Home" }, ...contentSectionNav, ...customNav]
+    : [{ path: "/", label: "Home" }];
 
   const linkClass = (active: boolean) => (active ? "site-nav-link is-active" : "site-nav-link");
 
