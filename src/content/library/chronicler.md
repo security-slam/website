@@ -8,7 +8,7 @@ weight: 2
 
 ## Challenge
 
-Complete all Baseline documentation tasks
+Write the documentation the OSPS Baseline expects at your project's maturity level: user guides, a defect and vulnerability reporting process, governance, and a description of how releases are built and published. Start with the Level 1 controls and work upward if your project sits at Level 2 or 3. Keep each document short and accurate, and link it from your Security Insights file so evaluators can find it.
 
 ## Why?
 
