@@ -6,6 +6,7 @@ export type AppTheme = {
     background: string;
     surface: string;
     surfaceSubtle: string;
+    surfaceSolid: string;
     text: string;
     textSubtle: string;
     accent: string;
@@ -24,6 +25,8 @@ export type AppTheme = {
     surfaceStrong: string;
   };
   spacing: {
+    xs: string;
+    sm: string;
     md: string;
     lg: string;
     xl: string;
@@ -40,6 +43,7 @@ const slamTheme: AppTheme = {
     background: "#000000",
     surface: "rgba(30, 27, 75, 0.65)",
     surfaceSubtle: "rgba(30, 27, 75, 0.4)",
+    surfaceSolid: "#1e1b4b",
     text: "#f5f3ff",
     textSubtle: "#a78bfa",
     accent: "#e879f9",
@@ -60,12 +64,14 @@ const slamTheme: AppTheme = {
       "0 12px 48px rgba(0, 0, 0, 0.9), 0 0 20px rgba(232, 121, 249, 0.4)"
   },
   spacing: {
+    xs: "0.25rem",
+    sm: "0.5rem",
     md: "1.25rem",
     lg: "2rem",
     xl: "2.5rem"
   },
   typography: {
-    body: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+    body: "system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
     mono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
   }
 };
@@ -94,6 +100,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     "--gf-color-background": theme.colors.background,
     "--gf-color-surface": theme.colors.surface,
     "--gf-color-surface-subtle": theme.colors.surfaceSubtle,
+    "--gf-color-surface-solid": theme.colors.surfaceSolid,
     "--gf-color-text": theme.colors.text,
     "--gf-color-text-subtle": theme.colors.textSubtle,
     "--gf-color-accent": theme.colors.accent,
@@ -106,6 +113,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     "--gf-radius-pill": theme.radii.pill,
     "--gf-shadow-surface": theme.shadows.surface,
     "--gf-shadow-surface-strong": theme.shadows.surfaceStrong,
+    "--gf-space-xs": theme.spacing.xs,
+    "--gf-space-sm": theme.spacing.sm,
     "--gf-space-md": theme.spacing.md,
     "--gf-space-lg": theme.spacing.lg,
     "--gf-space-xl": theme.spacing.xl,

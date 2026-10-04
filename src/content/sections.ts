@@ -27,6 +27,8 @@ export type SectionItem = {
   sectionAudio?: Record<string, string>;
   /** List of participating projects */
   projects?: ProjectInfo[];
+  /** Badge slugs to show on the leaderboard; defaults to every library badge page. Set on archived pages. */
+  badges?: string[];
   body: string;
 };
 
@@ -38,6 +40,7 @@ type Frontmatter = {
   audioUrl?: string;
   sectionAudio?: Record<string, string>;
   projects?: ProjectInfo[];
+  badges?: string[];
 };
 
 const rawModules = import.meta.glob("./*/**/*.md", {
@@ -80,6 +83,7 @@ for (const [path, raw] of Object.entries(rawModules)) {
     audioUrl: fm.audioUrl,
     sectionAudio: fm.sectionAudio,
     projects: fm.projects,
+    badges: fm.badges,
     body: content
   };
   if (!bySection[section]) bySection[section] = [];

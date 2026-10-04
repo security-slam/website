@@ -9,14 +9,35 @@ const tagScLogoUrl = "/logo/tag_sc_logo-color.png";
 export interface HeaderProps {
   showBannerButton?: boolean;
   onShowBanner?: () => void;
+  /** When false, only the Home link renders (dev-preview gate). */
+  navUnlocked?: boolean;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   showBannerButton = false,
-  onShowBanner
+  onShowBanner,
+  navUnlocked = true
 }) => {
   const location = useLocation();
   const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
+  const navRef = React.useRef<HTMLElement>(null);
+
+  // Close the open dropdown on an outside tap/click or Escape
+  React.useEffect(() => {
+    if (!openDropdown) return;
+    const onPointer = (e: PointerEvent) => {
+      if (!navRef.current?.contains(e.target as Node)) setOpenDropdown(null);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenDropdown(null);
+    };
+    document.addEventListener("pointerdown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [openDropdown]);
 
   // Get sections handled by custom nav links (to avoid duplicates)
   const customNavPaths = (siteConfig.customNavLinks ?? []).map(link => link.path);
@@ -32,112 +53,32 @@ export const Header: React.FC<HeaderProps> = ({
     }));
 
   const customNav = siteConfig.customNavLinks ?? [];
-  const fullNav: NavLink[] = [{ path: "/", label: "Home" }, ...contentSectionNav, ...customNav];
+  const fullNav: NavLink[] = navUnlocked
+    ? [{ path: "/", label: "Home" }, ...contentSectionNav, ...customNav]
+    : [{ path: "/", label: "Home" }];
 
-  const linkStyle = (path: string): React.CSSProperties => ({
-    color: "var(--gf-color-text)",
-    textDecoration: "none",
-    padding: "0.5rem 1rem",
-    borderRadius: "var(--gf-radius-lg)",
-    transition: "background-color 0.2s",
-    backgroundColor: location.pathname === path ? "var(--gf-color-accent-soft)" : "transparent"
-  });
+  const linkClass = (active: boolean) => (active ? "site-nav-link is-active" : "site-nav-link");
 
   return (
-    <header
-      className="site-header"
-      style={{
-        width: "100vw",
-        margin: "0",
-        padding: "var(--gf-space-md) var(--gf-space-xl)",
-        boxSizing: "border-box"
-      }}
-    >
-      <section
-        id="hero"
-        className="site-header-inner"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "var(--gf-space-md)",
-          textAlign: "center"
-        }}
-      >
-        <div
-          className="site-header-brand"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "var(--gf-space-md)"
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "var(--gf-space-xl)",
-              flexWrap: "wrap"
-            }}
-          >
+    <header className="site-header">
+      <section id="hero" className="site-header-inner">
+        <div className="site-header-brand">
+          <div className="site-header-logos">
             <a
               href="https://contribute.cncf.io/community/tags/security-and-compliance/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: "block" }}
               aria-label="CNCF TAG Security & Compliance"
             >
-              <img
-                src={tagScLogoUrl}
-                alt="CNCF TAG Security & Compliance"
-                style={{
-                  maxHeight: "80px",
-                  width: "auto",
-                  objectFit: "contain",
-                  display: "block"
-                }}
-              />
+              <img src={tagScLogoUrl} alt="CNCF TAG Security & Compliance" />
             </a>
-            <Link
-              to="/"
-              style={{ display: "block" }}
-              aria-label={`${siteConfig.siteName} home`}
-            >
-              <img
-                src={logoColorUrl}
-                alt={siteConfig.siteName}
-                style={{
-                  maxHeight: "80px",
-                  width: "auto",
-                  objectFit: "contain",
-                  display: "block"
-                }}
-              />
+            <Link to="/" aria-label={`${siteConfig.siteName} home`}>
+              <img src={logoColorUrl} alt={siteConfig.siteName} />
             </Link>
           </div>
-          <p
-            style={{
-              fontSize: "1.1rem",
-              color: "var(--gf-color-text-subtle)",
-              margin: 0,
-              lineHeight: 1.4
-            }}
-          >
-            {siteConfig.tagline}
-          </p>
+          <p className="site-tagline">{siteConfig.tagline}</p>
         </div>
-        <nav
-          style={{
-            display: "flex",
-            gap: "var(--gf-space-md)",
-            alignItems: "center",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            position: "relative"
-          }}
-        >
+        <nav className="site-nav" ref={navRef}>
           {fullNav.map((item) => {
             const hasChildren = item.children && item.children.length > 0;
 
@@ -163,6 +104,7 @@ export const Header: React.FC<HeaderProps> = ({
                 return null;
               }
 
+              const isOpen = openDropdown === item.path;
               return (
                 <div
                   key={item.path}
@@ -172,67 +114,22 @@ export const Header: React.FC<HeaderProps> = ({
                 >
                   <button
                     type="button"
-                    style={{
-                      ...linkStyle(item.path),
-                      border: "none",
-                      background: openDropdown === item.path ? "var(--gf-color-accent-soft)" : "transparent",
-                      cursor: "pointer",
-                      fontSize: "inherit",
-                      fontFamily: "inherit",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.25rem",
-                      outline: "none",
-                      boxShadow: "none",
-                      WebkitAppearance: "none"
-                    }}
+                    aria-expanded={isOpen}
+                    onClick={() => setOpenDropdown(isOpen ? null : item.path)}
+                    className={linkClass(isOpen || location.pathname === item.path)}
                   >
                     {item.label}
                     <span style={{ fontSize: "0.75rem" }}>▼</span>
                   </button>
-                  {openDropdown === item.path && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "100%",
-                        right: 0,
-                        paddingTop: "0.25rem",
-                        backgroundColor: "transparent",
-                        minWidth: "200px",
-                        zIndex: 1000
-                      }}
-                    >
-                      <div
-                        style={{
-                          backgroundColor: "var(--gf-color-surface)",
-                          border: "1px solid var(--gf-color-accent)",
-                          borderRadius: "var(--gf-radius-lg)",
-                          boxShadow: "var(--gf-shadow-surface)",
-                          overflow: "hidden"
-                        }}
-                      >
+                  {isOpen && (
+                    <div className="site-nav-dropdown">
+                      <div>
                         {visibleChildren.map((child) => (
                           <Link
                             key={child.path}
                             to={child.path}
-                            style={{
-                              display: "block",
-                              padding: "0.75rem 1rem",
-                              color: "var(--gf-color-text)",
-                              textDecoration: "none",
-                              transition: "background-color 0.2s",
-                              backgroundColor: location.pathname === child.path ? "var(--gf-color-accent-soft)" : "transparent"
-                            }}
-                            onMouseEnter={(e) => {
-                              if (location.pathname !== child.path) {
-                                e.currentTarget.style.backgroundColor = "var(--gf-color-accent-soft)";
-                              }
-                            }}
-                            onMouseLeave={(e) => {
-                              if (location.pathname !== child.path) {
-                                e.currentTarget.style.backgroundColor = "transparent";
-                              }
-                            }}
+                            className={location.pathname === child.path ? "is-active" : undefined}
+                            onClick={() => setOpenDropdown(null)}
                           >
                             {child.label}
                           </Link>
@@ -245,21 +142,7 @@ export const Header: React.FC<HeaderProps> = ({
             }
 
             return (
-              <Link
-                key={item.path}
-                to={item.path}
-                style={linkStyle(item.path)}
-                onMouseEnter={(e) => {
-                  if (location.pathname !== item.path) {
-                    e.currentTarget.style.backgroundColor = "var(--gf-color-accent-soft)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (location.pathname !== item.path) {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                  }
-                }}
-              >
+              <Link key={item.path} to={item.path} className={linkClass(location.pathname === item.path)}>
                 {item.label}
               </Link>
             );
@@ -271,11 +154,11 @@ export const Header: React.FC<HeaderProps> = ({
           type="button"
           onClick={onShowBanner}
           aria-label="Show banner"
+          className="banner-show-btn"
           style={{
             position: "fixed",
             top: "0.5rem",
             left: "50%",
-            transform: "translateX(-50%)",
             background: "rgba(141, 232, 242, 0.3)",
             border: "none",
             color: "#000",
@@ -285,18 +168,10 @@ export const Header: React.FC<HeaderProps> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            transition: "transform 0.2s ease",
-            outline: "none",
             boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
             WebkitAppearance: "none",
             zIndex: 1000,
             borderRadius: "0 0 8px 8px"
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateX(-50%) scale(1.2)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translateX(-50%) scale(1)";
           }}
         >
           <svg

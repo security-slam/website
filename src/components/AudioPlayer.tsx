@@ -66,7 +66,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, inline = f
           type="button"
           onClick={handleButtonClick}
           title={label || "Play audio"}
-          className={!hasBeenClicked && !inline ? "pulse-button" : ""}
+          className={!hasBeenClicked && !inline ? "audio-btn pulse-button" : "audio-btn"}
           style={{
             background: "var(--gf-color-accent-soft)",
             border: "1px solid var(--gf-color-accent)",
@@ -78,16 +78,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, label, inline = f
             justifyContent: "center",
             cursor: "pointer",
             fontSize: inline ? "1rem" : "1.2rem",
-            transition: "transform 0.2s ease, background-color 0.2s ease",
             padding: 0
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "scale(1.1)";
-            e.currentTarget.style.backgroundColor = "var(--gf-color-accent)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "scale(1)";
-            e.currentTarget.style.backgroundColor = "var(--gf-color-accent-soft)";
           }}
         >
           🎧

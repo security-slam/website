@@ -18,6 +18,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       href={repoUrl}
       target="_blank"
       rel="noopener noreferrer"
+      className="link-card"
       style={{
         textDecoration: "none",
         color: "inherit",
@@ -25,16 +26,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         borderRadius: "var(--gf-radius-xl)",
         overflow: "hidden",
         border: "1px solid var(--gf-color-border-strong)",
-        transition: "transform 0.2s, box-shadow 0.2s",
         boxShadow: "var(--gf-shadow-surface)"
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "translateY(-4px)";
-        e.currentTarget.style.boxShadow = "var(--gf-shadow-surface-strong)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "translateY(0)";
-        e.currentTarget.style.boxShadow = "var(--gf-shadow-surface)";
       }}
     >
       {/* Logo section with white background */}

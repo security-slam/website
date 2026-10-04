@@ -12,7 +12,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 
 | File / directory | Intent |
 |------------------|--------|
-| **`index.html`** | HTML shell: root `<div id="root">`, viewport meta, document title placeholder. Vite entry; `main.tsx` is loaded as module. |
+| **`index.html`** | HTML shell: root `<div id="root">`, viewport and theme-color metas, description and Open Graph tags for link previews, document title. Vite entry; `main.tsx` is loaded as module. |
 | **`package.json`** | Dependencies (React 19, react-router-dom 7, react-markdown, remark-gfm, gray-matter, buffer; dev: Vite 8, TypeScript 7) and scripts: `dev`, `build`, `preview`, `typecheck`. |
 | **`.nvmrc`** | Node version used by CI, deploy, and local development. |
 | **`Makefile`** | `make run` starts the dev server (`npm run dev`). |
@@ -50,7 +50,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 |------|--------|
 | **`main.tsx`** | App entry: imports `polyfills.ts` first, sets document title from `siteConfig.siteName`, mounts React root, wraps app in `ThemeProvider`, imports `global.css`. |
 | **`polyfills.ts`** | Sets `globalThis.Buffer` so `gray-matter` works in the browser. |
-| **`App.tsx`** | Root layout and routing: applies `useTheme()`, wraps in `AudioProvider` and `BrowserRouter`, renders `BackgroundArcs`, optional `Banner`, `Header`, main, `Footer`. Routes: `/` (HomePage); `/library` and `/library/:slug` (LibraryPage, LibraryArticlePage) when `contentSections.library` is enabled; for every other enabled content section, `/<key>` (SectionIndexPage), each item's frontmatter `path`, and `/<key>/:slug` (SectionItemPage); each `contactPages` path (ContactPage); catch-all redirect to `/`. |
+| **`App.tsx`** | Root layout and routing: applies `useTheme()`, wraps in `AudioProvider` and `BrowserRouter`, renders `BackgroundArcs`, optional `Banner`, `Header`, main, `Footer`. Routes: `/` (HomePage); `/library` and `/library/:slug` (LibraryPage, LibraryArticlePage) when `contentSections.library` is enabled; for every other enabled content section, `/<key>` (SectionIndexPage), each item's frontmatter `path`, and `/<key>/:slug` (SectionItemPage); each `contactPages` path (ContactPage); catch-all redirect to `/`. All routes except `/` are gated behind the dev-preview flag (see `DevConsole.tsx`). |
 | **`theme.tsx`** | Theme system: `AppTheme` type, the single `slam` theme object (colors, radii, shadows, spacing, typography), `ThemeProvider` that injects CSS variables (`--gf-color-*`, `--gf-space-*`, etc.), `useTheme()` hook. Edit here to change look site-wide. |
 | **`global.css`** | Global styles: reset, layout, base typography, `.slam-theme` overrides, responsive rules. |
 | **`vite-env.d.ts`** | TypeScript reference for Vite client types (e.g. `import.meta`). |
@@ -61,7 +61,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 
 | Path | Intent |
 |------|--------|
-| **`site.ts`** | **Single source of truth** for site settings. Types: `FooterLink`, `HubSpotConfig`, `ContactPageConfig`, `ContentSectionConfig`, `PastSlamReport`, `NavLink`, `BannerConfig`, `SiteConfig`. `siteConfig` keys: `siteName`, `tagline`, `preregistrationUrl?`, `participatingProjectsDefaultTab?`, `banner?`, `footer`, `contentSections`, `customNavLinks?`, `contactPages`, `pastSlamReports`. Header nav is a fixed Home link, then enabled content sections with `inNav !== false`, then `customNavLinks`. |
+| **`site.ts`** | **Single source of truth** for site settings. Types: `FooterLink`, `HubSpotConfig`, `ContactPageConfig`, `ContentSectionConfig`, `NavLink`, `BannerConfig`, `SiteConfig`. `siteConfig` keys: `siteName`, `tagline`, `preregistrationUrl?`, `participatingProjectsDefaultTab?`, `banner?`, `footer`, `contentSections`, `customNavLinks?`, `contactPages`. Header nav is a fixed Home link, then enabled content sections with `inNav !== false`, then `customNavLinks`. |
 
 ---
 
@@ -71,8 +71,9 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 |------|--------|
 | **`library.ts`** | Loads every `library/**/*.md` with `gray-matter`. Slug is the filename. Frontmatter: `title`, `description`, `tags`, `badge`, `image`, `author`, `weight`, `videoUrl`. Exports `libraryIndex` (from `index.md`), `libraryArticles` (excludes `index` and any file with `badge`, sorted by `weight` then title), `getLibraryArticle`, `getAllTags`, `getArticlesByTag`. |
 | **`library/`** | Library Markdown. `index.md` is the `/library` intro. Files with `badge:` are badge pages (`chronicler.md`, `cleaner.md`, `defender.md`, `inspector.md`, `mechanizer.md`). Everything else is an article at `/library/<filename>`. |
-| **`sections.ts`** | Loads `*/**/*.md` and groups by directory name (the section key). Frontmatter: `title`, `description`, `path`, `hubspot`, `audioUrl`, `sectionAudio`, `projects`. Exports `getSectionItems`, `getSectionIndexItem`, `getSectionListItems`, `getSectionItemBySlug`, `getSectionItemByPath`. |
+| **`sections.ts`** | Loads `*/**/*.md` and groups by directory name (the section key). Frontmatter: `title`, `description`, `path`, `hubspot`, `audioUrl`, `sectionAudio`, `projects`, `badges`. Exports `getSectionItems`, `getSectionIndexItem`, `getSectionListItems`, `getSectionItemBySlug`, `getSectionItemByPath`. |
 | **`slam26/`** | Slam26 section Markdown: `index.md`, `participating-projects.md`, `register.md`. |
+| **`outcomes/`** | Previous Outcomes section: `index.md` links past transparency reports; one archive page per finished Slam (e.g. `spring-2026.md`) with the final `projects` list and a `badges` list of the slugs that Slam used. |
 | **`carousel.ts`** | Image list for the home page carousel (`public/slam-photos/`). |
 | **`sponsorLogos.ts`** | Logo list for the home page logo bar (`public/logo/sponsor-logos/`). |
 
@@ -90,16 +91,17 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 
 | Path | Intent |
 |------|--------|
-| **`Header.tsx`** | Site header: logo (alt text from `siteName`), tagline, nav from a fixed Home link, enabled content sections (`inNav !== false`), and `customNavLinks` (with dropdowns for `children`); active-state styling via `useLocation()`. Optional button to re-show a dismissed banner. |
+| **`Header.tsx`** | Site header: logo (alt text from `siteName`), tagline, nav from a fixed Home link, enabled content sections (`inNav !== false`), and `customNavLinks` (with dropdowns for `children` that close on outside click or Escape); active-state styling via `useLocation()`. Layout and hover styles live in `global.css` (`.site-header*`, `.site-nav*`). Optional button to re-show a dismissed banner. |
 | **`Footer.tsx`** | Site footer: optional pre-registration link (`preregistrationUrl`), copyright, and links from `siteConfig.footer`. |
 | **`Banner.tsx`** | Dismissible top banner driven by `siteConfig.banner`. |
+| **`DevConsole.tsx`** | Backtick-toggled terminal overlay. Typing `dev-preview` + Enter sets the `dev-preview` localStorage flag, `disable-preview` clears it; `App.tsx` redirects every route except `/` to home until it is set. |
 | **`BackgroundArcs.tsx`** | Full-viewport decorative background (static SVG arcs); no interaction, low z-index. |
 | **`ScrollToTop.tsx`** | Scrolls to top on route change. |
-| **`TextSection.tsx`** | Reusable content block: title, subtitle, list of paragraphs; props for centering, text shadow, max width, last paragraph margin. |
+| **`TextSection.tsx`** | Reusable content block: title, subtitle, list of paragraphs; props for centering, text shadow, max width, last paragraph margin, and `titleTag` (`h1` on the home hero). |
 | **`SectionCard.tsx`** | Card component: title, optional description; used for section and library listings. |
-| **`LinkCard.tsx`** | Card for an external link; used for `pastSlamReports` on the home page. |
 | **`Carousel.tsx`** | Image carousel on the home page. |
-| **`LogoBar.tsx`** | Sponsor logo bar on the home page. |
+| **`PartnerLogos.tsx`** | Static side-by-side partner logos on the home page, from `sponsorLogos`. |
+| **`LogoBar.tsx`** | Auto-scrolling sponsor logo marquee. Not currently rendered; kept for when there are more logos than fit in a row. |
 | **`BadgeNavigation.tsx`** | Row of badge icons linking to `/library/<badge>`. |
 | **`LibraryArticleList.tsx`** | Library article grid with a tag filter (non-badge tags) driven by the `tag` query param. |
 | **`ProjectCard.tsx`** / **`Leaderboard.tsx`** | Participating project display for section items with `projects` frontmatter. |
@@ -113,7 +115,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 
 | Path | Intent |
 |------|--------|
-| **`HomePage.tsx`** | Landing page: carousel, hero text, sponsor logo bar, and `pastSlamReports` links. |
+| **`HomePage.tsx`** | Landing page: carousel, hero text, registration, partner logos, How the Slam works, and the badge row. Past reports live under `/outcomes`. |
 | **`LibraryPage.tsx`** | `/library`: `libraryIndex` intro, badge navigation, and the filterable article list. |
 | **`LibraryArticlePage.tsx`** | `/library/:slug`: one library article or badge page. Badge pages show the badge icon, a submit-completion link, and articles tagged with the badge name. |
 | **`SectionIndexPage.tsx`** | `/<key>` for a non-library content section: `index.md` content plus cards for the other items. |

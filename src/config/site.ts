@@ -33,12 +33,6 @@ export type ContentSectionConfig = {
   inNav?: boolean;
 };
 
-export type PastSlamReport = {
-  href: string;
-  label: string;
-  description?: string;
-};
-
 export type NavLink = {
   path: string;
   label: string;
@@ -64,7 +58,6 @@ export type SiteConfig = {
   contentSections: Record<string, ContentSectionConfig>;
   customNavLinks?: NavLink[];
   contactPages: ContactPageConfig[];
-  pastSlamReports: PastSlamReport[];
 };
 
 export const siteConfig: SiteConfig = {
@@ -94,11 +87,29 @@ export const siteConfig: SiteConfig = {
   contentSections: {
     slam26: { enabled: true, label: "Slam26", inNav: false },
     library: { enabled: true, label: "Library", inNav: false },
+    outcomes: { enabled: true, label: "Previous Outcomes", inNav: false },
     blog: { enabled: false, label: "Blog" }
   },
 
-  // Spring Slam26 pages stay routable but are out of the nav until the fall slam opens.
-  customNavLinks: [],
+  // Header nav. The six objectives are one click from every page (Spring feedback: hard to find).
+  customNavLinks: [
+    {
+      path: "/library",
+      label: "Objectives",
+      children: [
+        { path: "/library/cleaner", label: "Cleaner" },
+        { path: "/library/chronicler", label: "Chronicler" },
+        { path: "/library/inspector", label: "Inspector" },
+        { path: "/library/mechanizer", label: "Mechanizer" },
+        { path: "/library/defender", label: "Defender" },
+        { path: "/library/cra-readiness", label: "CRA Readiness" }
+      ]
+    },
+    { path: "/slam26", label: "How it works" },
+    { path: "/slam26/participating-projects", label: "Projects" },
+    { path: "/slam26/register", label: "Register" },
+    { path: "/outcomes", label: "Previous Outcomes" }
+  ],
 
   contactPages: [
     {
@@ -123,13 +134,5 @@ export const siteConfig: SiteConfig = {
         region: "na2"
       }
     }
-  ],
-
-  pastSlamReports: [
-    { href: "https://www.cncf.io/reports/security-slam-2023/", label: "Security Slam 2023" },
-    { href: "https://www.cncf.io/reports/lightning-round-at-security-slam-2023/", label: "Lightning Round at Security Slam 2023" },
-    { href: "https://www.cncf.io/reports/security-slam-north-america-2022/", label: "Security Slam North America 2022" },
-    { href: "https://www.cncf.io/reports/security-slam-2025/", label: "Security Slam 2025" },
-    { href: "https://www.cncf.io/reports/slam26-spring-transparency-report/", label: "Slam26 Spring Transparency Report" }
   ]
 };

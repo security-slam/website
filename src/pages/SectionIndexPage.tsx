@@ -36,10 +36,12 @@ export const SectionIndexPage: React.FC<SectionIndexPageProps> = ({ section }) =
     >
       {indexItem ? (
         <article
+          className="content-article"
           style={{
             maxWidth: "900px",
             margin: "0 auto",
-            padding: "0 var(--gf-space-xl)",
+            paddingTop: 0,
+            paddingBottom: 0,
             width: "100%"
           }}
         >

@@ -1,13 +1,14 @@
 ---
 title: "Inspector Badge"
-description: "Complete Gemara-compatible threat assessment or OSPS Self Assessment"
+description: "Complete a Gemara-compatible threat assessment or OSPS Self Assessment"
 path: "/library/inspector"
 badge: "Inspector"
+weight: 3
 ---
 
 ## Challenge
 
-Complete a structured security self-assessment for your project using either Gemara threat modeling or OSPS Self Assessment
+Complete a Gemara-compatible threat assessment or OSPS Self Assessment
 
 ## Why?
 
@@ -27,6 +28,8 @@ When you complete a self-assessment, you're not just checking a box. You're buil
 **First, create your Security Insights YAML file** (see the [Cleaner badge](/library/cleaner)) with basic information if you haven't already.
 
 There are two options for completing this badge. Pick the approach that makes the most sense for your project.
+
+**Prefer a head start?** The Slam's [AI skills](/library/ai-skills) include an `inspector` skill that drafts either option from what it finds in your repository. Treat its output as a first draft, not a finished assessment: the skill makes guesses about what your project does and what could go wrong with it, so check every capability and threat against what you actually know. The Gemara path has been run on real projects; the prose self-assessment path has not been tested yet, so expect rougher edges there.
 
 To support the upcoming `v1` release of the Gemara schemas, the completion form for this badge will ask you for a short piece of feedback if you choose Option #2 instead.
 

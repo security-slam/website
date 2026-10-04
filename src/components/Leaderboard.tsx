@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { ProjectInfo } from "../content/sections";
+import { badgePages } from "../content/library";
 
 export interface LeaderboardProps {
   projects: ProjectInfo[];
+  /** Badge slugs to show as tabs. Defaults to every library badge page. */
+  badges?: string[];
 }
 
-const BADGES = ["Cleaner", "Chronicler", "Inspector", "Mechanizer", "Defender"];
-
-export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
-  const [activeTab, setActiveTab] = useState(BADGES[0]);
+export const Leaderboard: React.FC<LeaderboardProps> = ({ projects, badges }) => {
+  // Tabs are {slug, label}; `completed` in project frontmatter holds slugs.
+  const tabs = (badges ?? badgePages.map((p) => p.slug)).map((slug) => ({
+    slug,
+    label: badgePages.find((p) => p.slug === slug)?.badge ?? slug,
+  }));
+  const [activeTab, setActiveTab] = useState(tabs[0]?.slug ?? "");
 
   // Filter projects that have completed the active badge
   const completedProjects = projects.filter(
@@ -52,16 +58,15 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
       <div
         style={{
           display: "flex",
-          flexWrap: "nowrap",
+          flexWrap: "wrap",
           gap: "var(--gf-space-lg)",
           justifyContent: "center",
           marginBottom: "var(--gf-space-2xl)",
           paddingTop: "var(--gf-space-md)",
           paddingBottom: "var(--gf-space-md)",
-          overflowX: "auto",
         }}
       >
-        {BADGES.map((badge) => {
+        {tabs.map(({ slug: badge, label }) => {
           const count = projects.filter(
             (p) =>
               p.completed &&
@@ -73,25 +78,18 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
             <button
               key={badge}
               onClick={() => setActiveTab(badge)}
+              className="scale-hover"
               style={{
                 padding: "var(--gf-space-sm)",
                 backgroundColor: "transparent",
                 border: "none",
-                outline: "none",
                 cursor: "pointer",
-                transition: "all 0.2s ease",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 gap: "var(--gf-space-sm)",
                 position: "relative",
                 minWidth: isActive ? "140px" : "100px",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.05)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
               }}
             >
               <div
@@ -102,8 +100,8 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
                 }}
               >
                 <img
-                  src={`/badge-icons/${badge.toLowerCase()}.png`}
-                  alt={`${badge} Badge`}
+                  src={`/badge-icons/${badge}.png`}
+                  alt={`${label} Badge`}
                   style={{
                     width: "100%",
                     height: "100%",
@@ -140,7 +138,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
                     textAlign: "center",
                   }}
                 >
-                  {badge}
+                  {label}
                 </span>
               )}
             </button>
@@ -165,6 +163,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
               href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
+              className="link-card"
               style={{
                 textDecoration: "none",
                 color: "inherit",
@@ -175,20 +174,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
                 backgroundColor: "var(--gf-color-surface)",
                 borderRadius: "var(--gf-radius-xl)",
                 border: "2px solid var(--gf-color-border-strong)",
-                transition: "all 0.2s ease",
                 boxShadow: "var(--gf-shadow-surface)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-4px)";
-                e.currentTarget.style.boxShadow =
-                  "var(--gf-shadow-surface-strong)";
-                e.currentTarget.style.borderColor = "var(--gf-color-accent)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "var(--gf-shadow-surface)";
-                e.currentTarget.style.borderColor =
-                  "var(--gf-color-border-strong)";
               }}
             >
               <div
@@ -241,7 +227,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects }) => {
           }}
         >
           <p style={{ margin: 0 }}>
-            No projects have completed the {activeTab} badge yet.
+            No projects have completed the {tabs.find((t) => t.slug === activeTab)?.label ?? activeTab} badge yet.
           </p>
           <p
             style={{

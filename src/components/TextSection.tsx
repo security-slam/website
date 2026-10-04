@@ -8,6 +8,8 @@ export interface TextSectionProps {
   textShadow?: boolean;
   maxWidth?: string;
   lastParagraphMargin?: string;
+  /** Heading element for the title; the home hero uses h1. */
+  titleTag?: "h1" | "h2";
 }
 
 export const TextSection: React.FC<TextSectionProps> = ({
@@ -17,7 +19,8 @@ export const TextSection: React.FC<TextSectionProps> = ({
   centered = false,
   textShadow = false,
   maxWidth,
-  lastParagraphMargin = "0"
+  lastParagraphMargin = "0",
+  titleTag: TitleTag = "h2"
 }) => {
   const sectionStyle: React.CSSProperties = {
     marginBottom: "var(--gf-space-xl)"
@@ -47,14 +50,14 @@ export const TextSection: React.FC<TextSectionProps> = ({
   return (
     <section className="text-section" style={sectionStyle}>
       {title && (
-        <h2
+        <TitleTag
           style={{
             marginBottom: centered ? "0.5rem" : "var(--gf-space-md)",
             ...(centered && { textAlign: "center" })
           }}
         >
           {title}
-        </h2>
+        </TitleTag>
       )}
       {subtitle && <p style={subtitleStyle}>{subtitle}</p>}
       {paragraphs.map((paragraph, index) => (

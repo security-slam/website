@@ -6,6 +6,7 @@ import { markdownComponents } from "../components/markdownComponents";
 import { getLibraryArticle, getArticlesByTag } from "../content/library";
 import { SectionCard } from "../components/SectionCard";
 import { LibraryArticleList } from "../components/LibraryArticleList";
+import { BadgeNavigation } from "../components/BadgeNavigation";
 
 export const LibraryArticlePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -23,18 +24,19 @@ export const LibraryArticlePage: React.FC = () => {
 
   return (
     <article
+      className="content-article"
       style={{
         maxWidth: isBadgePage ? "1200px" : "900px",
         margin: "0 auto",
-        padding: "var(--gf-space-xl)",
         width: "100%"
       }}
     >
-      {/* Badge icon for badge pages */}
+      {/* Badge-to-badge tab strip, then the icon, for badge pages */}
+      {isBadgePage && <BadgeNavigation compact />}
       {isBadgePage && article.badge && (
         <div style={{ textAlign: "center", marginBottom: "var(--gf-space-lg)" }}>
           <img
-            src={`/badge-icons/${article.badge.toLowerCase()}.png`}
+            src={`/badge-icons/${article.slug}.png`}
             alt={`${article.badge} Badge`}
             style={{
               width: "200px",
@@ -158,6 +160,7 @@ export const LibraryArticlePage: React.FC = () => {
           </p>
           <Link
             to="/slam26/submit-completion"
+            className="btn-lift"
             style={{
               display: "inline-block",
               padding: "var(--gf-space-md) var(--gf-space-xl)",
@@ -167,16 +170,7 @@ export const LibraryArticlePage: React.FC = () => {
               fontWeight: 600,
               fontSize: "1.1rem",
               textDecoration: "none",
-              transition: "all 0.2s ease",
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.15)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
             }}
           >
             Submit Badge Completion

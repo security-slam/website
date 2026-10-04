@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { TextSection } from "../components/TextSection";
 import { SectionCard } from "../components/SectionCard";
 import { Carousel } from "../components/Carousel";
-import { LinkCard } from "../components/LinkCard";
-import { LogoBar } from "../components/LogoBar";
-import { siteConfig } from "../config/site";
+import { PartnerLogos } from "../components/PartnerLogos";
+import { BadgeNavigation } from "../components/BadgeNavigation";
 import { carouselImages } from "../content/carousel";
 
 export const HomePage: React.FC = () => {
@@ -30,6 +29,7 @@ export const HomePage: React.FC = () => {
         <div className="home-welcome-text">
           <TextSection
             title="Securing Open Source at the Source"
+            titleTag="h1"
             paragraphs={[
               "Run by the CNCF Technical Advisory Group for Security & Compliance, the Slam is a month-long community effort with a library of support resources, advisors on Slack, and plaques and badges for participating projects and contributors.",
               "This fall, the Slam is open to ANY open source project. You don't need to be a CNCF project, or even cloud native. If you maintain or contribute to open source software, you can participate.",
@@ -79,41 +79,46 @@ export const HomePage: React.FC = () => {
         </Link>
       </section>
 
-      <LogoBar />
+      <PartnerLogos />
 
-      {siteConfig.pastSlamReports.length > 0 && (
-        <section
+      <section
+        style={{
+          marginBottom: "var(--gf-space-xl)",
+          textAlign: "center"
+        }}
+      >
+        <h2 style={{ marginBottom: "var(--gf-space-md)" }}>How the Slam works</h2>
+        <p
           style={{
-            marginBottom: "var(--gf-space-xl)",
-            textAlign: "center"
+            color: "var(--gf-color-text-subtle)",
+            fontSize: "1.1rem",
+            marginBottom: "var(--gf-space-lg)",
+            maxWidth: "700px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            lineHeight: 1.7
           }}
         >
-          <h2 style={{ marginBottom: "var(--gf-space-md)" }}>Past Slam reports</h2>
-          <p
-            style={{
-              color: "var(--gf-color-text-subtle)",
-              fontSize: "1.1rem",
-              marginBottom: "var(--gf-space-lg)",
-              maxWidth: "700px",
-              marginLeft: "auto",
-              marginRight: "auto",
-              lineHeight: 1.7
-            }}
-          >
-            Past Security Slams have been a great success: projects and contributors have leveled up their security hygiene, and the community has learned from each iteration. By getting more people involved and sharing what works, we elevate the whole ecosystem. Read the transparency reports from previous events on the CNCF site.
-          </p>
-          <div className="past-reports-grid">
-            {siteConfig.pastSlamReports.map((report) => (
-              <LinkCard
-                key={report.href}
-                title={report.label}
-                description={report.description ?? "Read the transparency report on the CNCF site."}
-                href={report.href}
-              />
-            ))}
-          </div>
-        </section>
-      )}
+          No teams, no scoring, no prizes: just six shared objectives built around the OpenSSF Open Source Project Security Baseline. Projects that complete an objective earn a badge; projects that complete them all earn a plaque.
+        </p>
+        <Link
+          to="/slam26"
+          style={{
+            display: "inline-block",
+            padding: "var(--gf-space-md) var(--gf-space-xl)",
+            color: "var(--gf-color-accent)",
+            fontWeight: 600,
+            textDecoration: "none",
+            border: "2px solid var(--gf-color-accent)",
+            borderRadius: "var(--gf-radius-lg)"
+          }}
+        >
+          How it works
+        </Link>
+      </section>
+
+      <BadgeNavigation />
+
     </div>
   );
 };

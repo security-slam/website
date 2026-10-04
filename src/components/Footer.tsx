@@ -39,17 +39,7 @@ export const Footer: React.FC = () => {
               href={siteConfig.preregistrationUrl}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                color: "var(--gf-color-text-subtle)",
-                textDecoration: "none",
-                transition: "color 0.2s"
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = "var(--gf-color-accent)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = "var(--gf-color-text-subtle)";
-              }}
+              className="footer-link"
             >
               Pre-register
             </a>
@@ -60,17 +50,7 @@ export const Footer: React.FC = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                color: "var(--gf-color-text-subtle)",
-                textDecoration: "none",
-                transition: "color 0.2s"
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = "var(--gf-color-accent)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = "var(--gf-color-text-subtle)";
-              }}
+              className="footer-link"
             >
               {link.label}
             </a>
