@@ -1,5 +1,5 @@
 ---
-title: Let's Make a Threat Catalog
+title: Threat Assessment Walkthrough
 description: Come learn with me as I start drafting a new Gemara threat assessment
 tags: [Inspector, Gemara]
 author: Eddie Knight

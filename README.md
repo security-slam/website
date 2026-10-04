@@ -93,6 +93,7 @@ Library articles are Markdown files in `src/content/library/`. `src/content/libr
    - `image` is a path under `public/`. Put the file there first.
    - `weight` is optional. Lower numbers sort first. Articles without a weight sort last, then alphabetically by title.
    - `videoUrl` is optional. When set, the article embeds an MP4 video player.
+   - `aliases` is optional: a list of former slugs. Each one redirects to the article, so renaming a file does not break old links.
 3. Write the body in Markdown. The page renders it with `react-markdown` and `remark-gfm`, so GitHub-style tables and task lists work.
 4. Run `npm run dev` and open `/library/<slug>` to check it.
 

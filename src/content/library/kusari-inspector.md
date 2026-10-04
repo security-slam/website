@@ -2,6 +2,7 @@
 title: "Kusari Inspector"
 description: "Automated software supply chain security analysis tooling"
 tags: ["Helpful Tools", "Defender"]
+aliases: [tools-kusari-inspector]
 author: Ben Cotton, Kusari
 ---
 

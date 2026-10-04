@@ -16,6 +16,7 @@ import { AudioProvider } from "./contexts/AudioContext";
 import { useTheme } from "./theme";
 import { siteConfig } from "./config/site";
 import { getSectionItems } from "./content/sections";
+import { libraryAliases } from "./content/library";
 
 export const App: React.FC = () => {
   useTheme();
@@ -98,6 +99,13 @@ export const App: React.FC = () => {
             {siteConfig.contentSections.library?.enabled && (
               <>
                 <Route path="/library" element={gate(<LibraryPage />)} />
+                {libraryAliases.map(({ from, to }) => (
+                  <Route
+                    key={from}
+                    path={`/library/${from}`}
+                    element={<Navigate to={`/library/${to}`} replace />}
+                  />
+                ))}
                 <Route path="/library/:slug" element={gate(<LibraryArticlePage />)} />
               </>
             )}
