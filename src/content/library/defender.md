@@ -8,7 +8,7 @@ weight: 5
 
 ## Challenge
 
-Achieve a passing baseline status for the project's maturity level
+Reach a passing OSPS Baseline status for your project's maturity level, with the result published where anyone can check it. If you earned the Mechanizer badge, you already have the pipeline: the remaining work is closing every failed control until the published scan on grc.store reports a pass. Controls the scanner can't check on its own need documented evidence a reviewer can follow. Display the result in your README.
 
 ## Why?
 

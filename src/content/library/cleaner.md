@@ -8,7 +8,7 @@ weight: 1
 
 ## Challenge
 
-Complete Security Insights YAML documentation for the project
+Publish a security-insights.yml at the root of your repository that accurately describes how the project handles security today. It should name your security contacts and reporting process, describe your build and release practices, and validate against the current schema. It doesn't need to be exhaustive yet, but every field you fill in must be true, and you'll keep adding to it as you complete the other badges.
 
 ## Start Here First!
 

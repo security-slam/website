@@ -8,7 +8,7 @@ weight: 4
 
 ## Challenge
 
-Automate baseline evaluation and publish the results for the project
+Make Baseline evaluation something that happens to your project on its own, not something a maintainer remembers to do. Wire the provided reusable GitHub workflow into your default branch so each run scans against the OSPS Baseline and publishes its results to grc.store. A passing score is not required for this badge; a live, public, recurring result is. Note the tooling in your Security Insights file.
 
 ## Why?
 

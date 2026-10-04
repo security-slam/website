@@ -8,7 +8,7 @@ weight: 3
 
 ## Challenge
 
-Complete a Gemara-compatible threat assessment or OSPS Self Assessment
+Document what your project does and how it could be attacked, in one of two formats. Option 1 is a machine-readable Gemara threat catalog of capabilities and the threats to each. Option 2 is a written OSPS Self Assessment covering scope, governance, controls, incident response, and dependencies. Commit whichever you choose to the repository and reference it from your Security Insights file so adopters and evaluators can find it.
 
 ## Why?
 
