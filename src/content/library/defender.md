@@ -22,7 +22,7 @@ The Baseline is a minimum standard of what actually works in production open sou
 
 The Defender badge lets you go up on a roof and shout about it when you finish.
 
-## How?
+## Recommendations
 
 **First, create your Security Insights YAML file** (see the [Cleaner badge](/library/cleaner)) with basic information if you haven't already. This will help you document all the controls you're completing for the Baseline.
 

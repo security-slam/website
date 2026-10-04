@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { SectionCard } from "./SectionCard";
-import { getAllTags, libraryArticles, type LibraryArticle } from "../content/library";
+import { badgePages, getAllTags, libraryArticles, type LibraryArticle } from "../content/library";
 
 export interface LibraryArticleListProps {
   title?: string;
@@ -30,7 +30,7 @@ export const LibraryArticleList: React.FC<LibraryArticleListProps> = ({
     setSearchParams(searchParams, { replace: true });
   };
 
-  const badgeTags = ["Defender", "Chronicler", "Cleaner", "Inspector", "Mechanizer"];
+  const badgeTags = badgePages.map((p) => p.badge);
   const nonBadgeTags = tags.filter((tag) => !badgeTags.includes(tag));
 
   return (

@@ -18,7 +18,7 @@ You get answers at a glance. Your regulated users get up-to-date information for
 
 More importantly, automation makes security sustainable. Manual checks get skipped. Automated checks keep running.
 
-## How?
+## Recommendations
 
 **First, create your Security Insights YAML file** (see the [Cleaner badge](/library/cleaner)) with basic information if you haven't already. You'll document your automated tooling there.
 

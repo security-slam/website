@@ -70,7 +70,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 | Path | Intent |
 |------|--------|
 | **`library.ts`** | Loads every `library/**/*.md` with `gray-matter`. Slug is the filename. Frontmatter: `title`, `description`, `tags`, `badge`, `image`, `author`, `weight`, `videoUrl`, `aliases` (former slugs, redirected in `App.tsx`). Exports `libraryIndex` (from `index.md`), `libraryArticles` (excludes `index` and any file with `badge`, sorted by `weight` then title), `getLibraryArticle`, `getAllTags`, `getArticlesByTag`. |
-| **`library/`** | Library Markdown. `index.md` is the `/library` intro. Files with `badge:` are badge pages (`chronicler.md`, `cleaner.md`, `defender.md`, `inspector.md`, `mechanizer.md`). Everything else is an article at `/library/<filename>`. |
+| **`library/`** | Library Markdown. `index.md` is the `/library` intro. Files with `badge:` are badge pages (`chronicler.md`, `cleaner.md`, `cra-readiness.md`, `defender.md`, `inspector.md`, `mechanizer.md`). Everything else is an article at `/library/<filename>`. |
 | **`sections.ts`** | Loads `*/**/*.md` and groups by directory name (the section key). Frontmatter: `title`, `description`, `path`, `hubspot`, `audioUrl`, `sectionAudio`, `projects`, `badges`. Exports `getSectionItems`, `getSectionIndexItem`, `getSectionListItems`, `getSectionItemBySlug`, `getSectionItemByPath`. |
 | **`slam26/`** | Slam26 section Markdown: `index.md`, `participating-projects.md`, `register.md`. |
 | **`outcomes/`** | Previous Outcomes section: `index.md` links past transparency reports; one archive page per finished Slam (e.g. `spring-2026.md`) with the final `projects` list and a `badges` list of the slugs that Slam used. |

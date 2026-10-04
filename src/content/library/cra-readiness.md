@@ -10,7 +10,7 @@ weight: 6
 
 Implement the CRA guidelines provided by the project steward
 
-## How?
+## Recommendations
 
 <!-- TODO (REV-458): confirm with the project steward what "the CRA guidelines" are, then replace this with a numbered checklist. Depth lives in the CRA Readiness Guide linked below, not here. -->
 

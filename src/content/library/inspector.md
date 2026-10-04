@@ -23,7 +23,7 @@ When you complete a self-assessment, you're not just checking a box. You're buil
 - Your team prioritize security work based on actual threat models rather than guesswork
 - Auditors and security researchers quickly grasp your attack surface
 
-## How?
+## Recommendations
 
 **First, create your Security Insights YAML file** (see the [Cleaner badge](/library/cleaner)) with basic information if you haven't already.
 

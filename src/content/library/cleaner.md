@@ -10,6 +10,14 @@ weight: 1
 
 Publish a security-insights.yml at the root of your repository that accurately describes how the project handles security today. It should name your security contacts and reporting process, describe your build and release practices, and validate against the current schema. It doesn't need to be exhaustive yet, but every field you fill in must be true, and you'll keep adding to it as you complete the other badges.
 
+## Why?
+
+Machines are fast and cheap, but they need clean, structured data to work with.
+
+Security Insights enables tools like those we're using for Slam evaluation and, more importantly, it can be used by your regulated end-users who need to demonstrate due diligence to their auditors.
+
+You've done the hard work of implementing security controls. Security Insights is just making sure everyone can rapidly find that work without having to dig through your codebase.
+
 ## Start Here First!
 
 **This is the recommended first badge to complete.** You can create your `security-insights.yml` file with basic project information right now, even if you haven't completed all the various documentation elements yet.
@@ -22,15 +30,7 @@ Start with the basics, then continuously add to it as you complete other badges:
 
 This approach lets you build incrementally rather than waiting until everything else is done.
 
-## Why?
-
-Machines are fast and cheap, but they need clean, structured data to work with.
-
-Security Insights enables tools like those we're using for Slam evaluation and, more importantly, it can be used by your regulated end-users who need to demonstrate due diligence to their auditors.
-
-You've done the hard work of implementing security controls. Security Insights is just making sure everyone can rapidly find that work without having to dig through your codebase.
-
-## How?
+## Recommendations
 
 The Security Insights specification defines a YAML file that lives in your repository at `security-insights.yml`. This file documents your security practices, tooling, and baseline progress in a standardized format.
 

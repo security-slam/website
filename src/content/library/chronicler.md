@@ -26,7 +26,7 @@ Because this is how you:
 
 You can build a beautiful house... but if you don't lay a solid foundation, everything else will slowly deteriorate or it could suddenly crumble around you at any moment.
 
-## How?
+## Recommendations
 
 **First, create your Security Insights YAML file** (see the [Cleaner badge](/library/cleaner)) with basic information if you haven't already. You can complete that badge even without all your documentation in place yet.
 
