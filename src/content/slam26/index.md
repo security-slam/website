@@ -2,6 +2,7 @@
 title: "Security Slam 2026"
 path: "/slam26"
 description: "Welcome to Slam26!"
+youtubeId: AvjltBoM4rE
 ---
 
 Whether you're a maintainer, a contributor, or an end user cheering on the projects you depend on, getting up to speed with the Security Slam is a quick process.

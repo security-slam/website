@@ -25,6 +25,8 @@ export type SectionItem = {
   audioUrl?: string;
   /** Section audio narration URLs keyed by section header text */
   sectionAudio?: Record<string, string>;
+  /** YouTube video ID; the section index page embeds it above the body. */
+  youtubeId?: string;
   /** List of participating projects */
   projects?: ProjectInfo[];
   /** Badge slugs to show on the leaderboard; defaults to every library badge page. Set on archived pages. */
@@ -39,6 +41,7 @@ type Frontmatter = {
   hubspot?: SectionItemHubSpot;
   audioUrl?: string;
   sectionAudio?: Record<string, string>;
+  youtubeId?: string;
   projects?: ProjectInfo[];
   badges?: string[];
 };
@@ -82,6 +85,7 @@ for (const [path, raw] of Object.entries(rawModules)) {
     hubspot: fm.hubspot,
     audioUrl: fm.audioUrl,
     sectionAudio: fm.sectionAudio,
+    youtubeId: fm.youtubeId,
     projects: fm.projects,
     badges: fm.badges,
     body: content

@@ -73,6 +73,25 @@ export const SectionIndexPage: React.FC<SectionIndexPageProps> = ({ section }) =
               {indexItem.description}
             </p>
           )}
+          {indexItem.youtubeId && (
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${encodeURIComponent(indexItem.youtubeId)}`}
+              title={`${indexItem.title} video`}
+              allow="encrypted-media; picture-in-picture; fullscreen"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
+              loading="lazy"
+              style={{
+                display: "block",
+                width: "100%",
+                aspectRatio: "16 / 9",
+                border: 0,
+                borderRadius: "8px",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                marginBottom: "var(--gf-space-xl)"
+              }}
+            />
+          )}
           <div
             className="library-article-body"
             style={{
