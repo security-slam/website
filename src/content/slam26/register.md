@@ -14,6 +14,6 @@ Slam advisors will be active on Slack during the event. Be sure to create a free
 
 ## Register for the Event
 
-Registrants receive event notifications from the organizers. All registrants will qualify for badges at the end of the event.
+Registrants receive event notifications from the organizers. Registrants who are included on a project's completion notification will qualify for a digital badge and physical pin.
 
 Verified maintainers will be contacted by event organizers to discuss project-level recognitions.
