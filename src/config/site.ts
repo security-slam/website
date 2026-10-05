@@ -94,7 +94,9 @@ export const siteConfig: SiteConfig = {
   // Header nav. The six objectives are one click from every page (Spring feedback: hard to find).
   customNavLinks: [
     {
-      path: "/library",
+      // Dropdown only: Header renders items with children as a button, so this
+      // path is an id, not a route. Kept distinct from the Library link below.
+      path: "#objectives",
       label: "Objectives",
       children: [
         { path: "/library/cleaner", label: "Cleaner" },
@@ -105,6 +107,7 @@ export const siteConfig: SiteConfig = {
         { path: "/library/cra-readiness", label: "CRA Readiness" }
       ]
     },
+    { path: "/library", label: "Library" },
     { path: "/slam26", label: "How it works" },
     { path: "/slam26/participating-projects", label: "Projects" },
     { path: "/slam26/register", label: "Register" },
