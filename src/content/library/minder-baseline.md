@@ -9,9 +9,9 @@ author: Evan Anderson, Custcodian
 
 [OpenSSF Minder](https://mindersec.dev/) is an open source hosted platform for implementing supply chain security checks and remediations (fixes).  Minder is built on a flexible rule engine based on the [Rego language from Open Policy Agent](https://www.openpolicyagent.org/docs/policy-language), which allows users to define their own checks and supply chain policy.
 
-The OpenSSF Minder project [publishes a set of rules and profiles](https://github.com/mindersec/minder-rules-and-profiles/tree/main/security-baseline) to evaluate repositories against the [Level 1 assessment requirements](https://baseline.openssf.org/versions/2025-10-10#level-1).  Using Minder can provide an easy way to assess and possibly fix issues highlighted by the rules.
+The OpenSSF Minder project [publishes a set of rules and profiles](https://github.com/mindersec/minder-rules-and-profiles/tree/main/security-baseline) to evaluate repositories against the [Level 1 assessment requirements](https://baseline.openssf.org/versions/2026-08-28#level-1).  Using Minder can provide an easy way to assess and possibly fix issues highlighted by the rules.
 
-The current OpenSSF published rules implement the 2025-10-10 version.  Updates for the 2026-02-19 version are being developed in https://github.com/custcodian/minder-rules-and-profiles/; if you want the latest rule content, you can clone the Custcodian fork.  The Custcodian changes will be merged upstream once stabilized and tested.
+The published rules implement the current 2026-08-28 Baseline release.
 
 ## Syncing and Applying OSPS Baseline Rules
 

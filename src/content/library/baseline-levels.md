@@ -48,4 +48,4 @@ The various tools also have different levels of automated coverage.
 - **LFX Insights Security & Best Practices Dashboard**: Partial coverage for Level 1, none for higher levels
 - **Best Practices Badge (Baseline Badge)**: Complete coverage for all three levels, self-reported rather than scanned
 
-As an aside, note that the latest version of the OSPS Baseline was released immediately prior to the start of the Slam. Some deltas may exist with automated tools which are still using the October 2025 text.
+As an aside, the current OSPS Baseline release is [2026-08-28](https://baseline.openssf.org/versions/2026-08-28). The scanner behind the Mechanizer and Defender badges evaluates that release; other tools may lag a version behind.

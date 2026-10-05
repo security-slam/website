@@ -11,7 +11,7 @@ Starting in 2022, the Security Slam was tightly coupled to the CNCF's CLOMonitor
 
 Because the evaluator was tightly coupled to the interests of CNCF leadership, and because there were rumors of CLOMonitor being sunset, the Slam organizers began fielding the idea of creating a security controls catalog for any open source project, independent of any automation requirements (like Scorecard) or organizational priorities (like CLOMonitor).
 
-Without any need for politics or posturing, the OpenSSF rapidly welcomed the idea, and the _Open Source Project Security Baseline_ was founded as a Special Interest Group. In less than a year, the catalog was fleshed out with a handful of objectives and a variety of assessment requiremnents spread out across three maturity levels.
+Without any need for politics or posturing, the OpenSSF rapidly welcomed the idea, and the _Open Source Project Security Baseline_ was founded as a Special Interest Group. In less than a year, the catalog was fleshed out with a handful of objectives and a variety of assessment requirements spread out across three maturity levels.
 
 The project was quickly identified as a mechanism for supporting end user conformance with the EU's Cyber Resilience Act, but the catalog has stayed true to its original vision: security recommendations _by_ maintainers _for_ maintainers.
 

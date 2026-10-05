@@ -9,7 +9,7 @@ author: Satarupa Deb, Revanite
 
 Ensuring that your project meets the security standards isn’t just about how secure your code is, it’s more about making sure that your users can safely use, verify and maintain your project.
 
-You can see the requirements on the [Baseline Website](https://baseline.openssf.org/versions/2026-02-19.html) where they are organized by maturity level and category respectively.
+You can see the requirements on the [Baseline Website](https://baseline.openssf.org/versions/2026-08-28.html) where they are organized by maturity level and category respectively.
 
 Assuming you have already identified your project's Maturity Level, below is a look at the Documentation assessment requirements specific to each level.
 

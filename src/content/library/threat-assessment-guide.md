@@ -7,7 +7,7 @@ author: Jennifer Power, Red Hat
 
 ## What This Is
 
-This guide walks through a threat assessment using the [Gemara](https://gemara.openssf.org/) project, targeting **Gemara v1.5.0**.
+This guide walks through a threat assessment using the [Gemara](https://gemara.openssf.org/) project, targeting **Gemara v1.6.0**, the current release.
 
 **The basic idea:** Think of a project like a house. First, you identify what the house can do: its **capabilities** (e.g., "allow entry/exit", "store belongings"). Then, you identify **threats**, what could go wrong with those capabilities (e.g., "unauthorized entry through unlocked door", "theft of stored belongings").
 
@@ -17,10 +17,10 @@ In technical terms:
 
 This exercise helps you systematically identify what could go wrong so you can build appropriate defenses.
 
-**What changed in v1.5.0:** capabilities now live in their own artifact, a **Capability Catalog**, instead of being declared inside the threat catalog. So an assessment produces two files that reference each other. A few other schema details also changed:
+**How a Gemara v1 assessment is laid out:** capabilities live in their own artifact, a **Capability Catalog**, and the threat catalog references it. So an assessment produces two files that reference each other. If you have seen pre-1.0 catalogs (the [walkthrough video](/library/threat-assessment-walkthrough) predates v1.0), these are the differences:
 
-| v1.5.0 | Previously |
-|--------|------------|
+| Gemara v1 | Before v1.0 |
+|-----------|-------------|
 | `#CapabilityCatalog` holds `capabilities`; `#ThreatCatalog` holds `threats` only | Both lived in the threat catalog |
 | One `imports` list, with each entry naming a `reference-id` and its `entries` | Separate `imported-capabilities` and `imported-threats` lists |
 | `metadata.type` and `metadata.gemara-version` are required | Not present |
@@ -44,8 +44,8 @@ Each artifact declares its own scope and mapping references. Key fields:
 |-----------------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------------------------|
 | `title`                           | Display name for the catalog (top-level field)                    | Human-readable label used in reports and tooling output                                |
 | `metadata.id`                     | Identifier for this catalog                                       | Other artifacts point at this catalog by this value                                    |
-| `metadata.type`                   | `CapabilityCatalog` or `ThreatCatalog`                            | Tells parsers which schema to apply; required in v1.5.0                                |
-| `metadata.gemara-version`         | Spec version the artifact conforms to, here `"1.5.0"`             | Lets tooling pick the right schema and migration path                                  |
+| `metadata.type`                   | `CapabilityCatalog` or `ThreatCatalog`                            | Tells parsers which schema to apply; required in Gemara v1                                |
+| `metadata.gemara-version`         | Spec version the artifact conforms to, here `"1.6.0"`             | Lets tooling pick the right schema and migration path                                  |
 | `mapping-references` with `id: CCC` | A pointer to the CCC Core catalog release                       | Tells parsers where to resolve the imported capability and threat IDs used later       |
 | `imports` (Steps 2 and 3)         | The specific entries pulled in from each mapping reference        | Brings in common capabilities and threats without redefining them                      |
 | `groups`                          | Categories that entries in this catalog belong to                 | Required once a catalog defines capabilities or threats; keeps large catalogs readable |
@@ -59,7 +59,7 @@ title: Container Management Tool Capability Catalog
 metadata:
   id: SEC.SLAM.CM.CAP
   type: CapabilityCatalog
-  gemara-version: "1.5.0"
+  gemara-version: "1.6.0"
   version: "1.0.0"
   description: Capabilities of the container management tool under assessment
   author:
@@ -78,7 +78,7 @@ metadata:
 
 ### Step 2: Identify Capabilities
 
-Capabilities are the core functions or features within the scope. In v1.5.0 they go in the capability catalog.
+Capabilities are the core functions or features within the scope. In Gemara v1 they go in the capability catalog.
 
 **Start with the imported capabilities** you can leverage from FINOS CCC. Ask: "Which common cloud capabilities does this technology have?"
 
@@ -103,7 +103,7 @@ imports:
 
 | Field         | Required | Description                                                        |
 |---------------|----------|--------------------------------------------------------------------|
-| Capability ID | Yes      | Unique identifier following the pattern `ORG.PROJ.COMPONENT.CAP##` |
+| Capability ID | Yes      | Unique identifier. The schema enforces no pattern; this guide uses `ORG.PROJ.COMPONENT.CAP##` as a convention |
 | Title         | Yes      | A clear, concise name that describes the capability                |
 | Description   | Yes      | A specific explanation of what this capability does                |
 | Group         | Yes      | The `id` of a group declared in this catalog's `groups` list       |
@@ -172,7 +172,7 @@ imports:
 
 | Field             | Required | Description                                                                        |
 |-------------------|----------|------------------------------------------------------------------------------------|
-| Threat ID         | Yes      | Unique identifier following the pattern `ORG.PROJ.COMPONENT.THR##`                 |
+| Threat ID         | Yes      | Unique identifier. The schema enforces no pattern; this guide uses `ORG.PROJ.COMPONENT.THR##` as a convention                 |
 | Title             | Yes      | A clear, concise name describing the threat                                        |
 | Description       | Yes      | A specific explanation of what goes wrong and why it matters                       |
 | Group             | Yes      | The `id` of a group declared in this catalog's `groups` list                       |
@@ -215,7 +215,7 @@ title: Container Management Tool Capability Catalog
 metadata:
   id: SEC.SLAM.CM.CAP
   type: CapabilityCatalog
-  gemara-version: "1.5.0"
+  gemara-version: "1.6.0"
   version: "1.0.0"
   description: Capabilities of the container management tool under assessment
   author:
@@ -258,7 +258,7 @@ title: Container Management Tool Threat Catalog
 metadata:
   id: SEC.SLAM.CM
   type: ThreatCatalog
-  gemara-version: "1.5.0"
+  gemara-version: "1.6.0"
   version: "1.0.0"
   description: Threat catalog for container management tool security assessment
   author:
@@ -317,12 +317,12 @@ threats:
 
 ```bash
 go install cuelang.org/go/cmd/cue@latest
-cue vet -c -d '#CapabilityCatalog' github.com/gemaraproj/gemara@v1.5.0 your-capabilities.yaml
-cue vet -c -d '#ThreatCatalog' github.com/gemaraproj/gemara@v1.5.0 your-threats.yaml
+cue vet -c -d '#CapabilityCatalog' github.com/gemaraproj/gemara@v1.6.0 your-capabilities.yaml
+cue vet -c -d '#ThreatCatalog' github.com/gemaraproj/gemara@v1.6.0 your-threats.yaml
 ```
 
-No output means the artifact is valid. Swap `@v1.5.0` for `@latest` to validate against the newest published schema.
+No output means the artifact is valid. Swap `@v1.6.0` for `@latest` to validate against the newest published schema.
 
 ## What's Next
 
-Create a Gemara Control Catalog that maps security controls to the identified threats, providing a structured approach to defining mitigations. See the [Gemara Layer 2 schema documentation](https://gemara.openssf.org/schema/layer-2.html) for the full specification.
+Create a Gemara Control Catalog that maps security controls to the identified threats, providing a structured approach to defining mitigations. See the [Gemara Layer 2 schema documentation](https://gemara.openssf.org/model/05.2-Layer-2.html) for the full specification.

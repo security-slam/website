@@ -60,7 +60,7 @@ export const HomePage: React.FC = () => {
             lineHeight: 1.7
           }}
         >
-          Open to ALL open source projects! Register by October 4 to vote on project awards.
+          Open to ALL open source projects! Register now to qualify for recognitions.
         </p>
         <Link
           to="/slam26/register"

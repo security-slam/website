@@ -8,7 +8,6 @@ sectionAudio:
   "What are the objectives?": https://www.dropbox.com/scl/fi/u9rcs3armd7l0ho927xli/landing-page-2.mp3?rlkey=6iyhngrr1n4ga7adehuym2gn2&st=2zu14kug&raw=1
   "So where should you begin?": https://www.dropbox.com/scl/fi/v0xz5tf1j124rst7lnu1y/landing-page-3.mp3?rlkey=k4ngzxeuku8o73p02mvpebdr7&st=kr71zpdo&raw=1
   "What if you have questions?": https://www.dropbox.com/scl/fi/uy8u3mclj619zpf15bedt/landing-page-4.mp3?rlkey=borqzn7kpzsqmo2n2vrvom0qm&st=ud398ank&raw=1
-  "Key Dates to Remember": https://www.dropbox.com/scl/fi/1o2iquowwln7zzm415m6b/landing-page-5.mp3?rlkey=2zuh1bxa6euyzm2cuda6aqfz0&st=id5zuvjv&raw=1
 ---
 
 Whether you're a maintainer, active contributor, interested in making contributions, or simply an end user cheering on the projects you depend on, getting up to speed with the Security Slam is a quick process.
@@ -29,7 +28,7 @@ This leads us to the next obvious question...
 
 ## What are the objectives?
 
-The Slam has five key objectives that may be pursued by each project. These center around the _Open Source Project Security Baseline_ which was created by and for maintainers as a project within the [OpenSSF](https://openssf.org).
+The Slam has six objectives that may be pursued by each project. Five center around the _Open Source Project Security Baseline_ which was created by and for maintainers as a project within the [OpenSSF](https://openssf.org); the sixth covers voluntary EU Cyber Resilience Act readiness.
 
 **We recommend starting with "The Cleaner"** - create your `security-insights.yml` file first with basic project information. You can complete this badge even without all the various documentation elements, then continuously add to it as you complete other badges. Each subsequent objective builds on this foundation.
 
@@ -37,7 +36,8 @@ The Slam has five key objectives that may be pursued by each project. These cent
 - Objective #2: "The Chronicler" recognizes completion of all OSPS Baseline documentation controls. At first glance, these may seem like red herrings in your security journey... but industry experts agree that good security practice is always preceded by good documentation. **Add documentation links to your Security Insights YAML as you create them.**
 - Objective #3: "The Inspector" guides projects through security self-assessments. Two different approaches can earn this badge, both delivering valuable institutional knowledge. **Reference your self-assessment in your Security Insights YAML when complete.**
 - Objective #4: "The Mechanizer" sets up automated evaluation for a subset of controls. Not all Baseline objectives can be automatically verified, but anything demonstrated this way helps streamline maintenance and boost adopter confidence.
-- Objective #5: "The Defender" recognizes robust completeness with the OSPS Baseline for your project's maturity level. All other objectives are stair-steps working toward this comprehensive achievement.
+- Objective #5: "The Defender" recognizes robust completeness with the OSPS Baseline for your project's maturity level. The four objectives above are stair-steps working toward this comprehensive achievement.
+- Objective #6: "CRA Readiness" documents voluntary EU Cyber Resilience Act readiness following the guidance of your project's steward. It stands apart from the Baseline stair-steps and can be done at any point.
 
 Now based on who you are, your first steps may be different...
 
@@ -75,8 +75,8 @@ You can reach out to the pool of Slam Advisors, as well as peers who are current
 
 ## Key Dates to Remember
 
-- **Friday, February 20th:** Event objectives are announced; Slam Library Opens  
-- **Friday, March 20th:** Final scoring submissions closes; Completion evaluation begins  
-- **Thursday, March 26th:** Awards are issued on the KubeCon Project Pavilion Stage
+- **Monday, October 5:** The Slam opens; objectives and the Slam Library are live  
+- **Friday, November 6:** The Slam closes; final completion submissions are due and evaluation begins  
+- **After November 6:** Badges, pins and plaques are issued once evaluations are confirmed
 
-[Registration](http://securityslam.com/slam26/register) is open: Sign up to qualify for recognitions!
+[Registration](/slam26/register) is open: Sign up to qualify for recognitions!

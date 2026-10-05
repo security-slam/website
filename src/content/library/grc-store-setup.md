@@ -16,7 +16,7 @@ Your account has to be managed by the enterprise before the enterprise can put y
 
 - **Invited as a new user.** An enterprise admin invites your email address. You receive a sign-up link, and following it creates your account as part of the enterprise. There is no second step.
 - **Invited as an existing user.** If you already have an account, the invitation appears under pending invitations in your user menu. Accept it there. If another enterprise still manages your account, leave that one first; *My namespaces* shows which enterprise manages you.
-- **Requesting access through the enterprise's link.** An enterprise can hand out `/request-access?via=<enterprise>`. A request made through it goes to that enterprise's admins as well as the hub admins, and approval creates your account already inside the enterprise. Use an email address you read, since the sign-up link goes there.
+- **Requesting access through the enterprise's link.** An enterprise can hand out `/request-access?via=<enterprise>`. A request made through it goes to that enterprise's admins as well as the hub admins, and approval creates your account already inside the enterprise. Use an email address you read, since the sign-up link goes there. If you already have an account, approval sends you an enterprise invitation to accept instead.
 
 If you don't know who the enterprise admins are, ask whoever at your steward handles project onboarding. The hub can't tell you.
 
@@ -31,7 +31,7 @@ Who creates it depends on your role in the enterprise.
 
 Ownership is the point of doing it this way. An enterprise-owned namespace belongs to the steward and outlives any one maintainer. A namespace you create under *Me* is personal: the enterprise never owns it, even while it manages your account. If your project's artifacts already live under a personal namespace, a hub admin can move the namespace into the enterprise on request, through the request-access form or your usual contact. Self-service transfers aren't available yet.
 
-Administering a namespace does not grant publish rights. For results that is fine, because results are published by CI, not by people, and the next step is what gives CI that right.
+Enterprise admins can administer a namespace without gaining publish rights; publishing needs namespace membership or a trusted-publisher binding. For results that is fine, because results are published by CI, not by people, and the next step is what gives CI that right.
 
 ## 3. Bind each repository as a trusted publisher
 
@@ -43,9 +43,9 @@ The binding maps the repository's GitHub Actions identity to the namespace. The 
 
 ## 4. Targets: the first run creates them
 
-A target is the thing a result describes, at `<namespace>/<target-id>`. For a GitHub repository you don't create one by hand. Call the publish workflow from the bound repository with the target coordinate you want. The hub compares the OIDC token's repository claim against the target URI, and the first successful run registers the target and marks it verified. After that, every run lands a new log in the target's history at `https://grc.store/targets/<namespace>/<target-id>`. That is the URL to link from your README for the Defender badge.
+A target is the thing a result describes, at `<namespace>/<target-id>`. For a GitHub repository you don't need to create one by hand. Call the publish workflow from the bound repository with the target coordinate you want. The hub compares the OIDC token's repository claim against the target URI, and the first successful run registers the target and marks it verified. After that, every run lands a new log in the target's history at `https://grc.store/targets/<namespace>/<target-id>`. That is the URL to link from your README for the Defender badge.
 
-Manual registration, under *Targets* on the same admin page, is for targets that aren't GitHub repositories: a service or a domain. Those take a slug id, an entity type, and an `https://` subject URI, and nothing can be published against them until you prove ownership with the one-time challenge shown to org owners, by DNS TXT record or a hosted file.
+Manual registration, in the *Targets* section of the namespace admin area, is for targets that aren't GitHub repositories: a service or a domain. Those take a slug id, an entity type, and an `https://` subject URI, and nothing can be published against them until you prove ownership with the one-time challenge shown to org owners, by DNS TXT record or a hosted file.
 
 ## Checklist for a project with several repositories
 
