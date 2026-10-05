@@ -44,10 +44,11 @@ Slam Advisors are standing by to collaborate, speculate, give opinions, and shar
 
 - Join the CNCF Slack: [slack.cncf.io](https://slack.cncf.io)
 - Chat with advisors and peers in [#tag-security-and-compliance](https://cloud-native.slack.com/archives/C08JZ9YLAA3)
-- Weekly TAG-SC [meetings on Wednesdays](https://zoom-lfx.platform.linuxfoundation.org/meeting/99826624011?password=1f36a78e-7dd1-43e6-b3c8-6a305038acb5) are also open to the public
+- Weekly TAG-SC [community calls on Thursdays](https://zoom-lfx.platform.linuxfoundation.org/meeting/99826624011?password=1f36a78e-7dd1-43e6-b3c8-6a305038acb5) are also open to the public
 
 ## Key Dates to Remember
 
-- **Monday, October 5:** The Slam opens; objectives and the Slam Library are live
-- **Friday, November 6:** The Slam closes; final completion submissions are due and evaluation begins
-- **After November 6:** Badges, pins and plaques are issued once evaluations are confirmed
+- **Monday, October 5:** Event objectives are announced; Slam Library opens
+- **Friday, November 6:** Closing date for physical awards at KubeCon NA
+- **Wednesday, November 11:** Closing date for participant Credly (digital) badges
+- **Thursday, November 12:** Last chance to pick up your printed award at the OpenSSF Booth (Solutions Showcase Booth #313, Hall 4)
