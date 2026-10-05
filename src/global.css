@@ -474,6 +474,13 @@ h3 {
   }
 }
 
+.past-reports-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gf-space-lg);
+}
+
+
 /* Blog post markdown body */
 .blog-post-body h2,
 .blog-post-body h3 {
