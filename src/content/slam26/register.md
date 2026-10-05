@@ -14,6 +14,6 @@ Slam advisors will be active on Slack during the event. Be sure to create a free
 
 ## Register for the Event
 
-Early registrants will recieve notifications as the Slam Library content is made available and objectives are announced. All registrants will qualify for badges at the end of the event. 
+Registrants receive event notifications from the organizers. All registrants will qualify for badges at the end of the event.
 
 Verified maintainers will be contacted by event organizers to discuss project-level recognitions.

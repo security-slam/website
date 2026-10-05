@@ -77,7 +77,7 @@ export const siteConfig: SiteConfig = {
     links: [
       { href: "https://contribute.cncf.io/community/tags/security-and-compliance/", label: "CNCF TAG Security & Compliance" },
       { href: "https://openssf.org", label: "OpenSSF" },
-      { href: "https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/", label: "KubeCon Europe" }
+      { href: "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/", label: "KubeCon North America" }
     ]
   },
 
@@ -113,21 +113,11 @@ export const siteConfig: SiteConfig = {
 
   contactPages: [
     {
-      path: "/contact",
-      title: "Contact",
-      description: "Send a message using the form below. Replace the placeholder HubSpot portal and form IDs in site config with your own to connect a real form.",
-      hubspot: {
-        portalId: "0000000",
-        formId: "00000000-0000-0000-0000-000000000000",
-        region: "na1"
-      }
-    },
-    {
       path: "/slam26/submit-completion",
       title: "Submit Badge Completion",
       description: "This form is for project maintainers to report completion of Slam26 badges. This may be submitted multiple times to request personal badges for each contributor to the badge. The form should ONLY be submitted by maintainers; other results will be automatically ignored. Organizers will reach out to maintainers via email to confirm the submissions.",
       formDisabled: true,
-      formDisabledMessage: "The Spring Security Slam has ended and submissions are now closed. New form coming for fall security slam.",
+      formDisabledMessage: "The Fall 2026 badge completion form is not open yet. Keep working on your badges and check back here during the Slam.",
       hubspot: {
         portalId: "243073831",
         formId: "5523a8f7-f60e-4ac9-8aed-225b6ebfd304",

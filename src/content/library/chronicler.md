@@ -30,7 +30,7 @@ You can build a beautiful house... but if you don't lay a solid foundation, ever
 
 **First, create your Security Insights YAML file** (see the [Cleaner badge](/library/cleaner)) with basic information if you haven't already. You can complete that badge even without all your documentation in place yet.
 
-The OSPS Baseline includes several [documentation-focused controls](https://baseline.openssf.org/versions/2026-02-19#documentation). To earn the Chronicler badge, you'll need to complete all of the requirements respective to your project's [maturity level](/library/baseline-levels).
+The OSPS Baseline includes several [documentation-focused controls](https://baseline.openssf.org/versions/2026-08-28#documentation). To earn the Chronicler badge, you'll need to complete all of the requirements respective to your project's [maturity level](/library/baseline-levels).
 
 If you're at Maturity Level 2 or 3, start with the lower levels and move up.
 

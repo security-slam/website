@@ -16,7 +16,7 @@ I've included some threats that are already mitigated. This allows me to referen
 
 Note that for completion of the security slam badge, we do _not_ need to go as far as to do a comprehensive assessment. The point is to kickstart something that can be extended later.
 
-**Updated for Gemara v1.5.0.** The video shows capabilities and threats in a single file, which is how earlier versions of the schema worked. In v1.5.0 capabilities live in their own Capability Catalog and the threat catalog points at it through a mapping reference, so each of the two scopes below is now a pair of artifacts. The `imported-capabilities` and `imported-threats` lists have also been merged into one `imports` list, `metadata.type` and `metadata.gemara-version` are required, and every capability and threat belongs to a declared `group`. See the [Threat Assessment Guide](/library/threat-assessment-guide) for the field-by-field walkthrough.
+**Updated for Gemara v1.** The video shows capabilities and threats in a single file, which is how the pre-1.0 schema worked. Since v1.0 capabilities live in their own Capability Catalog and the threat catalog points at it through a mapping reference, so each of the two scopes below is now a pair of artifacts. The `imported-capabilities` and `imported-threats` lists were also merged into one `imports` list, `metadata.type` and `metadata.gemara-version` are required, and every capability and threat belongs to a declared `group`. See the [Threat Assessment Guide](/library/threat-assessment-guide) for the field-by-field walkthrough.
 
 ## Initial Privateer SDK Capabilities
 
@@ -25,7 +25,7 @@ title: Privateer SDK Capability Catalog
 metadata:
   id: PrivProj.SDK.CAP
   type: CapabilityCatalog
-  gemara-version: "1.5.0"
+  gemara-version: "1.6.0"
   version: 2026.Feb.28
   description: Capabilities of the Privateer SDK, assessed for threats in PrivProj.SDK
   author:
@@ -74,7 +74,7 @@ title: Privateer SDK Self-Assessment
 metadata:
   id: PrivProj.SDK
   type: ThreatCatalog
-  gemara-version: "1.5.0"
+  gemara-version: "1.6.0"
   version: 2026.Feb.28
   description: Threat catalog for Privateer SDK Self-Assessment
   author:
@@ -154,7 +154,7 @@ title: Privateer CLI Capability Catalog
 metadata:
   id: PrivProj.CLI.CAP
   type: CapabilityCatalog
-  gemara-version: "1.5.0"
+  gemara-version: "1.6.0"
   version: 2026.Feb.28
   description: Capabilities of the Privateer CLI, assessed for threats in PrivProj.CLI
   author:
@@ -235,7 +235,7 @@ title: Privateer CLI Self Assessment
 metadata:
   id: PrivProj.CLI
   type: ThreatCatalog
-  gemara-version: "1.5.0"
+  gemara-version: "1.6.0"
   version: 2026.Feb.28
   description: Threat catalog for Privateer CLI
   author:
@@ -356,8 +356,8 @@ threats:
 
 ```bash
 go install cuelang.org/go/cmd/cue@latest
-cue vet -c -d '#CapabilityCatalog' github.com/gemaraproj/gemara@v1.5.0 capabilities.yaml
-cue vet -c -d '#ThreatCatalog' github.com/gemaraproj/gemara@v1.5.0 threats.yaml
+cue vet -c -d '#CapabilityCatalog' github.com/gemaraproj/gemara@v1.6.0 capabilities.yaml
+cue vet -c -d '#ThreatCatalog' github.com/gemaraproj/gemara@v1.6.0 threats.yaml
 ```
 
 No output means the artifact is valid.

@@ -55,12 +55,12 @@ Before asking anyone else to use these skills, we used them on four repositories
 
 | Repository | What it is | Result |
 | --- | --- | --- |
-| [security-slam/skills](https://github.com/security-slam/skills) | The skills themselves: Markdown and YAML | All six badges at Baseline Level 1 |
-| [security-slam/website](https://github.com/security-slam/website) | securityslam.com: a TypeScript site deployed on every merge | All six badges at Baseline Level 1 |
-| [privateerproj/pvtr](https://github.com/privateerproj/pvtr) | The Privateer CLI: a Go program that ships release binaries | All six badges at Baseline Level 1 |
-| [privateerproj/privateer-sdk](https://github.com/privateerproj/privateer-sdk) | The Privateer plugin SDK: a Go library | All six badges at Baseline Level 1 |
+| [security-slam/skills](https://github.com/security-slam/skills) | The skills themselves: Markdown and YAML | All six skills run at Baseline Level 1 |
+| [security-slam/website](https://github.com/security-slam/website) | securityslam.com: a TypeScript site deployed on every merge | All six skills run at Baseline Level 1 |
+| [privateerproj/pvtr](https://github.com/privateerproj/pvtr) | The Privateer CLI: a Go program that ships release binaries | All six skills run at Baseline Level 1 |
+| [privateerproj/privateer-sdk](https://github.com/privateerproj/privateer-sdk) | The Privateer plugin SDK: a Go library | All six skills run at Baseline Level 1 |
 
-Each skill ran in a fresh Claude Code session, the same way you'd run it. We also installed the skills in Codex with `npx skills` and asked it the same status question on the Privateer SDK. Codex picked `slam-status` on its own and matched Claude Code's report. The website started with no license, no security policy, and a README that described code that no longer existed. It finished with all of those fixed and a Baseline scan on every push to `main` publishing zero failed controls to grc.store.
+Each skill ran in a fresh Claude Code session, the same way you'd run it. We also installed the skills in Codex with `npx skills` and asked it the same status question on the Privateer SDK. Codex picked `slam-status` on its own and matched Claude Code's report. The website started with no license, no security policy, and a README that described code that no longer existed. It finished with all of those fixed and a Baseline scan on every push to `main` reporting zero failed controls, run as the scanner action. None of the four repositories publishes to grc.store yet, so under the Slam's own rules none holds a Defender result; that is the next step for all four.
 
 The Privateer repositories tested something different: an organization that shares its security policy and contributing guide from a central `.github` repository. We made those changes once, in the org repository, and both projects picked them up. That run also found a gap: `slam-status` didn't follow a repository's pointer to the org-level Security Insights file, so it could under-report inherited evidence. [v0.0.9](https://github.com/security-slam/skills/releases/tag/v0.0.9) fixed it.
 
@@ -81,7 +81,7 @@ Running the skills for real also surfaced bugs in tools the Slam depends on:
 
 - **OSPS Baseline GitHub Action:** failed controls never reached the GitHub Security tab when the action was set to fail the build, and two-digit counts showed up wrong in the summary. Both are fixed in [v1.5.2](https://github.com/revanite-io/osps-baseline-action/releases/tag/v1.5.2).
 - **OSPO reusable workflows:** a release that collided with an existing tag left an orphaned draft release behind. Fixed in [v2.1.1](https://github.com/github-community-projects/ospo-reusable-workflows/releases/tag/v2.1.1).
-- **Release Drafter:** a project's first release published with "No changes". In [RFC #1779](https://github.com/release-drafter/release-drafter/issues/1779), a maintainer pointed us to the `from` input added in v7.8.0, which sets a comparison baseline. Using it surfaced a misleading "no comparison baseline" warning, which our fix removed in [v7.9.0](https://github.com/release-drafter/release-drafter/releases/tag/v7.9.0) ([#1789](https://github.com/release-drafter/release-drafter/pull/1789)). The OSPO reusable workflow change that uses `from` for first releases is [in review](https://github.com/github-community-projects/ospo-reusable-workflows/pull/206).
+- **Release Drafter:** a project's first release published with "No changes". In [RFC #1779](https://github.com/release-drafter/release-drafter/issues/1779), a maintainer pointed us to the `from` input added in v7.8.0, which sets a comparison baseline. Using it surfaced a misleading "no comparison baseline" warning, which our fix removed in [v7.9.0](https://github.com/release-drafter/release-drafter/releases/tag/v7.9.0) ([#1789](https://github.com/release-drafter/release-drafter/pull/1789)). The OSPO reusable workflow change that uses `from` for first releases shipped in [v2.2.0](https://github.com/github-community-projects/ospo-reusable-workflows/releases/tag/v2.2.0) ([#206](https://github.com/github-community-projects/ospo-reusable-workflows/pull/206)).
 
 ## What we haven't tested yet
 

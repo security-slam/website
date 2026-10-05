@@ -36,7 +36,7 @@ This is the fastest way to get started. Nothing is published anywhere, so there 
 
 Call the [`revanite-io/pvtr-publish-results`](https://github.com/revanite-io/pvtr-publish-results) reusable workflow from your default branch. It runs the same scan and publishes each result to a public target page on grc.store.
 
-The [Defender badge](/library/defender) requires this option, so if you're planning to go all the way, starting here saves a step. It takes more preparation: your project needs a namespace and a trusted-publisher binding on grc.store first, and the hub accepts one result per target every ten minutes, so trigger it on pushes to your default branch, releases, or a schedule, not on pull requests. [Set up your grc.store namespace and targets](/library/grc-store-setup) walks through the preparation.
+The [Defender badge](/library/defender) requires this option, so if you're planning to go all the way, starting here saves a step. It takes more preparation: your project needs a namespace and a trusted-publisher binding on grc.store first, and the hub accepts one result per target and catalog every ten minutes, so trigger it on pushes to your default branch, releases, or a schedule, not on pull requests. [Set up your grc.store namespace and targets](/library/grc-store-setup) walks through the preparation.
 
 Once the repository is bound as a trusted publisher, the caller is a few lines:
 
@@ -53,7 +53,7 @@ jobs:
       license: CC0-1.0
 ```
 
-`target` is the coordinate the result describes and `license` is the SPDX expression the result is published under. The hub checks the workflow's OIDC token against the target: the repository in the token has to match the target, and the first successful run registers the target as verified. The config file format is in the [workflow README](https://github.com/revanite-io/pvtr-publish-results#readme).
+`target` is the coordinate the result describes, where `<version>` is the version of your project the run evaluated (a release tag works), and `license` is the SPDX expression the result is published under. The hub checks the workflow's OIDC token against the target: the repository in the token has to match the target, and the first successful run registers the target as verified. The config file format is in the [workflow README](https://github.com/revanite-io/pvtr-publish-results#readme).
 
 ### Record it in Security Insights
 
