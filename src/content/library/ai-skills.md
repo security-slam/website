@@ -45,7 +45,7 @@ That runs `slam-status`. It takes about thirty seconds, writes nothing, and repo
 | `inspector` | Write a Gemara threat assessment or an OSPS self-assessment. |
 | `mechanizer` | Wire the OSPS Baseline scan into your default branch, as the scanner action or the grc.store publish workflow, and work through the failed controls. |
 | `defender` | Run a full Baseline gap analysis, drive the published grc.store result to a pass, and draft Security Insights evidence for the controls the scanner can't check. |
-| `cra` | Document voluntary EU Cyber Resilience Act readiness, with the required disclaimer. |
+| `cra` | Coming October 12th, alongside the CRA Readiness badge details. |
 
 Your agent picks a skill when your request matches its description, so "help me earn the Cleaner badge" or "set up the Baseline scan" is enough. You can also name one: "use the chronicler skill", or `/cleaner` in Claude Code.
 
