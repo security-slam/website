@@ -62,5 +62,6 @@ The more complete your documentation, the easier it is for evaluators and adopte
 ### Pro Tips
 
 - Your Security Insights file should evolve as your documentation and practices mature
+- Keep it valid as it grows: the [Security Insights Action](/library/helpful-github-actions) checks the file against the schema on every pull request
 - Where possible, link to published artifacts that demonstrate your claims
 - Be honest: It helps your users way more if you document what you're _actually_ doing than to link to incomplete resources or practices you haven't implemented yet

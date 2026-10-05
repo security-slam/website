@@ -70,6 +70,8 @@ A README badge image for grc.store results isn't available yet; a plain link is 
 
 ### Getting There
 
-This is a marathon, not a sprint. Work in small merges and watch the failed count fall with each run. You can start from day one of the Slam and submit whenever the published result passes.
+This is a marathon, not a sprint. Work in small merges and watch the failed count fall with each run.
+
+To check a fix before it lands on your default branch and gets published, run the [OSPS Baseline Action](/library/helpful-github-actions) on the pull request or run the [scanner](https://github.com/ossf/pvtr-github-repo-scanner) locally. You can start from day one of the Slam and submit whenever the published result passes.
 
 The Defender badge will be waiting when you're ready.

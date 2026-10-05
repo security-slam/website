@@ -28,7 +28,7 @@ _If your project isn't hosted on GitHub, reach out to Slam Organizers for an alt
 
 ### Option 1: OSPS Baseline scanner action
 
-Add the [GitHub Action for OSPS Baseline](https://github.com/marketplace/actions/open-source-project-security-baseline-scanner) to a workflow on your default branch. Results stay in your repository: as a workflow artifact, in the job log, or in the Security tab as SARIF. You can also run the scanner locally with [pvtr-github-repo-scanner](https://github.com/ossf/pvtr-github-repo-scanner).
+Add the [OSPS Baseline Action](https://github.com/revanite-io/osps-baseline-action) to a workflow on your default branch. Results stay in your repository: as a workflow artifact, in the job log, or in the Security tab as SARIF. You can also run the scanner locally with [pvtr-github-repo-scanner](https://github.com/ossf/pvtr-github-repo-scanner). [Helpful GitHub Actions](/library/helpful-github-actions) covers the action's options and output formats.
 
 This is the fastest way to get started. Nothing is published anywhere, so there are no rate limits: run it on every pull request if you like.
 
@@ -37,5 +37,47 @@ This is the fastest way to get started. Nothing is published anywhere, so there 
 Call the [`revanite-io/pvtr-publish-results`](https://github.com/revanite-io/pvtr-publish-results) reusable workflow from your default branch. It runs the same scan and publishes each result to a public target page on grc.store.
 
 The [Defender badge](/library/defender) requires this option, so if you're planning to go all the way, starting here saves a step. It takes more preparation: your project needs a namespace and a trusted-publisher binding on grc.store first, and the hub accepts one result per target every ten minutes, so trigger it on pushes to your default branch, releases, or a schedule, not on pull requests. [Set up your grc.store namespace and targets](/library/grc-store-setup) walks through the preparation.
+
+Once the repository is bound as a trusted publisher, the caller is a few lines:
+
+```yaml
+jobs:
+  results:
+    permissions:
+      contents: read
+      id-token: write
+    uses: revanite-io/pvtr-publish-results/.github/workflows/publish.yml@v1
+    with:
+      config: .pvtr/config.yml
+      target: <namespace>/<target>@<version>
+      license: CC0-1.0
+```
+
+`target` is the coordinate the result describes and `license` is the SPDX expression the result is published under. The hub checks the workflow's OIDC token against the target: the repository in the token has to match the target, and the first successful run registers the target as verified. The config file format is in the [workflow README](https://github.com/revanite-io/pvtr-publish-results#readme).
+
+### Record it in Security Insights
+
+Whichever option you pick, list it under `repository.security.tools` so evaluators and users can find the live results:
+
+```yaml
+repository:
+  security:
+    tools:
+      - name: OSPS Baseline Scanner
+        type: other
+        rulesets:
+          - osps-baseline-2026-08
+        integration:
+          adhoc: false
+          ci: true
+          release: false
+        results:
+          ci:
+            name: OSPS Baseline evaluation
+            predicate-uri: https://github.com/revanite-io/osps-baseline-action
+            location: https://github.com/<owner>/<repo>/actions/workflows/osps-baseline.yaml
+```
+
+For the publish workflow, point `location` at your grc.store target page instead.
 
 **Prefer a head start?** The Slam's [AI skills](/library/ai-skills) include a `mechanizer` skill that sets up the Baseline scan workflow and then works through the failed controls with you. Treat its output as a first draft, not a finished pipeline: the skill makes guesses about your repository's setup, so review the workflow file and every proposed fix before you merge them. It won't change repository settings on its own, but it will ask you to.
