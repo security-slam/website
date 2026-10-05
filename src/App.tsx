@@ -5,7 +5,6 @@ import { Footer } from "./components/Footer";
 import { BackgroundArcs } from "./components/BackgroundArcs";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { Banner } from "./components/Banner";
-import { DevConsole, DEV_PREVIEW_KEY } from "./components/DevConsole";
 import { HomePage } from "./pages/HomePage";
 import { ContactPage } from "./pages/ContactPage";
 import { SectionIndexPage } from "./pages/SectionIndexPage";
@@ -43,23 +42,6 @@ export const App: React.FC = () => {
     setBannerVisible(true);
   };
 
-  // Dev preview: every route except "/" redirects home until the flag is set
-  // by typing `dev-preview` into the backtick console. Persists per browser.
-  const [devPreview, setDevPreview] = useState(
-    () => localStorage.getItem(DEV_PREVIEW_KEY) === "true"
-  );
-  const handleConsoleCommand = (cmd: string) => {
-    if (cmd === DEV_PREVIEW_KEY) {
-      localStorage.setItem(DEV_PREVIEW_KEY, "true");
-      setDevPreview(true);
-    } else if (cmd === "disable-preview") {
-      localStorage.removeItem(DEV_PREVIEW_KEY);
-      setDevPreview(false);
-    }
-  };
-  const gate = (element: React.ReactElement) =>
-    devPreview ? element : <Navigate to="/" replace />;
-
   return (
     <AudioProvider>
       <BrowserRouter>
@@ -77,7 +59,6 @@ export const App: React.FC = () => {
         }}
       >
         <BackgroundArcs />
-        <DevConsole onCommand={handleConsoleCommand} />
         {siteConfig.banner?.enabled && (
           <Banner
             message={siteConfig.banner.message}
@@ -88,7 +69,6 @@ export const App: React.FC = () => {
         <Header
           showBannerButton={siteConfig.banner?.enabled && !bannerVisible}
           onShowBanner={handleBannerShow}
-          navUnlocked={devPreview}
         />
         <main
           className="main-content"
@@ -98,7 +78,7 @@ export const App: React.FC = () => {
             <Route path="/" element={<HomePage />} />
             {siteConfig.contentSections.library?.enabled && (
               <>
-                <Route path="/library" element={gate(<LibraryPage />)} />
+                <Route path="/library" element={<LibraryPage />} />
                 {libraryAliases.map(({ from, to }) => (
                   <Route
                     key={from}
@@ -106,7 +86,7 @@ export const App: React.FC = () => {
                     element={<Navigate to={`/library/${to}`} replace />}
                   />
                 ))}
-                <Route path="/library/:slug" element={gate(<LibraryArticlePage />)} />
+                <Route path="/library/:slug" element={<LibraryArticlePage />} />
               </>
             )}
             {Object.entries(siteConfig.contentSections).map(
@@ -116,7 +96,7 @@ export const App: React.FC = () => {
                   <React.Fragment key={section}>
                     <Route
                       path={`/${section}`}
-                      element={gate(<SectionIndexPage section={section} />)}
+                      element={<SectionIndexPage section={section} />}
                     />
                     {getSectionItems(section)
                       .filter((item) => item.path)
@@ -124,17 +104,17 @@ export const App: React.FC = () => {
                         <Route
                           key={item.path}
                           path={item.path}
-                          element={gate(
+                          element={
                             <SectionItemPage
                               section={section}
                               path={item.path}
                             />
-                          )}
+                          }
                         />
                       ))}
                     <Route
                       path={`/${section}/:slug`}
-                      element={gate(<SectionItemPage section={section} />)}
+                      element={<SectionItemPage section={section} />}
                     />
                   </React.Fragment>
                 )
@@ -143,7 +123,7 @@ export const App: React.FC = () => {
               <Route
                 key={contact.path}
                 path={contact.path}
-                element={gate(<ContactPage />)}
+                element={<ContactPage />}
               />
             ))}
             <Route path="*" element={<Navigate to="/" replace />} />
