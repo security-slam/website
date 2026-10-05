@@ -8,7 +8,7 @@ weight: 5
 
 ## Challenge
 
-Reach a passing OSPS Baseline status for your project's maturity level, with the result published where anyone can check it. If you earned the Mechanizer badge, you already have the pipeline: the remaining work is closing every failed control until the published scan on grc.store reports a pass. Controls the scanner can't check on its own need documented evidence a reviewer can follow, linked from your Security Insights file. Link the grc.store result from your README.
+Reach a passing OSPS Baseline status for your project's maturity level, with the result published where anyone can check it. If you earned the Mechanizer badge with the grc.store publish workflow, you already have the pipeline: the remaining work is closing every failed control until the published scan reports a pass. If you used the scanner action instead, switching to the publish workflow is the first step. Controls the scanner can't check on its own need documented evidence a reviewer can follow, linked from your Security Insights file.
 
 ## Why?
 
@@ -26,7 +26,7 @@ The Defender badge lets you go up on a roof and shout about it when you finish.
 
 **First, create your Security Insights YAML file** (see the [Cleaner badge](/library/cleaner)) if you haven't already. It's where the evidence for this badge gets linked.
 
-**Second, earn the [Mechanizer badge](/library/mechanizer).** The Defender is judged from the scan the Mechanizer publishes to grc.store. Without a live, recurring result there, evaluators have nothing to check.
+**Second, publish your scan to grc.store.** The Defender is judged from a live, recurring result on grc.store, so the [Mechanizer badge](/library/mechanizer)'s scanner-action option isn't enough here: this badge requires the publish workflow. If your project isn't on grc.store yet, [set up your namespace and targets](/library/grc-store-setup) before wiring it in.
 
 From there, the badge is three steps.
 
@@ -56,15 +56,15 @@ Each published result lists every control the scanner evaluated and whether it p
 
 Some Baseline controls at your level will never be evaluated automatically: how maintainers make decisions, how releases are reviewed, how dependencies are vetted. For each one, write down where and how the project meets it, and link that from your Security Insights file. A link to a real document, a settings page, or a release that shows the practice in action counts. A bare "yes" doesn't. Evaluators will follow the links.
 
-### Show it
+### Show it (optional)
 
-Add a link to your project's grc.store target page at the top of your README, next to whatever badges you already display:
+Your submission for the badge is the URL of your project's grc.store target page, with a passing scan behind it and Security Insights entries for the rest. If you want to display the result, add a link to that page at the top of your README, next to whatever badges you already show:
 
 ```markdown
 [OSPS Baseline results](https://grc.store/targets/<namespace>/<target>)
 ```
 
-That link, a passing scan behind it, and Security Insights entries for the rest is what you submit for the badge.
+A README badge image for grc.store results isn't available yet; a plain link is fine.
 
 **Prefer a head start?** The Slam's [AI skills](/library/ai-skills) include a `defender` skill that runs a gap analysis across the full Baseline for your maturity level. Use it to find the controls the scan doesn't cover and to draft the evidence for them. Treat its output as a first draft, not a finished submission: the skill makes guesses about which controls you've met, so check each claim against your repository before you link it from Security Insights. It has only been run at Maturity Level 1 so far, so expect rougher edges at Level 2 or 3.
 
