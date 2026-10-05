@@ -50,7 +50,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 |------|--------|
 | **`main.tsx`** | App entry: imports `polyfills.ts` first, sets document title from `siteConfig.siteName`, mounts React root, wraps app in `ThemeProvider`, imports `global.css`. |
 | **`polyfills.ts`** | Sets `globalThis.Buffer` so `gray-matter` works in the browser. |
-| **`App.tsx`** | Root layout and routing: applies `useTheme()`, wraps in `AudioProvider` and `BrowserRouter`, renders `BackgroundArcs`, optional `Banner`, `Header`, main, `Footer`. Routes: `/` (HomePage); `/library` and `/library/:slug` (LibraryPage, LibraryArticlePage) when `contentSections.library` is enabled; for every other enabled content section, `/<key>` (SectionIndexPage), each item's frontmatter `path`, and `/<key>/:slug` (SectionItemPage); each `contactPages` path (ContactPage); catch-all redirect to `/`. All routes except `/` are gated behind the dev-preview flag (see `DevConsole.tsx`). |
+| **`App.tsx`** | Root layout and routing: applies `useTheme()`, wraps in `AudioProvider` and `BrowserRouter`, renders `BackgroundArcs`, optional `Banner`, `Header`, main, `Footer`. Routes: `/` (HomePage); `/library` and `/library/:slug` (LibraryPage, LibraryArticlePage) when `contentSections.library` is enabled; for every other enabled content section, `/<key>` (SectionIndexPage), each item's frontmatter `path`, and `/<key>/:slug` (SectionItemPage); each `contactPages` path (ContactPage); catch-all redirect to `/`. |
 | **`theme.tsx`** | Theme system: `AppTheme` type, the single `slam` theme object (colors, radii, shadows, spacing, typography), `ThemeProvider` that injects CSS variables (`--gf-color-*`, `--gf-space-*`, etc.), `useTheme()` hook. Edit here to change look site-wide. |
 | **`global.css`** | Global styles: reset, layout, base typography, `.slam-theme` overrides, responsive rules. |
 | **`vite-env.d.ts`** | TypeScript reference for Vite client types (e.g. `import.meta`). |
@@ -94,7 +94,6 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 | **`Header.tsx`** | Site header: logo (alt text from `siteName`), tagline, nav from a fixed Home link, enabled content sections (`inNav !== false`), and `customNavLinks` (with dropdowns for `children` that close on outside click or Escape); active-state styling via `useLocation()`. Layout and hover styles live in `global.css` (`.site-header*`, `.site-nav*`). Optional button to re-show a dismissed banner. |
 | **`Footer.tsx`** | Site footer: optional pre-registration link (`preregistrationUrl`), copyright, and links from `siteConfig.footer`. |
 | **`Banner.tsx`** | Dismissible top banner driven by `siteConfig.banner`. |
-| **`DevConsole.tsx`** | Backtick-toggled terminal overlay. Typing `dev-preview` + Enter sets the `dev-preview` localStorage flag, `disable-preview` clears it; `App.tsx` redirects every route except `/` to home until it is set. |
 | **`BackgroundArcs.tsx`** | Full-viewport decorative background (static SVG arcs); no interaction, low z-index. |
 | **`ScrollToTop.tsx`** | Scrolls to top on route change. |
 | **`TextSection.tsx`** | Reusable content block: title, subtitle, list of paragraphs; props for centering, text shadow, max width, last paragraph margin, and `titleTag` (`h1` on the home hero). |
