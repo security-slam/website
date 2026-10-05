@@ -1,8 +1,8 @@
 ---
 title: Meet the LFX Insights Dashboard
-description: The preferred mechanism for the Mechanizer badge (Read this early — it could take a minute to activate)
+description: Automated project metrics with partial Baseline coverage. Onboarding takes time, so request it early.
 image: /project-logos/lfx-insights.svg
-tags: ["Mechanizer", "Getting Started", "Helpful Tools"]
+tags: ["Getting Started", "Helpful Tools"]
 author: Jonathan Reimer, Linux Foundation
 ---
 

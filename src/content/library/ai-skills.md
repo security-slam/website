@@ -6,7 +6,7 @@ weight: 1
 author: Jason Meridth, Revanite
 ---
 
-Security Slam now has a set of AI agent skills that walk your project through every badge, from the first `security-insights.yml` to an OpenSSF Best Practices Baseline badge. Install them, ask "where does this repo stand in the Security Slam?", and you get a status table and the one badge to work on next.
+Security Slam now has a set of AI agent skills that walk your project through every badge, from the first `security-insights.yml` to a passing OSPS Baseline result published on grc.store. Install them, ask "where does this repo stand in the Security Slam?", and you get a status table and the one badge to work on next.
 
 The skills follow the open [Agent Skills](https://agentskills.io) standard, so they work with Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, and other compatible agents. We built and tested them in Claude Code, then ran `slam-status` in Codex, which produced the same report.
 
@@ -22,8 +22,8 @@ There are seven skills: one per project badge, plus a status check.
 | `cleaner` | Write and validate a Security Insights file from what's actually in your repo. |
 | `chronicler` | Close the OSPS Baseline documentation controls for your maturity level. |
 | `inspector` | Write a Gemara threat assessment or an OSPS self-assessment. |
-| `mechanizer` | Set up the OSPS Baseline scan and drive it to zero failed controls. |
-| `defender` | Run a full Baseline gap analysis and prepare your bestpractices.dev answers. |
+| `mechanizer` | Wire the OSPS Baseline scan into your default branch, as the scanner action or the grc.store publish workflow, and work through the failed controls. |
+| `defender` | Run a full Baseline gap analysis, drive the published grc.store result to a pass, and draft Security Insights evidence for the controls the scanner can't check. |
 | `cra` | Document voluntary EU Cyber Resilience Act readiness, with the required disclaimer. |
 
 In Claude Code, install them from the `security-slam` plugin marketplace:
@@ -55,12 +55,12 @@ Before asking anyone else to use these skills, we used them on four repositories
 
 | Repository | What it is | Result |
 | --- | --- | --- |
-| [security-slam/skills](https://github.com/security-slam/skills) | The skills themselves: Markdown and YAML | Evidence for all six badges, [Baseline Level 1](https://www.bestpractices.dev/projects/15132/baseline-1) |
-| [security-slam/website](https://github.com/security-slam/website) | securityslam.com: a TypeScript site deployed on every merge | Evidence for all six badges, [Baseline Level 1](https://www.bestpractices.dev/projects/15142/baseline-1) |
-| [privateerproj/pvtr](https://github.com/privateerproj/pvtr) | The Privateer CLI: a Go program that ships release binaries | Evidence for all six badges, [Baseline Level 1](https://www.bestpractices.dev/projects/15145/baseline-1) |
-| [privateerproj/privateer-sdk](https://github.com/privateerproj/privateer-sdk) | The Privateer plugin SDK: a Go library | Evidence for all six badges, [Baseline Level 1](https://www.bestpractices.dev/projects/12018/baseline-1) |
+| [security-slam/skills](https://github.com/security-slam/skills) | The skills themselves: Markdown and YAML | All six badges at Baseline Level 1 |
+| [security-slam/website](https://github.com/security-slam/website) | securityslam.com: a TypeScript site deployed on every merge | All six badges at Baseline Level 1 |
+| [privateerproj/pvtr](https://github.com/privateerproj/pvtr) | The Privateer CLI: a Go program that ships release binaries | All six badges at Baseline Level 1 |
+| [privateerproj/privateer-sdk](https://github.com/privateerproj/privateer-sdk) | The Privateer plugin SDK: a Go library | All six badges at Baseline Level 1 |
 
-Each skill ran in a fresh Claude Code session, the same way you'd run it. We also installed the skills in Codex with `npx skills` and asked it the same status question on the Privateer SDK. Codex picked `slam-status` on its own and matched Claude Code's report. The website started with no license, no security policy, and a README that described code that no longer existed. It finished with all of those fixed and a weekly Baseline scan reporting zero failed controls.
+Each skill ran in a fresh Claude Code session, the same way you'd run it. We also installed the skills in Codex with `npx skills` and asked it the same status question on the Privateer SDK. Codex picked `slam-status` on its own and matched Claude Code's report. The website started with no license, no security policy, and a README that described code that no longer existed. It finished with all of those fixed and a Baseline scan on every push to `main` publishing zero failed controls to grc.store.
 
 The Privateer repositories tested something different: an organization that shares its security policy and contributing guide from a central `.github` repository. We made those changes once, in the org repository, and both projects picked them up. That run also found a gap: `slam-status` didn't follow a repository's pointer to the org-level Security Insights file, so it could under-report inherited evidence. [v0.0.9](https://github.com/security-slam/skills/releases/tag/v0.0.9) fixed it.
 

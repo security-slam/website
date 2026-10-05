@@ -44,8 +44,8 @@ While navigating you might find some controls that show multiple levels (Maturit
 
 The various tools also have different levels of automated coverage.
 
-- **OSPS Baseline Scanner for GitHub Repos**: Has the most coverage for level 1, and less for higher levels
+- **OSPS Baseline Scanner for GitHub Repos** (the scanner action and the grc.store publish workflow run the same scanner): Has the most coverage for level 1, and less for higher levels
 - **LFX Insights Security & Best Practices Dashboard**: Partial coverage for Level 1, none for higher levels
-- **Best Practices Badge (Baseline Badge)**: Complete coverage for all three levels
+- **Best Practices Badge (Baseline Badge)**: Complete coverage for all three levels, self-reported rather than scanned
 
 As an aside, note that the latest version of the OSPS Baseline was released immediately prior to the start of the Slam. Some deltas may exist with automated tools which are still using the October 2025 text.

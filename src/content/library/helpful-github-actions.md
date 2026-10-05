@@ -5,6 +5,8 @@ description: >-
   and validate security documentation for your
   open source projects.
 tags:
+  - Cleaner
+  - Mechanizer
   - Helpful Tools
 author: Jason Meridth, Chainguard
 ---
