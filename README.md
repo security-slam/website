@@ -50,7 +50,7 @@ Each key in `contentSections` maps to a directory under `src/content/<key>/`. Wh
 - `/<key>/<slug>` renders `src/content/<key>/<slug>.md`.
 - A Markdown file with a `path` in its frontmatter is also served at that path.
 
-`src/content/sections.ts` loads these files. Frontmatter fields: `title`, `description`, `path`, `hubspot`, `audioUrl`, `sectionAudio`, and `projects`.
+`src/content/sections.ts` loads these files. Frontmatter fields: `title`, `description`, `path`, `hubspot`, `audioUrl`, `sectionAudio`, `youtubeId`, and `projects`. `youtubeId` embeds a YouTube video on the section's `index.md` page only.
 
 The `library` section is the exception. It has its own pages and loader. See [Adding a library article](#adding-a-library-article).
 

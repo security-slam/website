@@ -71,7 +71,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 |------|--------|
 | **`library.ts`** | Loads every `library/**/*.md` with `gray-matter`. Slug is the filename. Frontmatter: `title`, `description`, `tags`, `badge`, `image`, `author`, `weight`, `videoUrl`, `aliases` (former slugs, redirected in `App.tsx`). Exports `libraryIndex` (from `index.md`), `libraryArticles` (excludes `index` and any file with `badge`, sorted by `weight` then title), `getLibraryArticle`, `getAllTags`, `getArticlesByTag`. |
 | **`library/`** | Library Markdown. `index.md` is the `/library` intro. Files with `badge:` are badge pages (`chronicler.md`, `cleaner.md`, `cra-readiness.md`, `defender.md`, `inspector.md`, `mechanizer.md`). Everything else is an article at `/library/<filename>`. |
-| **`sections.ts`** | Loads `*/**/*.md` and groups by directory name (the section key). Frontmatter: `title`, `description`, `path`, `hubspot`, `audioUrl`, `sectionAudio`, `projects`, `badges`. Exports `getSectionItems`, `getSectionIndexItem`, `getSectionListItems`, `getSectionItemBySlug`, `getSectionItemByPath`. |
+| **`sections.ts`** | Loads `*/**/*.md` and groups by directory name (the section key). Frontmatter: `title`, `description`, `path`, `hubspot`, `audioUrl`, `sectionAudio`, `youtubeId`, `projects`, `badges`. Exports `getSectionItems`, `getSectionIndexItem`, `getSectionListItems`, `getSectionItemBySlug`, `getSectionItemByPath`. |
 | **`slam26/`** | Slam26 section Markdown: `index.md`, `participating-projects.md`, `register.md`. |
 | **`outcomes/`** | Previous Outcomes section: `index.md` links past transparency reports; one archive page per finished Slam (e.g. `spring-2026.md`) with the final `projects` list and a `badges` list of the slugs that Slam used. |
 | **`carousel.ts`** | Image list for the home page carousel (`public/slam-photos/`). |
@@ -118,7 +118,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 | **`HomePage.tsx`** | Landing page: carousel, hero text, registration, partner logos, How the Slam works, and the badge row. Past reports live under `/outcomes`. |
 | **`LibraryPage.tsx`** | `/library`: `libraryIndex` intro, badge navigation, and the filterable article list. |
 | **`LibraryArticlePage.tsx`** | `/library/:slug`: one library article or badge page. Badge pages show the badge icon, a submit-completion link, and articles tagged with the badge name. |
-| **`SectionIndexPage.tsx`** | `/<key>` for a non-library content section: `index.md` content plus cards for the other items. |
+| **`SectionIndexPage.tsx`** | `/<key>` for a non-library content section: `index.md` content (with a YouTube embed when `youtubeId` is set) plus cards for the other items. |
 | **`SectionItemPage.tsx`** | One content section item, found by slug or frontmatter `path`. Renders Markdown, optional HubSpot form, optional projects or leaderboard. |
 | **`ContactPage.tsx`** | Finds the `siteConfig.contactPages` entry for the current path; renders title, description, and the HubSpot form or `formDisabledMessage`. |
 
