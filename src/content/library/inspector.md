@@ -19,8 +19,9 @@ Security self-assessments can be done without any special knowledge, guiding you
 When you complete a self-assessment, you're not just checking a box. You're building institutional knowledge that helps:
 
 - New contributors understand security considerations without tribal knowledge
-- Adopters evaluate risk and make informed decisions about using your project
+- Coding assistants are primed with security-relevant context
 - Your team prioritize security work based on actual threat models rather than guesswork
+- Adopters evaluate risk and make informed decisions about using your project
 - Auditors and security researchers quickly grasp your attack surface
 
 ## Recommendations
@@ -31,9 +32,7 @@ There are two options for completing this badge. Pick the approach that makes th
 
 **Prefer a head start?** The Slam's [AI skills](/library/ai-skills) include an `inspector` skill that drafts either option from what it finds in your repository. Treat its output as a first draft, not a finished assessment: the skill makes guesses about what your project does and what could go wrong with it, so check every capability and threat against what you actually know. The Gemara path has been run on real projects; the prose self-assessment path has not been tested yet, so expect rougher edges there.
 
-To support the upcoming `v1` release of the Gemara schemas, the completion form for this badge will ask you for a short piece of feedback if you choose Option #2 instead.
-
-If you're a contributor with less than complete understanding of the project you're supporting, you can still help by contributing the wireframe or an initial draft of the assessment content.
+If you're a contributor with less than complete understanding of the project you're supporting, you can still help by contributing the wireframe or an initial draft of the assessment content. Ensure your maintainers understand that your contribution is only intended as an initial draft, and that it cannot be considered complete without their detailed input.
 
 **After completing your self-assessment, add the link to your Security Insights YAML file** so evaluators and adopters can easily find it.
 
@@ -58,12 +57,10 @@ Check out the [Threat Assessment Guide](/library/threat-assessment-guide) in the
 
 ### Option 2: OSPS Self Assessment
 
-OpenSSF maintains a documentation project on the topic of Security Assessments: https://github.com/ossf/security-assessments
+While it is a more exhaustive process, CNCF projects are advised and sometimes _required_ to publish a security self assessment.
 
-The self-assessment section covers:
+To help with this process, OpenSSF maintains a documentation project on the topic of Security Assessments: https://ossf.github.io/security-assessments/
 
-- Project overview and scope
-- Development practices and governance
-- Security controls and threat considerations
-- Incident response and vulnerability management
-- Dependencies and supply chain practices
+This guide contains content originally published by Justin Cappos and CNCF's TAG Security, then later migrated into the OpenSSF for long-term maintenance and community development. PRs are welcome!
+
+You will notice that this guide contains both background information, a walkthrough, and a template. The template is the key element that Security Slam advisors will ask for when evaluating your progress on this badge.

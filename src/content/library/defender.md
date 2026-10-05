@@ -34,6 +34,20 @@ From there, the badge is three steps.
 
 Pick your [maturity level](/library/baseline-levels) and stick with it. The scan reports every control it knows how to evaluate; the ones that count for this badge are the controls tagged with your level or below. Higher levels add controls, and the scanner covers fewer of them automatically, so Level 2 and 3 projects should expect more work in step 3.
 
+For CNCF and OpenSSF projects, we will evaluate on this criteria:
+
+- **Sandbox:** Baseline Level 1
+- **Incubating:** Baseline Level 2
+- **Graduated:** Baseline Level 3
+
+For non-stewarded projects, we will evaluate on this criteria:
+
+- **Newly under construction:** Baseline Level 1
+- **Established project with no known production users:** Baseline Level 2
+- **Known or suspected production users:** Baseline Level 3
+
+For all other stewarded projects, we will look for guidance from your steward.
+
 ### 2. Drive the failed controls to zero
 
 Each published result lists every control the scanner evaluated and whether it passed. Work the failed list. At Level 1, most failures are documentation the [Chronicler badge](/library/chronicler) already covers, or repository settings: a branch ruleset, secret scanning, a license file, a security policy. Fix one, merge it, and let the next run confirm it. Every push to your default branch is another run, and you can trigger the workflow by hand when you don't want to wait.
