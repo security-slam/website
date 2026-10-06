@@ -28,7 +28,7 @@ _If your project isn't hosted on GitHub, reach out to Slam Organizers for an alt
 
 ### Option 1: OSPS Baseline scanner action
 
-Add the [OSPS Baseline Action](https://github.com/revanite-io/osps-baseline-action) to a workflow on your default branch. Results stay in your repository: as a workflow artifact, in the job log, or in the Security tab as SARIF. You can also run the scanner locally with [pvtr-github-repo-scanner](https://github.com/ossf/pvtr-github-repo-scanner). [Helpful GitHub Actions](/library/helpful-github-actions) covers the action's options and output formats.
+Add the [OSPS Baseline Action](https://github.com/revanite-io/osps-baseline-action) to a workflow on your default branch. Results stay in your repository: as a workflow artifact, in the job log, or in the Security tab as SARIF. You can also run the scanner locally with [pvtr-github-repo-scanner](https://github.com/ossf/pvtr-github-repo-scanner). [Helpful GitHub Actions](/library/helpful-github-actions) walks through the token, the workflow file, and reading the results.
 
 This is the fastest way to get started. Nothing is published anywhere, so there are no rate limits: run it on every pull request if you like.
 
