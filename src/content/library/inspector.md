@@ -59,7 +59,7 @@ Check out the [Threat Assessment Guide](/library/threat-assessment-guide) in the
 
 While it is a more exhaustive process, CNCF projects are advised and sometimes _required_ to publish a security self assessment.
 
-To help with this process, OpenSSF maintains a documentation project on the topic of Security Assessments: https://ossf.github.io/security-assessments/
+To help with this process, OpenSSF maintains a documentation project on the topic of Security Assessments: https://security-assessments.openssf.org/
 
 This guide contains content originally published by Justin Cappos and CNCF's TAG Security, then later migrated into the OpenSSF for long-term maintenance and community development. PRs are welcome!
 
