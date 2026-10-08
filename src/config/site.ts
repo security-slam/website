@@ -64,7 +64,7 @@ export const siteConfig: SiteConfig = {
   siteName: "Security Slam",
   tagline: "October 5 – November 6, 2026",
   preregistrationUrl: "",
-  participatingProjectsDefaultTab: "leaderboard",
+  participatingProjectsDefaultTab: "projects",
 
   banner: {
     enabled: false,
