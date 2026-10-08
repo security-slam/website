@@ -8,7 +8,7 @@ export type SectionItemHubSpot = {
 
 export type ProjectInfo = {
   name: string;
-  advisor: string;
+  advisor?: string;
   repoUrl: string;
   logoUrl: string;
   completed?: string[];

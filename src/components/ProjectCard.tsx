@@ -2,7 +2,7 @@ import React from "react";
 
 export interface ProjectCardProps {
   name: string;
-  advisor: string;
+  advisor?: string;
   repoUrl: string;
   logoUrl: string;
 }
@@ -68,15 +68,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         >
           {name}
         </h3>
-        <p
-          style={{
-            margin: 0,
-            color: "var(--gf-color-text-subtle)",
-            fontSize: "1rem"
-          }}
-        >
-          Security Advisor: <strong>{advisor}</strong>
-        </p>
+        {advisor && (
+          <p
+            style={{
+              margin: 0,
+              color: "var(--gf-color-text-subtle)",
+              fontSize: "1rem"
+            }}
+          >
+            Security Advisor: <strong>{advisor}</strong>
+          </p>
+        )}
       </div>
     </a>
   );

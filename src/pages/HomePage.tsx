@@ -77,6 +77,11 @@ export const HomePage: React.FC = () => {
         >
           Register now
         </Link>
+        <p style={{ marginTop: "var(--gf-space-lg)", color: "var(--gf-color-text-subtle)" }}>
+          <Link to="/slam26/participating-projects" style={{ color: "var(--gf-color-accent)" }}>
+            See the projects taking part this fall
+          </Link>
+        </p>
       </section>
 
       <PartnerLogos />
