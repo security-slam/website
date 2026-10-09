@@ -46,11 +46,11 @@ projects:
   - name: OpenSSF Scorecard
     repoUrl: https://github.com/ossf/scorecard
     logoUrl: /project-logos/scorecard.png
-    completed: []
+    completed: [cleaner]
   - name: PgBouncer
     repoUrl: https://github.com/pgbouncer/pgbouncer
     logoUrl: /project-logos/pgbouncer.png
-    completed: []
+    completed: [cleaner]
   - name: Privateer
     repoUrl: https://github.com/privateerproj
     logoUrl: /project-logos/privateer.png
