@@ -27,7 +27,7 @@ The Slam has six. Five center around the _Open Source Project Security Baseline_
 3. [The Inspector](/library/inspector) documents what your project does and how it could be attacked.
 4. [The Mechanizer](/library/mechanizer) wires a recurring Baseline scan into your default branch. A passing score is not required.
 5. [The Defender](/library/defender) reaches a passing Baseline status for your maturity level, published on grc.store. The four badges above are stepping stones toward this one.
-6. [CRA Readiness](/library/cra-readiness) implements the CRA guidelines provided by your project's steward. Details will be released on October 12th.
+6. [CRA Readiness](/library/cra-readiness) implements the CRA guidelines provided by your project's steward: a stewardship statement, a recorded vulnerability reporting channel, and an escalation policy.
 
 Now based on who you are, your first steps may be different...
 
