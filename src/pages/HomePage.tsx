@@ -48,6 +48,42 @@ export const HomePage: React.FC = () => {
           textAlign: "center"
         }}
       >
+        <h2 style={{ marginBottom: "var(--gf-space-md)" }}>Who's taking part</h2>
+        <p
+          style={{
+            color: "var(--gf-color-text-subtle)",
+            fontSize: "1.1rem",
+            marginBottom: "var(--gf-space-lg)",
+            maxWidth: "700px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            lineHeight: 1.7
+          }}
+        >
+          Projects from across the open source ecosystem are already in the Fall 2026 Slam, and the leaderboard shows which badges each one has earned so far.
+        </p>
+        <Link
+          to="/slam26/participating-projects"
+          style={{
+            display: "inline-block",
+            padding: "var(--gf-space-md) var(--gf-space-xl)",
+            color: "var(--gf-color-accent)",
+            fontWeight: 600,
+            textDecoration: "none",
+            border: "2px solid var(--gf-color-accent)",
+            borderRadius: "var(--gf-radius-lg)"
+          }}
+        >
+          Participating projects
+        </Link>
+      </section>
+
+      <section
+        style={{
+          marginBottom: "var(--gf-space-xl)",
+          textAlign: "center"
+        }}
+      >
         <h2 style={{ marginBottom: "var(--gf-space-md)" }}>Registration is now open</h2>
         <p
           style={{
@@ -77,11 +113,6 @@ export const HomePage: React.FC = () => {
         >
           Register now
         </Link>
-        <p style={{ marginTop: "var(--gf-space-lg)", color: "var(--gf-color-text-subtle)" }}>
-          <Link to="/slam26/participating-projects" style={{ color: "var(--gf-color-accent)" }}>
-            See the projects taking part this fall
-          </Link>
-        </p>
       </section>
 
       <PartnerLogos />

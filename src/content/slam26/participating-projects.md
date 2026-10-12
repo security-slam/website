@@ -89,4 +89,4 @@ projects:
     completed: []
 ---
 
-Registered maintainers can still [add a project](/slam26/register) during the first week of the Slam. Spring 2026 results are archived under [Previous Outcomes](/outcomes/spring-2026).
+Spring 2026 results are archived under [Previous Outcomes](/outcomes/spring-2026).
