@@ -17,7 +17,7 @@ In the OSPS Baseline documentation, each control contains an objective and one o
 
 ## How to Find your level
 
-For the Slam, the [Defender badge](/library/defender) sets the level you are evaluated against from your foundation stage or production use. The questions below are for projects outside those rules.
+For the Fall 2026 Slam, the [Defender badge](/library/defender) sets the level you are evaluated against from your foundation stage or production use. The questions below were written for the Spring 2026 Slam and remain useful for projects seeking to follow the looser OSPS Baseline applicability criteria.
 
 Try asking yourself these questions:
 
