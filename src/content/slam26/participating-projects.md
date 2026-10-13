@@ -27,6 +27,10 @@ projects:
     repoUrl: https://github.com/bailinghub/bailinghub
     logoUrl: /project-logos/bailinghub.png
     completed: [cleaner, inspector, mechanizer]
+  - name: Capsule
+    repoUrl: https://github.com/projectcapsule/capsule
+    logoUrl: /project-logos/capsule.png
+    completed: []
   - name: FlowLogix Jakarta EE Components
     repoUrl: https://github.com/flowlogix/flowlogix
     logoUrl: /project-logos/flowlogix.jpg
