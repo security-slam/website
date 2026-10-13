@@ -22,7 +22,7 @@ projects:
   - name: Argo Helm
     repoUrl: https://github.com/argoproj/argo-helm
     logoUrl: /project-logos/argo.png
-    completed: []
+    completed: [cleaner]
   - name: BailingHub Core
     repoUrl: https://github.com/bailinghub/bailinghub
     logoUrl: /project-logos/bailinghub.png
@@ -30,7 +30,7 @@ projects:
   - name: Capsule
     repoUrl: https://github.com/projectcapsule/capsule
     logoUrl: /project-logos/capsule.png
-    completed: []
+    completed: [cleaner, chronicler]
   - name: FlowLogix Jakarta EE Components
     repoUrl: https://github.com/flowlogix/flowlogix
     logoUrl: /project-logos/flowlogix.jpg
@@ -66,7 +66,7 @@ projects:
   - name: Privateer
     repoUrl: https://github.com/privateerproj
     logoUrl: /project-logos/privateer.png
-    completed: []
+    completed: [cleaner, chronicler, inspector, mechanizer, defender]
   - name: Score
     repoUrl: https://github.com/score-spec/spec
     logoUrl: /project-logos/score.png
