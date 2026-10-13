@@ -323,6 +323,23 @@ cue vet -c -d '#ThreatCatalog' github.com/gemaraproj/gemara@v1.6.0 your-threats.
 
 No output means the artifact is valid. Swap `@v1.6.0` for `@latest` to validate against the newest published schema.
 
+## Step 5: Record It
+
+The Inspector badge asks you to commit the assessment and point to it from your Security Insights file.
+
+1. Commit both files to your repository, for example `docs/security/capability-catalog.yaml` and `docs/security/threat-catalog.yaml`.
+2. Reference them in `security-insights.yml`. The `comment` field is required:
+
+```yaml
+repository:
+  security:
+    assessments:
+      self:
+        evidence: https://github.com/OWNER/REPO/blob/main/docs/security/threat-catalog.yaml
+        date: '2026-10-13'
+        comment: Gemara capability and threat catalogs for the project, reviewed by the maintainers.
+```
+
 ## What's Next
 
 Create a Gemara Control Catalog that maps security controls to the identified threats, providing a structured approach to defining mitigations. See the [Gemara Layer 2 schema documentation](https://gemara.openssf.org/model/05.2-Layer-2.html) for the full specification.

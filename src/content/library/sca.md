@@ -6,7 +6,7 @@ image: /project-logos/baseline.png
 author: Aaron Linskens, Sonatype
 ---
 
-The OSPS Baseline control `OSPS-VM-05` states that projects must "Identify and address defects and security weaknesses in the project's imported code early in the development process, reducing the risk of shipping insecure software." And within the assessment requirements there are multiple mentions of software composition analysis (SCA).
+The OSPS Baseline control `OSPS-VM-05` states that projects must "Identify and address defects and security weaknesses in the project's imported code early in the development process, reducing the risk of shipping insecure software." And within the assessment requirements there are multiple mentions of software composition analysis (SCA). VM-05's assessment requirements apply at Maturity Level 3 only.
 
 SCA is a foundational practice in modern software development. At its core, SCA helps identify vulnerabilities, license risks, and policy violations within open source dependencies.
 

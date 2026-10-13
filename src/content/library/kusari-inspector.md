@@ -6,7 +6,7 @@ aliases: [tools-kusari-inspector]
 author: Ben Cotton, Kusari
 ---
 
-[Kusari Inspector](http://kusari.dev/developers) is a software supply chain analysis tool.
+[Kusari Inspector](https://www.kusari.dev/developers) is a software supply chain analysis tool.
 It provides feedback in pull requests or from a command-line interface to catch a variety
 of software supply chain security issues in your code and in direct and transitive dependencies, including:
 

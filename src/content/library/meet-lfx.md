@@ -2,11 +2,13 @@
 title: Meet the LFX Insights Dashboard
 description: Automated project metrics with partial Baseline coverage. Onboarding takes time, so request it early.
 image: /project-logos/lfx-insights.svg
-tags: ["Getting Started", "Helpful Tools"]
+tags: ["Helpful Tools"]
 author: Jonathan Reimer, Linux Foundation
 ---
 
 [LFX Insights](https://insights.linuxfoundation.org/) provides automated measurement and reporting of a variety of project metrics, including Baseline controls. LFX Insights covers over 10k critical open source projects that are not part of the Linux Foundation already.
+
+LFX Insights is informational only. The Mechanizer and Defender badges are judged from your OSPS Baseline scan, not from LFX Insights.
 
 If your project is not already included in LFX Insights, you can request to add it:
 

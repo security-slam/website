@@ -75,7 +75,7 @@ repository:
           ci:
             name: OSPS Baseline evaluation
             predicate-uri: https://github.com/revanite-io/osps-baseline-action
-            location: https://github.com/<owner>/<repo>/actions/workflows/osps-baseline.yaml
+            location: https://github.com/<owner>/<repo>/actions/workflows/osps-baseline.yml
 ```
 
 For the publish workflow, point `location` at your grc.store target page instead.
