@@ -66,7 +66,7 @@ projects:
   - name: Privateer
     repoUrl: https://github.com/privateerproj
     logoUrl: /project-logos/privateer.png
-    completed: [cleaner, chronicler, inspector, mechanizer, defender]
+    completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
   - name: Score
     repoUrl: https://github.com/score-spec/spec
     logoUrl: /project-logos/score.png
