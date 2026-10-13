@@ -56,7 +56,7 @@ Each published result lists every control the scanner evaluated and whether it p
 
 Some Baseline controls at your level will never be evaluated automatically: how maintainers make decisions, how releases are reviewed, how dependencies are vetted. For each one, write down where and how the project meets it, and link that from your Security Insights file. A link to a real document, a settings page, or a release that shows the practice in action counts. A bare "yes" doesn't. Evaluators will follow the links.
 
-One control has a known gap. The scanner returns Needs Review for OSPS-BR-01.03 whenever a workflow runs on `pull_request_target`, and it reports Passed only when no such workflow exists. For this badge, a Needs Review on OSPS-BR-01.03 counts as passing if you document how you reviewed those workflows and link that from your Security Insights file.
+Note that the scanner returns Needs Review for OSPS-BR-01.03 whenever a workflow runs on `pull_request_target`, and it reports Passed only when no such workflow exists. For this badge, a Needs Review on OSPS-BR-01.03 counts as passing if you document how you reviewed those workflows in a file your Security Insights already links, such as your security policy (`repository.documentation.security-policy`).
 
 ### Show it (optional)
 
