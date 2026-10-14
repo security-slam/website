@@ -17,7 +17,7 @@ jobs:
       contents: read # Read the release-drafter config
       pull-requests: write # Apply labels to the pull request
       issues: write # Create labels referenced in the config but missing from the repository
-    uses: github-community-projects/ospo-reusable-workflows/.github/workflows/auto-labeler.yaml@038160c3e14227cf7c1a7387217ac1623a969f0c # v2.1.1
+    uses: github-community-projects/ospo-reusable-workflows/.github/workflows/auto-labeler.yaml@690dbbefe65f0c1d68c5211dd6ff997f533099b5 # v2.2.0
     with:
       config-name: release-drafter.yml
     secrets:
