@@ -43,7 +43,7 @@ The following simplified CRA Readiness checklist represents minimal voluntary pr
 | MFA Enforcement | If your project platform supports it, enable MFA for all contributors. This is a MUST for high-privileged roles such as admins. | [How to enable MFA in GitHub](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication) | \[A brief statement that you’ve done it on your platform, optionally \- how\] |
 | Branch Protection | If your project platform supports it, enable branch protection in org or repo settings. | [Branch Protection in GitHub](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) | \[A brief statement that you’ve done it on your platform, optionally \- how\] |
 | Licence File | Repository should contain a clear LICENSE or COPYING file. | It’s strongly recommended for open source projects to use one of the commonly used licences, e.g from  [OSI Approved Licenses catalogue](https://opensource.org/licenses). [Example](https://github.com/kubevirt/kubevirt?tab=Apache-2.0-1-ov-file) A clear license also helps prevent misunderstanding regarding liability and responsibility boundaries. | \[Link to your licence file\] |
-| OSPS | Achieve Open Source Project Security Baseline (OSPS) Level 1, at minimum. NOTE: If you implemented all the above, you most likely almost achieved OSPS L1 already. | More details at [baseline.openssf.org](http://baseline.openssf.org). | \[You can publish or link to a [OSPS checklist](https://baseline.openssf.org/versions/2025-10-10-checklist.md)\] |
+| OSPS | Achieve Open Source Project Security Baseline (OSPS) Level 1, at minimum. NOTE: If you implemented all the above, you most likely almost achieved OSPS L1 already. | More details at [baseline.openssf.org](https://baseline.openssf.org). | \[You can publish or link to a [OSPS checklist](https://baseline.openssf.org/versions/2025-10-10-checklist.md)\] |
 
 # How To Document “CRA Readiness”
 
@@ -51,7 +51,7 @@ Ideally, the CRA Readiness needs to be documented in both human-readable and mac
 
 ## Human-readable (default option)
 
-Simply create a file in your repo that contains the table (checklist) above. Link this file from your [readme.md](http://readme.md) for easy navigation. To avoid any misunderstanding, include a clear disclaimer stating:  
+Simply create a file in your repo that contains the table (checklist) above. Link this file from your README.md for easy navigation. To avoid any misunderstanding, include a clear disclaimer stating:  
 
 This project voluntarily documents its security practices.  
 This information is provided “as is”, without warranties or guarantees. See the project’s license for more details.  
@@ -66,7 +66,7 @@ Optionally, the good practice is to create a separate file ([Example of a CNCF p
 
 ## Machine-readable (advanced option)
 
-Convert the checklist table above into machine-readable format and add it to overall description of your security posture, for example in a format of [security-insights.YAML](http://github.com/ossf/security-insights-spec)
+Convert the checklist table above into machine-readable format and add it to overall description of your security posture, for example in a format of [security-insights.YAML](https://github.com/ossf/security-insights-spec)
 
 * [Example](https://github.com/kyverno/kyverno/blob/main/SECURITY-INSIGHTS.yml)
 
@@ -84,7 +84,7 @@ If you wish to further improve your project security posture and follow the spir
 * [Generate SBOMs](https://openssf.org/technical-initiatives/sbom-tools/)  
 * Consider implementing [Supply-chain Levels for Software Artifacts (SLSA)](https://slsa.dev/), start with Level 1  
 * Obtain an [OpenSSF Best Practices Badge](https://www.bestpractices.dev/en)  
-* Consider achieving [OSPS Level 2 and Level 3](http://baseline.openssf.org)  
+* Consider achieving [OSPS Level 2 and Level 3](https://baseline.openssf.org)  
 * Automate compliance with [Gemara](https://github.com/gemaraproj)  
 * Automate repo security with [Minder](https://openssf.org/projects/minder/)  
 * Implement continuous checks with [Scorecards](https://github.com/ossf/scorecard)
