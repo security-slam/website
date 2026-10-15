@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/routes/**/*.tsx",
+    "src/router.tsx",
+    "src/server.ts",
+    "src/start.ts",
+    "vite.config.ts"
+  ]
+}

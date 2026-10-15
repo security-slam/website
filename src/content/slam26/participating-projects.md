@@ -2,6 +2,7 @@
 title: Fall 2026 Participating Projects
 path: /slam26/participating-projects
 description: Projects taking part in the Fall 2026 Security Slam
+# Optional per project: lastCompleted: YYYY-MM-DD (hidden; breaks ties in ordering)
 projects:
   - name: Agent Capability Contract (ACC)
     repoUrl: https://github.com/agent-capability/agent-capability-contract
