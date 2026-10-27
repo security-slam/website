@@ -31,6 +31,10 @@ projects:
     repoUrl: https://github.com/projectcapsule/capsule
     logoUrl: /project-logos/capsule.png
     completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
+  - name: CloudNativePG
+    repoUrl: https://github.com/cloudnative-pg/cloudnative-pg
+    logoUrl: /project-logos/cloudnativepg.png
+    completed: [cleaner, inspector, mechanizer]
   - name: FlowLogix Jakarta EE Components
     repoUrl: https://github.com/flowlogix/flowlogix
     logoUrl: /project-logos/flowlogix.jpg
@@ -67,6 +71,10 @@ projects:
     repoUrl: https://github.com/privateerproj
     logoUrl: /project-logos/privateer.png
     completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
+  - name: ResoArc
+    repoUrl: https://github.com/resoarc/resoarc-site
+    logoUrl: /project-logos/resoarc.png
+    completed: [cleaner, inspector, mechanizer]
   - name: Score
     repoUrl: https://github.com/score-spec/spec
     logoUrl: /project-logos/score.png
