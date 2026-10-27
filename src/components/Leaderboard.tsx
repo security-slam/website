@@ -61,6 +61,8 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ projects, badges }) =>
           flexWrap: "wrap",
           gap: "var(--gf-space-lg)",
           justifyContent: "center",
+          // Break out of the 900px article so six badges fit in one row; never wider than the viewport.
+          marginInline: "min(0px, calc(50% - min(460px, 50vw - 1.5rem)))",
           marginBottom: "var(--gf-space-2xl)",
           paddingTop: "var(--gf-space-md)",
           paddingBottom: "var(--gf-space-md)",
