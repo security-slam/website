@@ -46,7 +46,7 @@ projects:
   - name: Kubescape
     repoUrl: https://github.com/kubescape/kubescape
     logoUrl: /project-logos/kubescape.png
-    completed: [cleaner, chronicler, mechanizer, defender, cra-readiness]
+    completed: [chronicler, cra-readiness]
   - name: kubetest4j
     repoUrl: https://github.com/skodjob/kubetest4j
     logoUrl: /project-logos/kubetest4j.png
@@ -54,7 +54,7 @@ projects:
   - name: Meshery
     repoUrl: https://github.com/meshery/meshery
     logoUrl: /project-logos/meshery.svg
-    completed: [cleaner, chronicler, inspector, mechanizer, defender]
+    completed: [cleaner, chronicler, inspector, mechanizer]
   - name: OpenSSF Scorecard
     repoUrl: https://github.com/ossf/scorecard
     logoUrl: /project-logos/scorecard.png
@@ -74,7 +74,7 @@ projects:
   - name: SOaC
     repoUrl: https://github.com/ge0mant1s/SOaC-Enterprise
     logoUrl: /project-logos/soac.png
-    completed: [cleaner, chronicler, inspector, mechanizer, cra-readiness]
+    completed: [chronicler, inspector, mechanizer, cra-readiness]
   - name: StreamsHub MCP
     repoUrl: https://github.com/streamshub/streamshub-mcp
     logoUrl: /project-logos/streamshub.png
