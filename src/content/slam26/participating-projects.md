@@ -6,7 +6,7 @@ projects:
   - name: Agent Capability Contract (ACC)
     repoUrl: https://github.com/agent-capability/agent-capability-contract
     logoUrl: /project-logos/acc.png
-    completed: [cleaner, inspector, mechanizer]
+    completed: [cleaner, chronicler, inspector, mechanizer]
   - name: Apache Camel
     repoUrl: https://github.com/apache/camel
     logoUrl: /project-logos/apache.png
@@ -26,11 +26,15 @@ projects:
   - name: BailingHub Core
     repoUrl: https://github.com/bailinghub/bailinghub
     logoUrl: /project-logos/bailinghub.png
-    completed: [cleaner, inspector, mechanizer]
+    completed: [cleaner, chronicler, inspector, mechanizer]
   - name: Capsule
     repoUrl: https://github.com/projectcapsule/capsule
     logoUrl: /project-logos/capsule.png
     completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
+  - name: CloudNativePG
+    repoUrl: https://github.com/cloudnative-pg/cloudnative-pg
+    logoUrl: /project-logos/cloudnativepg.png
+    completed: [cleaner, inspector, mechanizer]
   - name: FlowLogix Jakarta EE Components
     repoUrl: https://github.com/flowlogix/flowlogix
     logoUrl: /project-logos/flowlogix.jpg
@@ -42,23 +46,23 @@ projects:
   - name: k8gb
     repoUrl: https://github.com/k8gb-io/k8gb
     logoUrl: /project-logos/k8gb.png
-    completed: []
+    completed: [cleaner, chronicler, cra-readiness]
   - name: Kubescape
     repoUrl: https://github.com/kubescape/kubescape
     logoUrl: /project-logos/kubescape.png
-    completed: [cleaner, chronicler, mechanizer, defender, cra-readiness]
+    completed: [chronicler, cra-readiness]
   - name: kubetest4j
     repoUrl: https://github.com/skodjob/kubetest4j
     logoUrl: /project-logos/kubetest4j.png
-    completed: []
+    completed: [cleaner, chronicler, inspector, mechanizer]
   - name: Meshery
     repoUrl: https://github.com/meshery/meshery
     logoUrl: /project-logos/meshery.svg
-    completed: [cleaner, chronicler, inspector, mechanizer, defender]
+    completed: [cleaner, chronicler, inspector, mechanizer]
   - name: OpenSSF Scorecard
     repoUrl: https://github.com/ossf/scorecard
     logoUrl: /project-logos/scorecard.png
-    completed: [cleaner, chronicler, inspector, mechanizer]
+    completed: [cleaner, chronicler, inspector, mechanizer, defender]
   - name: PgBouncer
     repoUrl: https://github.com/pgbouncer/pgbouncer
     logoUrl: /project-logos/pgbouncer.png
@@ -67,6 +71,10 @@ projects:
     repoUrl: https://github.com/privateerproj
     logoUrl: /project-logos/privateer.png
     completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
+  - name: ResoArc
+    repoUrl: https://github.com/resoarc/resoarc-site
+    logoUrl: /project-logos/resoarc.png
+    completed: [cleaner, inspector, mechanizer]
   - name: Score
     repoUrl: https://github.com/score-spec/spec
     logoUrl: /project-logos/score.png
@@ -74,7 +82,7 @@ projects:
   - name: SOaC
     repoUrl: https://github.com/ge0mant1s/SOaC-Enterprise
     logoUrl: /project-logos/soac.png
-    completed: [cleaner, chronicler, inspector, cra-readiness]
+    completed: [chronicler, inspector, mechanizer, cra-readiness]
   - name: StreamsHub MCP
     repoUrl: https://github.com/streamshub/streamshub-mcp
     logoUrl: /project-logos/streamshub.png
@@ -82,7 +90,7 @@ projects:
   - name: Strimzi
     repoUrl: https://github.com/strimzi/strimzi-kafka-operator
     logoUrl: /project-logos/strimzi.png
-    completed: [cleaner, chronicler, mechanizer]
+    completed: [cleaner, chronicler, mechanizer, defender]
   - name: wasmCloud
     repoUrl: https://github.com/wasmCloud/wasmCloud
     logoUrl: /project-logos/wasmcloud.png
