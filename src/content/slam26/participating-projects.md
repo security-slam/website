@@ -31,10 +31,14 @@ projects:
     repoUrl: https://github.com/projectcapsule/capsule
     logoUrl: /project-logos/capsule.png
     completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
+  - name: Cedar
+    repoUrl: https://github.com/cedar-policy/cedar
+    logoUrl: /project-logos/cedar.png
+    completed: [cleaner, inspector, defender, cra-readiness]
   - name: CloudNativePG
     repoUrl: https://github.com/cloudnative-pg/cloudnative-pg
     logoUrl: /project-logos/cloudnativepg.png
-    completed: [cleaner, inspector, mechanizer]
+    completed: [cleaner, inspector, mechanizer, cra-readiness]
   - name: FlowLogix Jakarta EE Components
     repoUrl: https://github.com/flowlogix/flowlogix
     logoUrl: /project-logos/flowlogix.jpg
@@ -46,7 +50,11 @@ projects:
   - name: k8gb
     repoUrl: https://github.com/k8gb-io/k8gb
     logoUrl: /project-logos/k8gb.png
-    completed: [cleaner, chronicler, cra-readiness]
+    completed: [cleaner, chronicler, inspector, defender, cra-readiness]
+  - name: Knative
+    repoUrl: https://github.com/knative/serving
+    logoUrl: /project-logos/knative.png
+    completed: []
   - name: Kubescape
     repoUrl: https://github.com/kubescape/kubescape
     logoUrl: /project-logos/kubescape.png
@@ -59,18 +67,30 @@ projects:
     repoUrl: https://github.com/meshery/meshery
     logoUrl: /project-logos/meshery.svg
     completed: [cleaner, chronicler, inspector, mechanizer]
+  - name: Minder
+    repoUrl: https://github.com/mindersec/minder
+    logoUrl: /project-logos/minder.png
+    completed: []
+  - name: Notary Project
+    repoUrl: https://github.com/notaryproject/notation
+    logoUrl: /project-logos/notary.png
+    completed: []
   - name: OpenSSF Scorecard
     repoUrl: https://github.com/ossf/scorecard
     logoUrl: /project-logos/scorecard.png
-    completed: [cleaner, chronicler, inspector, mechanizer, defender]
+    completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
   - name: PgBouncer
     repoUrl: https://github.com/pgbouncer/pgbouncer
     logoUrl: /project-logos/pgbouncer.png
-    completed: [cleaner, mechanizer]
+    completed: [cleaner, chronicler, mechanizer]
   - name: Privateer
     repoUrl: https://github.com/privateerproj
     logoUrl: /project-logos/privateer.png
     completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
+  - name: qtop
+    repoUrl: https://github.com/qtop/qtop
+    logoUrl: /project-logos/qtop.png
+    completed: [inspector]
   - name: ResoArc
     repoUrl: https://github.com/resoarc/resoarc-site
     logoUrl: /project-logos/resoarc.png
@@ -82,7 +102,7 @@ projects:
   - name: SOaC
     repoUrl: https://github.com/ge0mant1s/SOaC-Enterprise
     logoUrl: /project-logos/soac.png
-    completed: [chronicler, inspector, mechanizer, cra-readiness]
+    completed: [cleaner, chronicler, inspector, mechanizer, cra-readiness]
   - name: StreamsHub MCP
     repoUrl: https://github.com/streamshub/streamshub-mcp
     logoUrl: /project-logos/streamshub.png
