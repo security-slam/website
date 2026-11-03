@@ -110,7 +110,7 @@ projects:
   - name: Strimzi
     repoUrl: https://github.com/strimzi/strimzi-kafka-operator
     logoUrl: /project-logos/strimzi.png
-    completed: [cleaner, chronicler, mechanizer, defender]
+    completed: [cleaner, chronicler, mechanizer, defender, cra-readiness]
   - name: wasmCloud
     repoUrl: https://github.com/wasmCloud/wasmCloud
     logoUrl: /project-logos/wasmcloud.png
