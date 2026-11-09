@@ -10,6 +10,7 @@ import { siteConfig } from "../config/site";
 import {
   getSectionItemBySlug,
   getSectionItemByPath,
+  projectSlug,
   type ProjectInfo
 } from "../content/sections";
 
@@ -38,6 +39,8 @@ export const SectionItemPage: React.FC<SectionItemPageProps> = ({
       ? getSectionItemBySlug(section, slugParam)
       : undefined;
   const defaultToLeaderboard = siteConfig.participatingProjectsDefaultTab === "leaderboard";
+  // Past Slams: a projects board, most badges first, whose cards open each project's page.
+  const isArchive = section === "outcomes";
 
   const [shuffledProjects, setShuffledProjects] = useState<ProjectInfo[]>([]);
   const [showLeaderboard, setShowLeaderboard] = useState(defaultToLeaderboard);
@@ -84,7 +87,45 @@ export const SectionItemPage: React.FC<SectionItemPageProps> = ({
           {item.description}
         </p>
       )}
-      {item.projects && item.projects.length > 0 && (
+      {isArchive && item.projects && item.projects.length > 0 && (
+        <>
+        <p
+          style={{
+            color: "var(--gf-color-text)",
+            fontSize: "1.1rem",
+            marginTop: "calc(-1 * var(--gf-space-md))",
+            marginBottom: "var(--gf-space-lg)"
+          }}
+        >
+          Click a project logo to see its achievements.
+        </p>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            gap: "var(--gf-space-xl)",
+            marginBottom: "var(--gf-space-xl)"
+          }}
+        >
+          {[...item.projects]
+            .sort(
+              (a, b) =>
+                (b.completed?.length ?? 0) - (a.completed?.length ?? 0) ||
+                a.name.localeCompare(b.name)
+            )
+            .map((project) => (
+              <ProjectCard
+                key={project.name}
+                name={project.name}
+                repoUrl={project.repoUrl}
+                logoUrl={project.logoUrl}
+                to={`/${section}/${item.slug}/${projectSlug(project.name)}`}
+              />
+            ))}
+        </div>
+        </>
+      )}
+      {!isArchive && item.projects && item.projects.length > 0 && (
         <>
           <div
             style={{
@@ -163,7 +204,7 @@ export const SectionItemPage: React.FC<SectionItemPageProps> = ({
                   <ProjectCard
                     key={index}
                     name={project.name}
-                    advisor={project.advisor}
+                    champion={project.champion}
                     repoUrl={project.repoUrl}
                     logoUrl={project.logoUrl}
                   />

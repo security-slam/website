@@ -517,3 +517,114 @@ h3 {
   padding: 0;
   background: none;
 }
+
+/* Archived project page (ProjectPage.tsx) */
+.project-back {
+  display: inline-block;
+  margin-bottom: var(--gf-space-lg);
+  color: var(--gf-color-text-subtle);
+  text-decoration: none;
+}
+.project-back::before {
+  content: "‹ ";
+}
+.project-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gf-space-lg);
+  margin-bottom: var(--gf-space-xl);
+}
+.project-logo {
+  flex: 0 0 auto;
+  width: 160px;
+  height: 160px;
+  padding: var(--gf-space-md);
+  background: #ffffff;
+  border-radius: var(--gf-radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-logo img {
+  max-height: 100%;
+  object-fit: contain;
+}
+.project-name {
+  margin: 0 0 var(--gf-space-sm);
+  font-size: 2.5rem;
+  line-height: 1.15;
+  color: var(--gf-color-accent);
+}
+.project-champion {
+  margin: 0;
+  color: var(--gf-color-text-subtle);
+}
+.project-champion strong {
+  display: block;
+  font-size: 1.35rem;
+  color: var(--gf-color-text);
+}
+.project-section {
+  margin-bottom: var(--gf-space-xl);
+}
+.project-section h2 {
+  margin: 0 0 var(--gf-space-sm);
+}
+.project-summary {
+  margin: 0 0 var(--gf-space-lg);
+  color: var(--gf-color-text-subtle);
+}
+.project-repos {
+  margin: 0;
+  padding-left: 1.25rem;
+  line-height: 1.9;
+}
+.project-repos a {
+  color: var(--gf-color-complement);
+  overflow-wrap: anywhere;
+}
+
+/* Honeycomb: badge PNGs are pointy-top hexes (600×680). Rows of three,
+   odd rows shifted half a cell and pulled up a quarter height so edges nest. */
+.honeycomb {
+  container-type: inline-size;
+}
+.honeycomb-row {
+  /* 3.5 cells + 2.5 gaps per offset row must fit the column */
+  --hex-gap: 8px;
+  --hex-w: min(150px, (100cqi - 2.5 * var(--hex-gap)) / 3.5);
+  --hex-h: calc(var(--hex-w) * 680 / 600);
+  display: flex;
+  gap: var(--hex-gap);
+}
+.honeycomb-row + .honeycomb-row {
+  margin-top: calc(var(--hex-h) * -0.25 + var(--hex-gap) * 0.866);
+}
+.honeycomb-row:nth-child(even) {
+  margin-left: calc((var(--hex-w) + var(--hex-gap)) / 2);
+}
+.honeycomb-cell {
+  display: block;
+  width: var(--hex-w);
+  border-radius: 0;
+}
+.honeycomb-cell img {
+  display: block;
+  width: 100%;
+  filter: grayscale(1);
+  opacity: 0.22;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+.honeycomb-cell.is-earned img {
+  filter: drop-shadow(0 0 14px var(--gf-color-accent-soft));
+  opacity: 1;
+}
+@media (hover: hover) {
+  .project-back:hover {
+    color: var(--gf-color-text);
+  }
+  .honeycomb-cell:not(.is-earned):hover img {
+    opacity: 0.5;
+  }
+}
