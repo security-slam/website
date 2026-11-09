@@ -22,7 +22,7 @@ projects:
   - name: Argo Helm
     repoUrl: https://github.com/argoproj/argo-helm
     logoUrl: /project-logos/argo.png
-    completed: [cleaner, chronicler, mechanizer, cra-readiness]
+    completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
   - name: BailingHub Core
     repoUrl: https://github.com/bailinghub/bailinghub
     logoUrl: /project-logos/bailinghub.png
@@ -34,7 +34,7 @@ projects:
   - name: Cedar
     repoUrl: https://github.com/cedar-policy/cedar
     logoUrl: /project-logos/cedar.png
-    completed: [cleaner, inspector, defender, cra-readiness]
+    completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
   - name: CloudNativePG
     repoUrl: https://github.com/cloudnative-pg/cloudnative-pg
     logoUrl: /project-logos/cloudnativepg.png
@@ -50,7 +50,7 @@ projects:
   - name: k8gb
     repoUrl: https://github.com/k8gb-io/k8gb
     logoUrl: /project-logos/k8gb.png
-    completed: [cleaner, chronicler, inspector, defender, cra-readiness]
+    completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
   - name: Knative
     repoUrl: https://github.com/knative/serving
     logoUrl: /project-logos/knative.png
@@ -58,7 +58,7 @@ projects:
   - name: Kubescape
     repoUrl: https://github.com/kubescape/kubescape
     logoUrl: /project-logos/kubescape.png
-    completed: [chronicler, cra-readiness]
+    completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
   - name: kubetest4j
     repoUrl: https://github.com/skodjob/kubetest4j
     logoUrl: /project-logos/kubetest4j.png
@@ -66,7 +66,7 @@ projects:
   - name: Meshery
     repoUrl: https://github.com/meshery/meshery
     logoUrl: /project-logos/meshery.svg
-    completed: [cleaner, chronicler, inspector, mechanizer]
+    completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
   - name: Minder
     repoUrl: https://github.com/mindersec/minder
     logoUrl: /project-logos/minder.png
@@ -82,7 +82,7 @@ projects:
   - name: PgBouncer
     repoUrl: https://github.com/pgbouncer/pgbouncer
     logoUrl: /project-logos/pgbouncer.png
-    completed: [cleaner, chronicler, mechanizer]
+    completed: [cleaner, chronicler, inspector, mechanizer]
   - name: Privateer
     repoUrl: https://github.com/privateerproj
     logoUrl: /project-logos/privateer.png
@@ -102,7 +102,7 @@ projects:
   - name: SOaC
     repoUrl: https://github.com/ge0mant1s/SOaC-Enterprise
     logoUrl: /project-logos/soac.png
-    completed: [cleaner, chronicler, inspector, mechanizer, cra-readiness]
+    completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
   - name: StreamsHub MCP
     repoUrl: https://github.com/streamshub/streamshub-mcp
     logoUrl: /project-logos/streamshub.png
@@ -110,11 +110,11 @@ projects:
   - name: Strimzi
     repoUrl: https://github.com/strimzi/strimzi-kafka-operator
     logoUrl: /project-logos/strimzi.png
-    completed: [cleaner, chronicler, mechanizer, defender, cra-readiness]
+    completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
   - name: wasmCloud
     repoUrl: https://github.com/wasmCloud/wasmCloud
     logoUrl: /project-logos/wasmcloud.png
-    completed: []
+    completed: [cleaner, chronicler, inspector, mechanizer, defender, cra-readiness]
   - name: webpack
     repoUrl: https://github.com/webpack/webpack
     logoUrl: /project-logos/webpack.png
