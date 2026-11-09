@@ -1,34 +1,34 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export interface ProjectCardProps {
   name: string;
-  advisor?: string;
+  champion?: string;
   repoUrl: string;
   logoUrl: string;
+  /** Internal route; when set the card links here instead of to the repo. */
+  to?: string;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   name,
-  advisor,
+  champion,
   repoUrl,
-  logoUrl
+  logoUrl,
+  to
 }) => {
-  return (
-    <a
-      href={repoUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="link-card"
-      style={{
-        textDecoration: "none",
-        color: "inherit",
-        display: "block",
-        borderRadius: "var(--gf-radius-xl)",
-        overflow: "hidden",
-        border: "1px solid var(--gf-color-border-strong)",
-        boxShadow: "var(--gf-shadow-surface)"
-      }}
-    >
+  const style: React.CSSProperties = {
+    textDecoration: "none",
+    color: "inherit",
+    display: "flex",
+    flexDirection: "column",
+    borderRadius: "var(--gf-radius-xl)",
+    overflow: "hidden",
+    border: "1px solid var(--gf-color-border-strong)",
+    boxShadow: "var(--gf-shadow-surface)"
+  };
+  const body = (
+    <>
       {/* Logo section with white background */}
       <div
         style={{
@@ -55,7 +55,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       <div
         style={{
           backgroundColor: "var(--gf-color-surface)",
-          padding: "var(--gf-space-xl)"
+          padding: "var(--gf-space-xl)",
+          flex: 1
         }}
       >
         <h3
@@ -68,7 +69,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         >
           {name}
         </h3>
-        {advisor && (
+        {champion && (
           <p
             style={{
               margin: 0,
@@ -76,10 +77,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               fontSize: "1rem"
             }}
           >
-            Security Advisor: <strong>{advisor}</strong>
+            Security Champion: <strong>{champion}</strong>
           </p>
         )}
       </div>
+    </>
+  );
+  return to ? (
+    <Link to={to} className="link-card" style={style}>{body}</Link>
+  ) : (
+    <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="link-card" style={style}>
+      {body}
     </a>
   );
 };

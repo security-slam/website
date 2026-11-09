@@ -11,6 +11,7 @@ import { SectionIndexPage } from "./pages/SectionIndexPage";
 import { SectionItemPage } from "./pages/SectionItemPage";
 import { LibraryPage } from "./pages/LibraryPage";
 import { LibraryArticlePage } from "./pages/LibraryArticlePage";
+import { ProjectPage } from "./pages/ProjectPage";
 import { AudioProvider } from "./contexts/AudioContext";
 import { useTheme } from "./theme";
 import { siteConfig } from "./config/site";
@@ -116,6 +117,12 @@ export const App: React.FC = () => {
                       path={`/${section}/:slug`}
                       element={<SectionItemPage section={section} />}
                     />
+                    {section === "outcomes" && (
+                      <Route
+                        path={`/${section}/:slug/:project`}
+                        element={<ProjectPage section={section} />}
+                      />
+                    )}
                   </React.Fragment>
                 )
             )}

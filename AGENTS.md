@@ -50,7 +50,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 |------|--------|
 | **`main.tsx`** | App entry: imports `polyfills.ts` first, sets document title from `siteConfig.siteName`, mounts React root, wraps app in `ThemeProvider`, imports `global.css`. |
 | **`polyfills.ts`** | Sets `globalThis.Buffer` so `gray-matter` works in the browser. |
-| **`App.tsx`** | Root layout and routing: applies `useTheme()`, wraps in `AudioProvider` and `BrowserRouter`, renders `BackgroundArcs`, optional `Banner`, `Header`, main, `Footer`. Routes: `/` (HomePage); `/library` and `/library/:slug` (LibraryPage, LibraryArticlePage) when `contentSections.library` is enabled; for every other enabled content section, `/<key>` (SectionIndexPage), each item's frontmatter `path`, and `/<key>/:slug` (SectionItemPage); each `contactPages` path (ContactPage); catch-all redirect to `/`. |
+| **`App.tsx`** | Root layout and routing: applies `useTheme()`, wraps in `AudioProvider` and `BrowserRouter`, renders `BackgroundArcs`, optional `Banner`, `Header`, main, `Footer`. Routes: `/` (HomePage); `/library` and `/library/:slug` (LibraryPage, LibraryArticlePage) when `contentSections.library` is enabled; for every other enabled content section, `/<key>` (SectionIndexPage), each item's frontmatter `path`, and `/<key>/:slug` (SectionItemPage); `/outcomes/:slug/:project` (ProjectPage); each `contactPages` path (ContactPage); catch-all redirect to `/`. |
 | **`theme.tsx`** | Theme system: `AppTheme` type, the single `slam` theme object (colors, radii, shadows, spacing, typography), `ThemeProvider` that injects CSS variables (`--gf-color-*`, `--gf-space-*`, etc.), `useTheme()` hook. Edit here to change look site-wide. |
 | **`global.css`** | Global styles: reset, layout, base typography, `.slam-theme` overrides, responsive rules. |
 | **`vite-env.d.ts`** | TypeScript reference for Vite client types (e.g. `import.meta`). |
@@ -71,9 +71,9 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 |------|--------|
 | **`library.ts`** | Loads every `library/**/*.md` with `gray-matter`. Slug is the filename. Frontmatter: `title`, `description`, `tags`, `badge`, `image`, `author`, `weight`, `videoUrl`, `aliases` (former slugs, redirected in `App.tsx`). Exports `libraryIndex` (from `index.md`), `libraryArticles` (excludes `index` and any file with `badge`, sorted by `weight` then title), `getLibraryArticle`, `getAllTags`, `getArticlesByTag`. |
 | **`library/`** | Library Markdown. `index.md` is the `/library` intro. Files with `badge:` are badge pages (`chronicler.md`, `cleaner.md`, `cra-readiness.md`, `defender.md`, `inspector.md`, `mechanizer.md`). Everything else is an article at `/library/<filename>`. |
-| **`sections.ts`** | Loads `*/**/*.md` and groups by directory name (the section key). Frontmatter: `title`, `description`, `path`, `hubspot`, `audioUrl`, `sectionAudio`, `youtubeId`, `projects`, `badges`. Exports `getSectionItems`, `getSectionIndexItem`, `getSectionListItems`, `getSectionItemBySlug`, `getSectionItemByPath`. |
+| **`sections.ts`** | Loads `*/**/*.md` and groups by directory name (the section key). Frontmatter: `title`, `description`, `path`, `hubspot`, `audioUrl`, `sectionAudio`, `youtubeId`, `projects`, `badges`. Exports `projectSlug`, `getSectionItems`, `getSectionIndexItem`, `getSectionListItems`, `getSectionItemBySlug`, `getSectionItemByPath`. |
 | **`slam26/`** | Slam26 section Markdown: `index.md`, `participating-projects.md`, `register.md`. |
-| **`outcomes/`** | Previous Outcomes section: `index.md` links past transparency reports; one archive page per finished Slam (e.g. `spring-2026.md`) with the final `projects` list and a `badges` list of the slugs that Slam used. |
+| **`outcomes/`** | Previous Outcomes section: `index.md` links past transparency reports; one archive page per finished Slam (e.g. `spring-2026.md`, `fall-2026.md`) with the final `projects` list (`name`, `champion`, `repoUrl`, `repos`, `logoUrl`, `completed`) and a `badges` list of the slugs that Slam used. The archive page is a projects board sorted by badges earned (most first, then by name); each project links to `/outcomes/<slam>/<project>`, where `<project>` is `projectSlug(name)`. Add a Slam by adding one file. |
 | **`carousel.ts`** | Image list for the home page carousel (`public/slam-photos/`). |
 | **`sponsorLogos.ts`** | Logo list for the home page logo bar (`public/logo/sponsor-logos/`). |
 
@@ -103,7 +103,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 | **`LogoBar.tsx`** | Auto-scrolling sponsor logo marquee. Not currently rendered; kept for when there are more logos than fit in a row. |
 | **`BadgeNavigation.tsx`** | Row of badge icons linking to `/library/<badge>`. |
 | **`LibraryArticleList.tsx`** | Library article grid with a tag filter (non-badge tags) driven by the `tag` query param. |
-| **`ProjectCard.tsx`** / **`Leaderboard.tsx`** | Participating project display for section items with `projects` frontmatter. |
+| **`ProjectCard.tsx`** / **`Leaderboard.tsx`** | Participating project display for section items with `projects` frontmatter. `ProjectCard` links to the repo, or to an internal route when given `to`. |
 | **`AudioPlayer.tsx`** | Narration player for `audioUrl` and `sectionAudio`. |
 | **`HubSpotForm.tsx`** | Embeds a HubSpot form from `portalId`, `formId`, `region`. Used by ContactPage and SectionItemPage. |
 | **`markdownComponents.tsx`** | `react-markdown` component overrides shared by Markdown-rendering pages. |
@@ -118,7 +118,8 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 | **`LibraryPage.tsx`** | `/library`: `libraryIndex` intro, badge navigation, and the filterable article list. |
 | **`LibraryArticlePage.tsx`** | `/library/:slug`: one library article or badge page. Badge pages show the badge icon, a submit-completion link, and articles tagged with the badge name. |
 | **`SectionIndexPage.tsx`** | `/<key>` for a non-library content section: `index.md` content (with a YouTube embed when `youtubeId` is set) plus cards for the other items. |
-| **`SectionItemPage.tsx`** | One content section item, found by slug or frontmatter `path`. Renders Markdown, optional HubSpot form, optional projects or leaderboard. |
+| **`SectionItemPage.tsx`** | One content section item, found by slug or frontmatter `path`. Renders Markdown, optional HubSpot form, optional projects or leaderboard. In `outcomes` the projects render as a board of cards linking to `ProjectPage`, with no leaderboard. |
+| **`ProjectPage.tsx`** | `/outcomes/:slug/:project`: one project in one archived Slam. Logo, name, Security Champion, a honeycomb of that Slam's badges (earned ones lit), and its repositories (`repos`, else `repoUrl`). Honeycomb styles are in `global.css`. |
 | **`ContactPage.tsx`** | Finds the `siteConfig.contactPages` entry for the current path; renders title, description, and the HubSpot form or `formDisabledMessage`. |
 
 ---

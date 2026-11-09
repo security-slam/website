@@ -8,8 +8,11 @@ export type SectionItemHubSpot = {
 
 export type ProjectInfo = {
   name: string;
-  advisor?: string;
+  /** Project's Security Champion for that Slam. */
+  champion?: string;
   repoUrl: string;
+  /** Repositories that took part; archive pages fall back to repoUrl when unset. */
+  repos?: string[];
   logoUrl: string;
   completed?: string[];
 };
@@ -118,4 +121,9 @@ export function getSectionItemBySlug(sectionName: string, slug: string): Section
 
 export function getSectionItemByPath(sectionName: string, path: string): SectionItem | undefined {
   return getSectionItems(sectionName).find((item) => item.path === path);
+}
+
+/** URL segment for a project on an archived Slam: "Metal³" -> "metal", "Argo Helm" -> "argo-helm". */
+export function projectSlug(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
