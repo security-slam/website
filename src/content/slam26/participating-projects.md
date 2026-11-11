@@ -14,7 +14,7 @@ projects:
   - name: Apache Shiro
     repoUrl: https://github.com/apache/shiro
     logoUrl: /project-logos/apache.png
-    completed: []
+    completed: [cleaner, inspector, cra-readiness]
   - name: Argo
     repoUrl: https://github.com/argoproj
     logoUrl: /project-logos/argo.png
