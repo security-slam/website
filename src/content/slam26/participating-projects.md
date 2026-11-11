@@ -42,7 +42,7 @@ projects:
   - name: FlowLogix Jakarta EE Components
     repoUrl: https://github.com/flowlogix/flowlogix
     logoUrl: /project-logos/flowlogix.jpg
-    completed: []
+    completed: [cleaner, chronicler, inspector]
   - name: GUAC
     repoUrl: https://github.com/guacsec/guac
     logoUrl: /project-logos/guac.png
