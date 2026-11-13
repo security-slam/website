@@ -14,7 +14,7 @@ projects:
   - name: Apache Shiro
     repoUrl: https://github.com/apache/shiro
     logoUrl: /project-logos/apache.png
-    completed: []
+    completed: [cleaner, inspector, cra-readiness]
   - name: Argo
     repoUrl: https://github.com/argoproj
     logoUrl: /project-logos/argo.png
@@ -38,11 +38,11 @@ projects:
   - name: CloudNativePG
     repoUrl: https://github.com/cloudnative-pg/cloudnative-pg
     logoUrl: /project-logos/cloudnativepg.png
-    completed: [cleaner, inspector, mechanizer, cra-readiness]
+    completed: [cleaner, inspector, chronicler, mechanizer, defender, cra-readiness]
   - name: FlowLogix Jakarta EE Components
     repoUrl: https://github.com/flowlogix/flowlogix
     logoUrl: /project-logos/flowlogix.jpg
-    completed: []
+    completed: [cleaner, chronicler, inspector]
   - name: GUAC
     repoUrl: https://github.com/guacsec/guac
     logoUrl: /project-logos/guac.png
