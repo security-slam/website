@@ -38,7 +38,7 @@ projects:
   - name: CloudNativePG
     repoUrl: https://github.com/cloudnative-pg/cloudnative-pg
     logoUrl: /project-logos/cloudnativepg.png
-    completed: [cleaner, inspector, mechanizer, cra-readiness]
+    completed: [cleaner, inspector, chronicler, mechanizer, defender, cra-readiness]
   - name: FlowLogix Jakarta EE Components
     repoUrl: https://github.com/flowlogix/flowlogix
     logoUrl: /project-logos/flowlogix.jpg
