@@ -61,7 +61,7 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 
 | Path | Intent |
 |------|--------|
-| **`site.ts`** | **Single source of truth** for site settings. Types: `FooterLink`, `HubSpotConfig`, `ContactPageConfig`, `ContentSectionConfig`, `NavLink`, `BannerConfig`, `SiteConfig`. `siteConfig` keys: `siteName`, `tagline`, `preregistrationUrl?`, `participatingProjectsDefaultTab?`, `banner?`, `footer`, `contentSections`, `customNavLinks?`, `contactPages`. Header nav is a fixed Home link, then enabled content sections with `inNav !== false`, then `customNavLinks`. |
+| **`site.ts`** | **Single source of truth** for site settings. Types: `FooterLink`, `HubSpotConfig`, `ContactPageConfig`, `ContentSectionConfig`, `NavLink`, `BannerConfig`, `SiteConfig`. `siteConfig` keys: `siteName`, `tagline`, `preregistrationUrl?`, `participatingProjectsDefaultTab?`, `banner?`, `footer`, `contentSections`, `customNavLinks?`, `contactPages`. A content section with `pages: [...]` routes only those item slugs (no section index, no `/:slug`); `slam26` uses it to keep just the register page between Slams. The library is currently disabled. Header nav is a fixed Home link, then enabled content sections with `inNav !== false`, then `customNavLinks`. |
 
 ---
 
@@ -114,12 +114,12 @@ React + Vite + TypeScript single-page app for [securityslam.com](https://securit
 
 | Path | Intent |
 |------|--------|
-| **`HomePage.tsx`** | Landing page: carousel, hero text, registration, partner logos, How the Slam works, and the badge row. Past reports live under `/outcomes`. |
+| **`HomePage.tsx`** | Landing page: carousel, hero text with a Register button, a card grid previewing each archived Slam in `outcomes/` (newest first by `<season>-<year>` filename), and partner logos. |
 | **`LibraryPage.tsx`** | `/library`: `libraryIndex` intro, badge navigation, and the filterable article list. |
 | **`LibraryArticlePage.tsx`** | `/library/:slug`: one library article or badge page. Badge pages show the badge icon, a submit-completion link, and articles tagged with the badge name. |
 | **`SectionIndexPage.tsx`** | `/<key>` for a non-library content section: `index.md` content (with a YouTube embed when `youtubeId` is set) plus cards for the other items. |
 | **`SectionItemPage.tsx`** | One content section item, found by slug or frontmatter `path`. Renders Markdown, optional HubSpot form, optional projects or leaderboard. In `outcomes` the projects render as a board of cards linking to `ProjectPage`, with no leaderboard. |
-| **`ProjectPage.tsx`** | `/outcomes/:slug/:project`: one project in one archived Slam. Logo, name, Security Champion, a honeycomb of that Slam's badges (earned ones lit), and its repositories (`repos`, else `repoUrl`). Honeycomb styles are in `global.css`. |
+| **`ProjectPage.tsx`** | `/outcomes/:slug/:project`: one project in one archived Slam. Logo, name, Security Champion, a honeycomb of that Slam's badges (earned ones lit; linked to badge pages only while the library is enabled), and its repositories (`repos`, else `repoUrl`). Honeycomb styles are in `global.css`. |
 | **`ContactPage.tsx`** | Finds the `siteConfig.contactPages` entry for the current path; renders title, description, and the HubSpot form or `formDisabledMessage`. |
 
 ---

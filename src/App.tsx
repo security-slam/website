@@ -95,12 +95,14 @@ export const App: React.FC = () => {
                 config.enabled &&
                 section !== "library" && (
                   <React.Fragment key={section}>
-                    <Route
-                      path={`/${section}`}
-                      element={<SectionIndexPage section={section} />}
-                    />
+                    {!config.pages && (
+                      <Route
+                        path={`/${section}`}
+                        element={<SectionIndexPage section={section} />}
+                      />
+                    )}
                     {getSectionItems(section)
-                      .filter((item) => item.path)
+                      .filter((item) => item.path && (!config.pages || config.pages.includes(item.slug)))
                       .map((item) => (
                         <Route
                           key={item.path}
@@ -113,10 +115,12 @@ export const App: React.FC = () => {
                           }
                         />
                       ))}
-                    <Route
-                      path={`/${section}/:slug`}
-                      element={<SectionItemPage section={section} />}
-                    />
+                    {!config.pages && (
+                      <Route
+                        path={`/${section}/:slug`}
+                        element={<SectionItemPage section={section} />}
+                      />
+                    )}
                     {section === "outcomes" && (
                       <Route
                         path={`/${section}/:slug/:project`}

@@ -2,12 +2,17 @@ import React from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { getSectionItemBySlug, projectSlug } from "../content/sections";
 import { badgePages } from "../content/library";
+import { siteConfig } from "../config/site";
 
 export interface ProjectPageProps {
   section: string;
 }
 
 /** One project's results in one archived Slam: /<section>/<slam>/<project>. */
+// Badge pages live in the library; when it is off, a badge is a plain cell, not a link to nowhere.
+const BadgeCell: React.FC<{ to: string; className: string; title: string; children: React.ReactNode }> = ({ to, ...rest }) =>
+  siteConfig.contentSections.library?.enabled ? <Link to={to} {...rest} /> : <span {...rest} />;
+
 export const ProjectPage: React.FC<ProjectPageProps> = ({ section }) => {
   const { slug = "", project: projectParam = "" } = useParams<{ slug: string; project: string }>();
   const slam = getSectionItemBySlug(section, slug);
@@ -58,14 +63,14 @@ export const ProjectPage: React.FC<ProjectPageProps> = ({ section }) => {
                 const label = badgePages.find((p) => p.slug === badge)?.badge ?? badge;
                 const has = earned.has(badge);
                 return (
-                  <Link
+                  <BadgeCell
                     key={badge}
                     to={`/library/${badge}`}
                     className={`honeycomb-cell${has ? " is-earned" : ""}`}
                     title={`${label}: ${has ? "earned" : "not earned"}`}
                   >
                     <img src={`/badge-icons/${badge}.png`} alt={`${label} badge, ${has ? "earned" : "not earned"}`} />
-                  </Link>
+                  </BadgeCell>
                 );
               })}
             </div>

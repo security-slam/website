@@ -1,11 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { TextSection } from "../components/TextSection";
-import { SectionCard } from "../components/SectionCard";
 import { Carousel } from "../components/Carousel";
 import { PartnerLogos } from "../components/PartnerLogos";
-import { BadgeNavigation } from "../components/BadgeNavigation";
 import { carouselImages } from "../content/carousel";
+import { getSectionListItems } from "../content/sections";
+
+const SEASONS = ["winter", "spring", "summer", "fall"];
+
+/** Archive files are named <season>-<year>; newest Slam sorts first. */
+export function slamOrder(slug: string): number {
+  const [season, year] = slug.split("-");
+  return Number(year) * 10 + SEASONS.indexOf(season);
+}
+console.assert(slamOrder("winter-2027") > slamOrder("fall-2026") && slamOrder("fall-2026") > slamOrder("spring-2026"));
+
+const pastSlams = getSectionListItems("outcomes")
+  .filter((item) => item.projects?.length)
+  .sort((a, b) => slamOrder(b.slug) - slamOrder(a.slug));
 
 export const HomePage: React.FC = () => {
   return (
@@ -32,129 +44,55 @@ export const HomePage: React.FC = () => {
             titleTag="h1"
             paragraphs={[
               "Run by the CNCF Technical Advisory Group for Security & Compliance, the Slam is a month-long community effort with a library of support resources, advisors on Slack, and plaques and badges for participating projects and contributors.",
-              "This fall, the Slam is open to ANY open source project. You don't need to be a CNCF project, or even cloud native. If you maintain or contribute to open source software, you can participate.",
-              "The next Security Slam runs October 5 – November 6, 2026. Registration is open now."
+              "This winter, the Slam is open to ANY open source project. You don't need to be a CNCF project, or even cloud native. If you maintain or contribute to open source software, you can participate.",
+              "The Winter 2027 Security Slam runs February 15 – March 12, 2027. Registration is open now."
             ]}
             centered={false}
             maxWidth="700px"
-            lastParagraphMargin="var(--gf-space-xl)"
+            lastParagraphMargin="var(--gf-space-lg)"
           />
+          <Link to="/slam26/register" className="home-cta btn-lift">
+            Register for Winter 2027
+          </Link>
         </div>
       </div>
 
-      <section
-        style={{
-          marginBottom: "var(--gf-space-xl)",
-          textAlign: "center"
-        }}
-      >
-        <h2 style={{ marginBottom: "var(--gf-space-md)" }}>Who's taking part</h2>
-        <p
-          style={{
-            color: "var(--gf-color-text-subtle)",
-            fontSize: "1.1rem",
-            marginBottom: "var(--gf-space-lg)",
-            maxWidth: "700px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            lineHeight: 1.7
-          }}
-        >
-          Projects from across the open source ecosystem are already in the Fall 2026 Slam, and the leaderboard shows which badges each one has earned so far.
-        </p>
-        <Link
-          to="/slam26/participating-projects"
-          style={{
-            display: "inline-block",
-            padding: "var(--gf-space-md) var(--gf-space-xl)",
-            color: "var(--gf-color-accent)",
-            fontWeight: 600,
-            textDecoration: "none",
-            border: "2px solid var(--gf-color-accent)",
-            borderRadius: "var(--gf-radius-lg)"
-          }}
-        >
-          Participating projects
-        </Link>
-      </section>
-
-      <section
-        style={{
-          marginBottom: "var(--gf-space-xl)",
-          textAlign: "center"
-        }}
-      >
-        <h2 style={{ marginBottom: "var(--gf-space-md)" }}>Registration is now open</h2>
-        <p
-          style={{
-            color: "var(--gf-color-text-subtle)",
-            fontSize: "1.1rem",
-            marginBottom: "var(--gf-space-lg)",
-            maxWidth: "700px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            lineHeight: 1.7
-          }}
-        >
-          Open to ALL open source projects! Register now to qualify for recognitions.
-        </p>
-        <Link
-          to="/slam26/register"
-          style={{
-            display: "inline-block",
-            padding: "var(--gf-space-md) var(--gf-space-xl)",
-            background: "linear-gradient(135deg, var(--gf-color-complement) 0%, #29bfc7 50%, #159aa1 100%)",
-            color: "#fff",
-            fontWeight: 600,
-            textDecoration: "none",
-            borderRadius: "var(--gf-radius-lg)",
-            boxShadow: "var(--gf-shadow-surface)"
-          }}
-        >
-          Register now
-        </Link>
-      </section>
+      {pastSlams.length > 0 && (
+        <section aria-labelledby="past-slams-heading" className="home-outcomes">
+          <h2 id="past-slams-heading">Previous outcomes</h2>
+          <div className="home-outcomes-grid">
+            {pastSlams.map((slam) => {
+              const projects = slam.projects ?? [];
+              const earned = projects.reduce((n, p) => n + (p.completed?.length ?? 0), 0);
+              const logos = [...new Set(projects.map((p) => p.logoUrl))].slice(0, 8);
+              return (
+                <Link
+                  key={slam.slug}
+                  to={slam.path ?? `/outcomes/${slam.slug}`}
+                  className="home-outcome-card link-card"
+                >
+                  <h3>{slam.title.replace(/^Security Slam /, "")}</h3>
+                  <p className="home-outcome-stats">
+                    <span><strong>{projects.length}</strong> projects</span>
+                    <span><strong>{earned}</strong> badges earned</span>
+                  </p>
+                  <div className="home-outcome-logos" aria-hidden="true">
+                    {logos.map((src) => (
+                      <img key={src} src={src} alt="" loading="lazy" />
+                    ))}
+                  </div>
+                  <span className="home-outcome-more">See every project →</span>
+                </Link>
+              );
+            })}
+          </div>
+          <p className="home-outcomes-older">
+            Earlier Slams are covered in the <Link to="/outcomes">CNCF transparency reports</Link>.
+          </p>
+        </section>
+      )}
 
       <PartnerLogos />
-
-      <section
-        style={{
-          marginBottom: "var(--gf-space-xl)",
-          textAlign: "center"
-        }}
-      >
-        <h2 style={{ marginBottom: "var(--gf-space-md)" }}>How the Slam works</h2>
-        <p
-          style={{
-            color: "var(--gf-color-text-subtle)",
-            fontSize: "1.1rem",
-            marginBottom: "var(--gf-space-lg)",
-            maxWidth: "700px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            lineHeight: 1.7
-          }}
-        >
-          No teams, no scoring, no prizes: just six shared objectives built around the OpenSSF Open Source Project Security Baseline. Projects that complete an objective earn a badge; projects that complete them all earn a plaque.
-        </p>
-        <Link
-          to="/slam26"
-          style={{
-            display: "inline-block",
-            padding: "var(--gf-space-md) var(--gf-space-xl)",
-            color: "var(--gf-color-accent)",
-            fontWeight: 600,
-            textDecoration: "none",
-            border: "2px solid var(--gf-color-accent)",
-            borderRadius: "var(--gf-radius-lg)"
-          }}
-        >
-          How it works
-        </Link>
-      </section>
-
-      <BadgeNavigation />
-
     </div>
   );
 };
