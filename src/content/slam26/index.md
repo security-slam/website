@@ -1,7 +1,7 @@
 ---
-title: "Security Slam 2026"
+title: "Security Slam Winter 2027"
 path: "/slam26"
-description: "Welcome to Slam26!"
+description: "Welcome to the Winter 2027 Security Slam, February 15 to March 12, 2027!"
 youtubeId: AvjltBoM4rE
 ---
 
@@ -49,7 +49,5 @@ Slam Advisors are standing by to collaborate, speculate, give opinions, and shar
 
 ## Key Dates to Remember
 
-- **Monday, October 5:** Event objectives are announced; Slam Library opens
-- **Friday, November 6:** Closing date for physical awards at KubeCon NA
-- **Wednesday, November 11:** Closing date for participant Credly (digital) badges
-- **Thursday, November 12:** Last chance to pick up your printed award at the OpenSSF Booth (Solutions Showcase Booth #313, Hall 4)
+- **Monday, February 15, 2027:** The Winter 2027 Slam opens
+- **Friday, March 12, 2027:** The Winter 2027 Slam closes

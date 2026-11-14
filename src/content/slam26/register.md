@@ -1,7 +1,7 @@
 ---
-title: "Slam26 Registration"
+title: "Winter 2027 Registration"
 path: "/slam26/register"
-description: "Sign up to receive credit for your participation in the Security Slam!"
+description: "Sign up to receive credit for your participation in the Winter 2027 Security Slam, February 15 to March 12, 2027!"
 hubspot:
   portalId: "243073831"
   formId: "434d081b-d3fe-40f8-8180-403112dfd40f"

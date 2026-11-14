@@ -108,6 +108,6 @@ If the scanner gets something wrong, report it to the scanner's project. That he
 
 ## Getting your badge
 
-When a badge is finished, a maintainer submits it from the badge page and names the people who helped. Linking your PRs from the issue makes you easy to include. Physical awards close on 6 November and digital badges on 11 November.
+When a badge is finished, a maintainer submits it from the badge page and names the people who helped. Linking your PRs from the issue makes you easy to include. The Winter 2027 Slam closes on 12 March 2027.
 
 Stuck? Ask in [#tag-security-and-compliance](https://cloud-native.slack.com/archives/C08JZ9YLAA3) on the CNCF Slack.

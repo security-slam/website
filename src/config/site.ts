@@ -62,7 +62,7 @@ export type SiteConfig = {
 
 export const siteConfig: SiteConfig = {
   siteName: "Security Slam",
-  tagline: "October 5 – November 6, 2026",
+  tagline: "February 15 – March 12, 2027",
   preregistrationUrl: "",
   participatingProjectsDefaultTab: "projects",
 
@@ -118,7 +118,7 @@ export const siteConfig: SiteConfig = {
     {
       path: "/slam26/submit-completion",
       title: "Submit Badge Completion",
-      description: "This form is for project maintainers to report completion of Slam26 badges. This may be submitted multiple times to request personal badges for each contributor to the badge. The form should ONLY be submitted by maintainers; other results will be automatically ignored. Organizers will reach out to maintainers via email to confirm the submissions.",
+      description: "This form is for project maintainers to report completion of Security Slam badges. This may be submitted multiple times to request personal badges for each contributor to the badge. The form should ONLY be submitted by maintainers; other results will be automatically ignored. Organizers will reach out to maintainers via email to confirm the submissions.",
       hubspot: {
         portalId: "243073831",
         formId: "5523a8f7-f60e-4ac9-8aed-225b6ebfd304",
