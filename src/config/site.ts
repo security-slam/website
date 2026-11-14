@@ -31,6 +31,8 @@ export type ContentSectionConfig = {
   label?: string;
   /** If true or omitted when enabled, section index appears in header nav. Set false to hide. */
   inNav?: boolean;
+  /** When set, only these item slugs get routes; the section index and other items are off. */
+  pages?: string[];
 };
 
 export type NavLink = {
@@ -85,33 +87,16 @@ export const siteConfig: SiteConfig = {
   // Index at /<key> (card grid), detail at /<key>/:slug or at item.path from frontmatter.
   // Section index appears in header nav when enabled and inNav !== false.
   contentSections: {
-    slam26: { enabled: true, label: "Slam26", inNav: false },
-    library: { enabled: true, label: "Library", inNav: false },
+    slam26: { enabled: true, label: "Slam26", inNav: false, pages: ["register"] },
+    library: { enabled: false, label: "Library", inNav: false },
     outcomes: { enabled: true, label: "Previous Outcomes", inNav: false },
     blog: { enabled: false, label: "Blog" }
   },
 
-  // Header nav. The six objectives are one click from every page (Spring feedback: hard to find).
+  // Header nav after the fixed Home link. The library and Slam explainer pages are spun down
+  // between Slams; past results are previewed on the homepage instead.
   customNavLinks: [
-    {
-      // Dropdown only: Header renders items with children as a button, so this
-      // path is an id, not a route. Kept distinct from the Library link below.
-      path: "#objectives",
-      label: "Objectives",
-      children: [
-        { path: "/library/cleaner", label: "Cleaner" },
-        { path: "/library/chronicler", label: "Chronicler" },
-        { path: "/library/inspector", label: "Inspector" },
-        { path: "/library/mechanizer", label: "Mechanizer" },
-        { path: "/library/defender", label: "Defender" },
-        { path: "/library/cra-readiness", label: "CRA Readiness" }
-      ]
-    },
-    { path: "/library", label: "Library" },
-    { path: "/slam26", label: "How it works" },
-    { path: "/slam26/participating-projects", label: "Projects" },
-    { path: "/slam26/register", label: "Register" },
-    { path: "/outcomes", label: "Previous Outcomes" }
+    { path: "/slam26/register", label: "Register" }
   ],
 
   contactPages: [

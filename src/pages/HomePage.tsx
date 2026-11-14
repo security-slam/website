@@ -1,16 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { TextSection } from "../components/TextSection";
-import { SectionCard } from "../components/SectionCard";
 import { Carousel } from "../components/Carousel";
 import { PartnerLogos } from "../components/PartnerLogos";
-import { BadgeNavigation } from "../components/BadgeNavigation";
-import { HubSpotForm } from "../components/HubSpotForm";
 import { carouselImages } from "../content/carousel";
-import { getSectionItemByPath } from "../content/sections";
+import { getSectionListItems } from "../content/sections";
 
-// The homepage form is the one on /slam26/register, so its IDs live in one place.
-const registration = getSectionItemByPath("slam26", "/slam26/register")?.hubspot;
+const SEASONS = ["winter", "spring", "summer", "fall"];
+
+/** Archive files are named <season>-<year>; newest Slam sorts first. */
+export function slamOrder(slug: string): number {
+  const [season, year] = slug.split("-");
+  return Number(year) * 10 + SEASONS.indexOf(season);
+}
+console.assert(slamOrder("winter-2027") > slamOrder("fall-2026") && slamOrder("fall-2026") > slamOrder("spring-2026"));
+
+const pastSlams = getSectionListItems("outcomes")
+  .filter((item) => item.projects?.length)
+  .sort((a, b) => slamOrder(b.slug) - slamOrder(a.slug));
 
 export const HomePage: React.FC = () => {
   return (
@@ -42,114 +49,50 @@ export const HomePage: React.FC = () => {
             ]}
             centered={false}
             maxWidth="700px"
-            lastParagraphMargin="var(--gf-space-xl)"
+            lastParagraphMargin="var(--gf-space-lg)"
           />
+          <Link to="/slam26/register" className="home-cta btn-lift">
+            Register for Winter 2027
+          </Link>
         </div>
       </div>
 
-      <section
-        style={{
-          marginBottom: "var(--gf-space-xl)",
-          textAlign: "center"
-        }}
-      >
-        <h2 style={{ marginBottom: "var(--gf-space-md)" }}>Fall 2026 results</h2>
-        <p
-          style={{
-            color: "var(--gf-color-text-subtle)",
-            fontSize: "1.1rem",
-            marginBottom: "var(--gf-space-lg)",
-            maxWidth: "700px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            lineHeight: 1.7
-          }}
-        >
-          Thirty projects from across the open source ecosystem took part in the Fall 2026 Slam. See which badges each one earned.
-        </p>
-        <Link
-          to="/outcomes/fall-2026"
-          style={{
-            display: "inline-block",
-            padding: "var(--gf-space-md) var(--gf-space-xl)",
-            color: "var(--gf-color-accent)",
-            fontWeight: 600,
-            textDecoration: "none",
-            border: "2px solid var(--gf-color-accent)",
-            borderRadius: "var(--gf-radius-lg)"
-          }}
-        >
-          Fall 2026 results
-        </Link>
-      </section>
-
-      <section
-        style={{
-          marginBottom: "var(--gf-space-xl)",
-          textAlign: "center"
-        }}
-      >
-        <h2 style={{ marginBottom: "var(--gf-space-md)" }}>Registration is now open</h2>
-        <p
-          style={{
-            color: "var(--gf-color-text-subtle)",
-            fontSize: "1.1rem",
-            marginBottom: "var(--gf-space-lg)",
-            maxWidth: "700px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            lineHeight: 1.7
-          }}
-        >
-          Open to ALL open source projects! Register for the Winter 2027 Slam to qualify for recognitions.
-        </p>
-        {registration && (
-          <div style={{ maxWidth: "700px", margin: "0 auto", textAlign: "left" }}>
-            <HubSpotForm {...registration} />
+      {pastSlams.length > 0 && (
+        <section aria-labelledby="past-slams-heading" className="home-outcomes">
+          <h2 id="past-slams-heading">Previous outcomes</h2>
+          <div className="home-outcomes-grid">
+            {pastSlams.map((slam) => {
+              const projects = slam.projects ?? [];
+              const earned = projects.reduce((n, p) => n + (p.completed?.length ?? 0), 0);
+              const logos = [...new Set(projects.map((p) => p.logoUrl))].slice(0, 8);
+              return (
+                <Link
+                  key={slam.slug}
+                  to={slam.path ?? `/outcomes/${slam.slug}`}
+                  className="home-outcome-card link-card"
+                >
+                  <h3>{slam.title.replace(/^Security Slam /, "")}</h3>
+                  <p className="home-outcome-stats">
+                    <span><strong>{projects.length}</strong> projects</span>
+                    <span><strong>{earned}</strong> badges earned</span>
+                  </p>
+                  <div className="home-outcome-logos" aria-hidden="true">
+                    {logos.map((src) => (
+                      <img key={src} src={src} alt="" loading="lazy" />
+                    ))}
+                  </div>
+                  <span className="home-outcome-more">See every project →</span>
+                </Link>
+              );
+            })}
           </div>
-        )}
-      </section>
+          <p className="home-outcomes-older">
+            Earlier Slams are covered in the <Link to="/outcomes">CNCF transparency reports</Link>.
+          </p>
+        </section>
+      )}
 
       <PartnerLogos />
-
-      <section
-        style={{
-          marginBottom: "var(--gf-space-xl)",
-          textAlign: "center"
-        }}
-      >
-        <h2 style={{ marginBottom: "var(--gf-space-md)" }}>How the Slam works</h2>
-        <p
-          style={{
-            color: "var(--gf-color-text-subtle)",
-            fontSize: "1.1rem",
-            marginBottom: "var(--gf-space-lg)",
-            maxWidth: "700px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            lineHeight: 1.7
-          }}
-        >
-          No teams, no scoring, no prizes: just six shared objectives built around the OpenSSF Open Source Project Security Baseline. Projects that complete an objective earn a badge; projects that complete them all earn a plaque.
-        </p>
-        <Link
-          to="/slam26"
-          style={{
-            display: "inline-block",
-            padding: "var(--gf-space-md) var(--gf-space-xl)",
-            color: "var(--gf-color-accent)",
-            fontWeight: 600,
-            textDecoration: "none",
-            border: "2px solid var(--gf-color-accent)",
-            borderRadius: "var(--gf-radius-lg)"
-          }}
-        >
-          How it works
-        </Link>
-      </section>
-
-      <BadgeNavigation />
-
     </div>
   );
 };
